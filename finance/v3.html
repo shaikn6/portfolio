@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAGIZAAZ SHAIK | MLOps Engineer | System Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #000000;
+    --bg: #040408;
+    --card: #080b14;
+    --card2: #0b0f1c;
+    --cyan: #00e5ff;
+    --cyan-dim: rgba(0,229,255,0.6);
+    --cyan-faint: rgba(0,229,255,0.05);
+    --cyan-border: rgba(0,229,255,0.18);
+    --magenta: #ff006e;
+    --magenta-dim: rgba(255,0,110,0.6);
+    --magenta-faint: rgba(255,0,110,0.05);
+    --magenta-border: rgba(255,0,110,0.18);
+    --white: #f0f4ff;
+    --gray: #4a5568;
+    --gray-light: #718096;
+    --grotesk: 'Space Grotesk', system-ui, sans-serif;
+    --mono: 'Space Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--grotesk);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom dual cursor */
+  #cursor-dot {
+    position: fixed;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--cyan);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px var(--cyan);
+  }
+  #cursor-ring {
+    position: fixed;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--cyan-border);
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Scan line overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0,229,255,0.012) 3px,
+      rgba(0,229,255,0.012) 4px
+    );
+    pointer-events: none;
+    z-index: 9997;
+    animation: scanMove 8s linear infinite;
+  }
+  @keyframes scanMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100px; }
+  }
+
+  /* Data stream canvas (hero background) */
+  #stream-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    opacity: 0.45;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    background: rgba(4,4,8,0.88);
+    border-bottom: 1px solid var(--cyan-border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cyan);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--magenta); }
+  .status-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    border: 1px solid var(--cyan-border);
+    background: var(--cyan-faint);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--cyan);
+  }
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+    animation: statusPulse 2s ease-in-out infinite;
+  }
+  @keyframes statusPulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gray-light);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span { display: block; width: 20px; height: 1px; background: var(--cyan); }
+
+  /* Hero */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    overflow: hidden;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border: 1px solid var(--cyan-border);
+    color: var(--cyan);
+    background: var(--cyan-faint);
+  }
+  .hero-tag.magenta {
+    border-color: var(--magenta-border);
+    color: var(--magenta);
+    background: var(--magenta-faint);
+  }
+
+  /* Glitch text */
+  .glitch {
+    font-family: var(--grotesk);
+    font-size: clamp(3.5rem, 9vw, 9rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 0.92;
+    position: relative;
+    display: inline-block;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+  .glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+  .glitch::before {
+    color: var(--cyan);
+    animation: glitch1 4s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    left: -2px;
+    text-shadow: 2px 0 var(--cyan);
+    opacity: 0.7;
+  }
+  .glitch::after {
+    color: var(--magenta);
+    animation: glitch2 4s infinite;
+    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+    left: 2px;
+    text-shadow: -2px 0 var(--magenta);
+    opacity: 0.7;
+  }
+  @keyframes glitch1 {
+    0%, 92%, 100% { transform: translate(0); opacity: 0; }
+    93% { transform: translate(-4px, -2px); opacity: 0.7; }
+    94% { transform: translate(4px, 0); opacity: 0.5; }
+    95% { transform: translate(-2px, 2px); opacity: 0.7; }
+    96% { transform: translate(0); opacity: 0; }
+  }
+  @keyframes glitch2 {
+    0%, 88%, 100% { transform: translate(0); opacity: 0; }
+    89% { transform: translate(4px, 2px); opacity: 0.7; }
+    90% { transform: translate(-4px, 0); opacity: 0.5; }
+    91% { transform: translate(2px, -2px); opacity: 0.7; }
+    92% { transform: translate(0); opacity: 0; }
+  }
+
+  .hero-subtitle {
+    font-family: var(--mono);
+    font-size: clamp(0.8rem, 1.8vw, 1rem);
+    color: var(--cyan);
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .hero-desc {
+    max-width: 680px;
+    color: var(--gray-light);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+  .hero-desc strong { color: var(--white); }
+  .hero-desc .accent { color: var(--cyan); }
+  .hero-desc .accent-m { color: var(--magenta); }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 12px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: none;
+    transition: all 0.25s;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-cyan {
+    border: 1px solid var(--cyan);
+    color: var(--black);
+    background: var(--cyan);
+  }
+  .btn-cyan:hover {
+    background: transparent;
+    color: var(--cyan);
+    box-shadow: 0 0 24px rgba(0,229,255,0.3), inset 0 0 24px rgba(0,229,255,0.05);
+  }
+  .btn-outline-cyan {
+    border: 1px solid var(--cyan-border);
+    color: var(--cyan);
+    background: transparent;
+  }
+  .btn-outline-cyan:hover {
+    border-color: var(--cyan);
+    background: var(--cyan-faint);
+    box-shadow: 0 0 16px rgba(0,229,255,0.2);
+  }
+  .btn-outline-magenta {
+    border: 1px solid var(--magenta-border);
+    color: var(--magenta);
+    background: transparent;
+  }
+  .btn-outline-magenta:hover {
+    border-color: var(--magenta);
+    background: var(--magenta-faint);
+    box-shadow: 0 0 16px rgba(255,0,110,0.2);
+  }
+
+  /* Stats panel */
+  #stats {
+    padding: 80px 48px;
+    background: var(--card);
+    border-top: 1px solid var(--cyan-border);
+    border-bottom: 1px solid var(--magenta-border);
+    position: relative;
+    z-index: 1;
+  }
+  .stats-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .stats-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .stats-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--magenta);
+    text-transform: uppercase;
+  }
+  .stats-title {
+    font-family: var(--grotesk);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--white);
+  }
+  .stats-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--cyan-border);
+    border: 1px solid var(--cyan-border);
+  }
+  .stat-col {
+    background: var(--bg);
+    padding: 32px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+  }
+  .stat-col::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .stat-col:hover { background: var(--cyan-faint); }
+  .stat-col:hover::after { opacity: 1; }
+
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--cyan);
+    display: block;
+    text-shadow: 0 0 30px rgba(0,229,255,0.4);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-lbl {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gray-light);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .stat-sub {
+    font-size: 11px;
+    color: var(--magenta);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  /* Bento grid */
+  #projects {
+    padding: 100px 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--magenta);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .section-title {
+    font-family: var(--grotesk);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 48px;
+    line-height: 1.1;
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 240px;
+    gap: 12px;
+  }
+
+  .bento-card {
+    background: var(--card);
+    border: 1px solid var(--cyan-border);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .bento-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--cyan-faint), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .bento-card:hover {
+    border-color: var(--cyan);
+    box-shadow: 0 0 32px rgba(0,229,255,0.08), inset 0 0 32px rgba(0,229,255,0.02);
+  }
+  .bento-card:hover::before { opacity: 1; }
+
+  .bento-card.magenta-card {
+    border-color: var(--magenta-border);
+  }
+  .bento-card.magenta-card::before {
+    background: linear-gradient(135deg, var(--magenta-faint), transparent 60%);
+  }
+  .bento-card.magenta-card:hover {
+    border-color: var(--magenta);
+    box-shadow: 0 0 32px rgba(255,0,110,0.08);
+  }
+
+  /* Bento sizes */
+  .bento-wide { grid-column: span 4; }
+  .bento-narrow { grid-column: span 2; }
+  .bento-full { grid-column: span 3; }
+  .bento-tall { grid-row: span 2; }
+  .bento-2col { grid-column: span 2; }
+
+  .bento-cat {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .bento-cat.magenta { color: var(--magenta); }
+  .bento-cat::before {
+    content: '';
+    display: inline-block;
+    width: 16px; height: 1px;
+    background: currentColor;
+  }
+  .bento-title {
+    font-family: var(--grotesk);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .bento-wide .bento-title { font-size: 1.3rem; }
+  .bento-desc {
+    font-size: 12px;
+    color: var(--gray-light);
+    line-height: 1.7;
+    flex: 1;
+  }
+  .bento-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 12px;
+  }
+  .btag {
+    font-family: var(--mono);
+    font-size: 8px;
+    padding: 2px 8px;
+    border: 1px solid var(--cyan-border);
+    color: var(--cyan-dim);
+    letter-spacing: 1px;
+  }
+  .btag.m { border-color: var(--magenta-border); color: var(--magenta-dim); }
+  .bento-metric {
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--cyan);
+    display: block;
+    text-shadow: 0 0 16px rgba(0,229,255,0.4);
+    margin: 8px 0 2px;
+  }
+  .bento-metric-lbl {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+  .bento-link-indicator {
+    position: absolute;
+    bottom: 16px; right: 16px;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--cyan);
+    opacity: 0;
+    transition: opacity 0.2s;
+    letter-spacing: 1px;
+  }
+  .bento-card:hover .bento-link-indicator { opacity: 1; }
+  .bento-link-indicator.m { color: var(--magenta); }
+
+  /* Skills Radar */
+  #skills {
+    padding: 100px 48px;
+    background: var(--card);
+    border-top: 1px solid var(--cyan-border);
+  }
+  .skills-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .skills-left {}
+  .radar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #radar-svg { width: 100%; max-width: 380px; height: auto; }
+
+  .skills-right {}
+  .skills-category {
+    margin-bottom: 28px;
+  }
+  .skills-cat-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .skills-cat-label.m { color: var(--magenta); }
+  .skills-cat-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, currentColor, transparent);
+    opacity: 0.3;
+  }
+  .skill-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .skill-name {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--gray-light);
+    width: 130px;
+    flex-shrink: 0;
+    letter-spacing: 0.5px;
+  }
+  .skill-bar-bg {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.05);
+    overflow: hidden;
+  }
+  .skill-bar {
+    height: 100%;
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+    background: linear-gradient(90deg, var(--cyan), var(--magenta));
+    box-shadow: 0 0 8px rgba(0,229,255,0.4);
+  }
+  .skill-pct {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--gray);
+    width: 32px;
+    text-align: right;
+  }
+
+  /* Certs */
+  #certs {
+    padding: 100px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--cyan-border);
+    border: 1px solid var(--cyan-border);
+  }
+  .cert-block {
+    background: var(--bg);
+    padding: 24px 20px;
+    text-align: center;
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .cert-block:hover { background: var(--cyan-faint); }
+  .cert-block-icon {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .cert-block-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .cert-block-issuer {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    color: var(--magenta);
+    text-transform: uppercase;
+  }
+
+  /* Contact */
+  #contact {
+    padding: 100px 48px;
+    background: var(--card);
+    border-top: 1px solid var(--magenta-border);
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .contact-left {}
+  .contact-glitch {
+    font-family: var(--grotesk);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .contact-glitch span { color: var(--cyan); }
+  .contact-text {
+    font-size: 14px;
+    color: var(--gray-light);
+    line-height: 1.8;
+    margin-bottom: 36px;
+  }
+  .contact-text strong { color: var(--white); }
+  .contact-links-col {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .contact-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .contact-card {
+    padding: 24px;
+    border: 1px solid var(--cyan-border);
+    background: var(--bg);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s;
+    display: block;
+  }
+  .contact-card:hover {
+    border-color: var(--cyan);
+    background: var(--cyan-faint);
+    box-shadow: 0 0 20px rgba(0,229,255,0.08);
+  }
+  .contact-card.full { grid-column: span 2; }
+  .contact-card.m { border-color: var(--magenta-border); }
+  .contact-card.m:hover { border-color: var(--magenta); background: var(--magenta-faint); }
+  .cc-label {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .cc-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .cc-sub {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--cyan);
+    margin-top: 4px;
+  }
+  .cc-sub.m { color: var(--magenta); }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Mobile */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(4,4,8,0.98);
+    z-index: 99;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding-top: 80px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--gray-light);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--cyan); }
+
+  footer {
+    padding: 28px 48px;
+    border-top: 1px solid var(--cyan-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    position: relative;
+    z-index: 1;
+  }
+  footer a { color: var(--cyan-dim); text-decoration: none; }
+
+  @media (max-width: 1024px) {
+    .bento-grid { grid-template-columns: repeat(4, 1fr); }
+    .bento-wide { grid-column: span 4; }
+    .bento-narrow { grid-column: span 2; }
+    .bento-full { grid-column: span 2; }
+    .skills-inner { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    .certs-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .status-pill { display: none; }
+    .hamburger { display: flex; }
+    #hero { padding: 100px 24px 60px; }
+    #stats, #certs { padding: 70px 24px; }
+    #projects, #skills, #contact { padding: 70px 24px; }
+    .stats-cols { grid-template-columns: 1fr; }
+    .bento-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
+    .bento-wide, .bento-narrow, .bento-full, .bento-tall, .bento-2col { grid-column: span 2; grid-row: span 1; }
+    .certs-grid { grid-template-columns: 1fr 1fr; }
+    .contact-right { grid-template-columns: 1fr; }
+    .contact-card.full { grid-column: span 1; }
+    footer { flex-direction: column; gap: 10px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<nav>
+  <a href="#hero" class="nav-logo">NS<span>//</span>v4</a>
+  <div class="status-pill">
+    <span class="status-dot"></span>
+    SYSTEM ONLINE
+  </div>
+  <ul class="nav-links">
+    <li><a href="#stats">STATS</a></li>
+    <li><a href="#projects">PROJECTS</a></li>
+    <li><a href="#skills">SKILLS</a></li>
+    <li><a href="#certs">CERTS</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+    <li><a href="https://github.com/shaikn6" target="_blank" rel="noopener">GITHUB</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#stats" onclick="closeMobileMenu()">STATS</a>
+  <a href="#projects" onclick="closeMobileMenu()">PROJECTS</a>
+  <a href="#skills" onclick="closeMobileMenu()">SKILLS</a>
+  <a href="#certs" onclick="closeMobileMenu()">CERTS</a>
+  <a href="#contact" onclick="closeMobileMenu()">CONTACT</a>
+  <a href="https://github.com/shaikn6" target="_blank" rel="noopener">GITHUB</a>
+</div>
+
+<!-- Hero -->
+<section id="hero">
+  <canvas id="stream-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-meta">
+      <div class="status-pill" style="position:static;padding:4px 12px;">
+        <span class="status-dot"></span>
+        SYSTEM ONLINE
+      </div>
+      <span class="hero-tag">MLOPS ENGINEER</span>
+      <span class="hero-tag magenta">FINANCE · FINTECH · BANKING</span>
+      <span class="hero-tag">F-1 STEM OPT</span>
+    </div>
+    <h1 class="glitch" data-text="NAGIZAAZ SHAIK">NAGIZAAZ SHAIK</h1>
+    <div class="hero-subtitle">// MLOps · ML Engineering · Finance AI Systems</div>
+    <p class="hero-desc">
+      <strong>4+ years</strong> building production ML systems for <span class="accent">credit risk</span>, <span class="accent-m">regulatory compliance</span>, and <span class="accent">financial intelligence</span>.
+      Architected <strong>federated credit-risk models</strong> across 3 banks, deployed <strong>ECOA fair-lending audit pipelines</strong>, and built real-time feature stores at <strong>100K+ events/sec</strong>.
+      AWS ML Specialty · GCP Professional DE · Snowflake SnowPro · dbt certified.
+    </p>
+    <div class="hero-cta">
+      <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="btn btn-cyan">VIEW GITHUB</a>
+      <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="btn btn-outline-magenta">LINKEDIN</a>
+      <a href="#projects" class="btn btn-outline-cyan">EXPLORE WORK</a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stats-header reveal">
+      <div>
+        <span class="stats-label">// System Metrics</span>
+        <h2 class="stats-title">Performance Dashboard</h2>
+      </div>
+    </div>
+    <div class="stats-cols reveal">
+      <div class="stat-col">
+        <span class="stat-lbl">Production Models</span>
+        <span class="stat-num"><span class="counter" data-target="5">0</span></span>
+        <span class="stat-sub">REAL-TIME INFERENCE · FINANCE DOMAIN</span>
+      </div>
+      <div class="stat-col">
+        <span class="stat-lbl">Assets Under ML Risk</span>
+        <span class="stat-num" style="color:var(--magenta);text-shadow:0 0 30px rgba(255,0,110,0.4);">$<span class="counter" data-target="400">0</span>M+</span>
+        <span class="stat-sub" style="color:var(--cyan);">FEDERATED CREDIT MODELS · 3 BANKS</span>
+      </div>
+      <div class="stat-col">
+        <span class="stat-lbl">Deploy Error Reduction</span>
+        <span class="stat-num"><span class="counter" data-target="85">0</span>%</span>
+        <span class="stat-sub">AGENTIC PIPELINE HEALER · AUTO-REMEDIATION</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--magenta-border);border:1px solid var(--magenta-border);margin-top:1px;" class="reveal">
+      <div class="stat-col" style="border:none;">
+        <span class="stat-lbl">Events / Second</span>
+        <span class="stat-num" style="font-size:1.8rem;color:var(--magenta);">100K+</span>
+        <span class="stat-sub" style="color:var(--cyan);">KAFKA FEATURE STORE</span>
+      </div>
+      <div class="stat-col" style="border:none;">
+        <span class="stat-lbl">Daily ML Decisions</span>
+        <span class="stat-num" style="font-size:1.8rem;"><span class="counter" data-target="500">0</span>+</span>
+        <span class="stat-sub">CREDIT SCORING · FRAUD DETECTION</span>
+      </div>
+      <div class="stat-col" style="border:none;">
+        <span class="stat-lbl">Certifications</span>
+        <span class="stat-num" style="font-size:1.8rem;color:var(--magenta);"><span class="counter" data-target="5">0</span></span>
+        <span class="stat-sub" style="color:var(--cyan);">AWS · GCP · SNOWFLAKE · DBT</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Bento -->
+<section id="projects">
+  <span class="section-eyebrow reveal">// Finance &amp; ML Portfolio</span>
+  <h2 class="section-title reveal">Project Bento</h2>
+
+  <div class="bento-grid reveal">
+
+    <!-- Row 1: Wide + Narrow -->
+    <a href="https://github.com/shaikn6/federated-credit-risk" target="_blank" rel="noopener" class="bento-card bento-wide">
+      <div class="bento-cat">FEDERATED LEARNING · CREDIT RISK</div>
+      <h3 class="bento-title">Federated Credit Risk</h3>
+      <p class="bento-desc">Privacy-preserving credit risk models across 3 financial institutions — differential privacy, ECOA fairness constraints, Flower FL + PyTorch. No raw data leaves institutional boundaries.</p>
+      <div class="bento-tags">
+        <span class="btag">PyTorch</span>
+        <span class="btag">Flower FL</span>
+        <span class="btag">Differential Privacy</span>
+        <span class="btag">ECOA</span>
+      </div>
+      <span class="bento-link-indicator">GITHUB →</span>
+    </a>
+
+    <div class="bento-card bento-narrow" style="background:var(--card2);">
+      <div class="bento-cat">IMPACT</div>
+      <span class="bento-metric">3</span>
+      <span class="bento-metric-lbl">Institutions</span>
+      <span class="bento-metric" style="color:var(--magenta);text-shadow:0 0 16px rgba(255,0,110,0.4);margin-top:16px;">92%</span>
+      <span class="bento-metric-lbl">AUC-ROC</span>
+    </div>
+
+    <!-- Row 2 -->
+    <a href="https://github.com/shaikn6/ml-fairness-audit" target="_blank" rel="noopener" class="bento-card bento-full magenta-card">
+      <div class="bento-cat magenta">COMPLIANCE · FAIR LENDING</div>
+      <h3 class="bento-title">ML Fairness Audit</h3>
+      <p class="bento-desc">Automated ECOA / Fair Lending bias detection pipeline. Disparate impact, equalized odds, regulatory report generation for credit ML models.</p>
+      <div class="bento-tags">
+        <span class="btag m">Fairlearn</span>
+        <span class="btag m">Airflow</span>
+        <span class="btag m">Python</span>
+      </div>
+      <span class="bento-link-indicator m">GITHUB →</span>
+    </a>
+
+    <a href="https://github.com/shaikn6/finance-llmops-platform" target="_blank" rel="noopener" class="bento-card bento-full">
+      <div class="bento-cat">LLMOPS · DOCUMENT INTEL</div>
+      <h3 class="bento-title">Finance LLMOps Platform</h3>
+      <p class="bento-desc">Production LLM platform for SEC 10-K/10-Q RAG — model versioning, eval harness, bias detection, MLflow tracking.</p>
+      <div class="bento-tags">
+        <span class="btag">LangChain</span>
+        <span class="btag">MLflow</span>
+        <span class="btag">LLM</span>
+      </div>
+      <span class="bento-link-indicator">GITHUB →</span>
+    </a>
+
+    <!-- Row 3 -->
+    <a href="https://github.com/shaikn6/kafka-stream-feature-store" target="_blank" rel="noopener" class="bento-card bento-2col bento-tall">
+      <div class="bento-cat">STREAMING · FEATURES</div>
+      <h3 class="bento-title">Kafka Stream Feature Store</h3>
+      <p class="bento-desc">Real-time ML feature store — 100K+ events/sec for credit scoring and fraud detection. Point-in-time correct lookups, sub-10ms serving latency.</p>
+      <div style="margin-top:auto;">
+        <span class="bento-metric">100K</span>
+        <span class="bento-metric-lbl">Events/sec</span>
+      </div>
+      <div class="bento-tags" style="margin-top:12px;">
+        <span class="btag">Kafka</span>
+        <span class="btag">Redis</span>
+        <span class="btag">Flink</span>
+      </div>
+      <span class="bento-link-indicator">GITHUB →</span>
+    </a>
+
+    <a href="https://github.com/shaikn6/redshift-wlm-optimizer" target="_blank" rel="noopener" class="bento-card bento-full magenta-card">
+      <div class="bento-cat magenta">DATA ENGINEERING · WAREHOUSE</div>
+      <h3 class="bento-title">Redshift WLM Optimizer</h3>
+      <p class="bento-desc">ML-driven Redshift WLM tuner — classifies financial query patterns, auto-adjusts slots and memory. 40% P99 latency reduction.</p>
+      <div class="bento-tags">
+        <span class="btag m">Redshift</span>
+        <span class="btag m">Boto3</span>
+        <span class="btag m">Python</span>
+      </div>
+      <span class="bento-link-indicator m">GITHUB →</span>
+    </a>
+
+    <a href="https://github.com/shaikn6/etl-lineage-graph" target="_blank" rel="noopener" class="bento-card bento-narrow">
+      <div class="bento-cat">DATA LINEAGE</div>
+      <h3 class="bento-title">ETL Lineage Graph</h3>
+      <p class="bento-desc">BCBS 239 data governance — automated lineage tracking and impact analysis.</p>
+      <div class="bento-tags">
+        <span class="btag">dbt</span>
+        <span class="btag">Python</span>
+      </div>
+      <span class="bento-link-indicator">GITHUB →</span>
+    </a>
+
+    <!-- Row 4 -->
+    <a href="https://github.com/shaikn6/llm-safety-auditor" target="_blank" rel="noopener" class="bento-card bento-full">
+      <div class="bento-cat">AI SAFETY · GOVERNANCE</div>
+      <h3 class="bento-title">LLM Safety Auditor</h3>
+      <p class="bento-desc">Red-teaming + compliance auditing for finance AI — hallucination detection, PII scanning, bias benchmarking for regulated deployments.</p>
+      <div class="bento-tags">
+        <span class="btag">Transformers</span>
+        <span class="btag">Python</span>
+        <span class="btag">Pytest</span>
+      </div>
+      <span class="bento-link-indicator">GITHUB →</span>
+    </a>
+
+    <a href="https://github.com/shaikn6/sql-to-dag-compiler" target="_blank" rel="noopener" class="bento-card bento-full magenta-card">
+      <div class="bento-cat magenta">AUTOMATION · SQL → DAG</div>
+      <h3 class="bento-title">SQL to DAG Compiler</h3>
+      <p class="bento-desc">Converts SQL transformations into Airflow DAGs automatically — eliminates manual pipeline authoring for financial ETL.</p>
+      <div class="bento-tags">
+        <span class="btag m">Airflow</span>
+        <span class="btag m">AST Parsing</span>
+        <span class="btag m">Python</span>
+      </div>
+      <span class="bento-link-indicator m">GITHUB →</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- Skills Radar -->
+<section id="skills">
+  <div class="skills-inner">
+    <div class="skills-left">
+      <div class="reveal">
+        <span class="section-eyebrow" style="margin-bottom:12px;">// Tech Stack</span>
+        <h2 class="section-title" style="margin-bottom:40px;">Skills Radar</h2>
+      </div>
+      <div class="radar-container reveal">
+        <svg id="radar-svg" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background rings -->
+          <polygon points="190,40 310,115 310,265 190,340 70,265 70,115" fill="none" stroke="rgba(0,229,255,0.06)" stroke-width="1"/>
+          <polygon points="190,80 280,140 280,250 190,310 100,250 100,140" fill="none" stroke="rgba(0,229,255,0.08)" stroke-width="1"/>
+          <polygon points="190,120 250,165 250,235 190,280 130,235 130,165" fill="none" stroke="rgba(0,229,255,0.1)" stroke-width="1"/>
+          <polygon points="190,160 220,190 220,220 190,250 160,220 160,190" fill="none" stroke="rgba(0,229,255,0.12)" stroke-width="1"/>
+          <!-- Spokes -->
+          <line x1="190" y1="40" x2="190" y2="190" stroke="rgba(0,229,255,0.07)" stroke-width="1"/>
+          <line x1="310" y1="115" x2="190" y2="190" stroke="rgba(0,229,255,0.07)" stroke-width="1"/>
+          <line x1="310" y1="265" x2="190" y2="190" stroke="rgba(0,229,255,0.07)" stroke-width="1"/>
+          <line x1="190" y1="340" x2="190" y2="190" stroke="rgba(0,229,255,0.07)" stroke-width="1"/>
+          <line x1="70" y1="265" x2="190" y2="190" stroke="rgba(0,229,255,0.07)" stroke-width="1"/>
+          <line x1="70" y1="115" x2="190" y2="190" stroke="rgba(0,229,255,0.07)" stroke-width="1"/>
+          <!-- Data polygon: MLOps=95, Finance=88, LLM=80, DataEng=92, Cloud=90, Python=97 -->
+          <!-- Scale: 100% = outer ring (40,115,265,340,265,115) -->
+          <!-- MLOps 95% → 190,40+(340-40)*0.05=55 → y=55 → (190,55) -->
+          <!-- Finance 88% → 310+(70-310)*0.12=281, 115+(265-115)*0.12=133 → rotated... using linear interp on hex -->
+          <polygon id="radar-poly"
+            points="190,55 299,122 299,252 190,323 81,252 81,122"
+            fill="rgba(0,229,255,0.08)"
+            stroke="#00e5ff"
+            stroke-width="1.5"
+            opacity="0"
+          />
+          <!-- Vertices dots -->
+          <circle cx="190" cy="55" r="4" fill="#00e5ff" opacity="0"/>
+          <circle cx="299" cy="122" r="4" fill="#00e5ff" opacity="0"/>
+          <circle cx="299" cy="252" r="4" fill="#ff006e" opacity="0"/>
+          <circle cx="190" cy="323" r="4" fill="#00e5ff" opacity="0"/>
+          <circle cx="81" cy="252" r="4" fill="#ff006e" opacity="0"/>
+          <circle cx="81" cy="122" r="4" fill="#00e5ff" opacity="0"/>
+          <!-- Labels -->
+          <text x="190" y="30" text-anchor="middle" fill="#00e5ff" font-family="Space Mono" font-size="9" letter-spacing="1">MLOPS 95%</text>
+          <text x="326" y="110" text-anchor="start" fill="#00e5ff" font-family="Space Mono" font-size="9" letter-spacing="1">FINANCE 88%</text>
+          <text x="326" y="275" text-anchor="start" fill="#ff006e" font-family="Space Mono" font-size="9" letter-spacing="1">LLM 80%</text>
+          <text x="190" y="358" text-anchor="middle" fill="#00e5ff" font-family="Space Mono" font-size="9" letter-spacing="1">DATA ENG 92%</text>
+          <text x="54" y="275" text-anchor="end" fill="#ff006e" font-family="Space Mono" font-size="9" letter-spacing="1">CLOUD 90%</text>
+          <text x="54" y="110" text-anchor="end" fill="#00e5ff" font-family="Space Mono" font-size="9" letter-spacing="1">PYTHON 97%</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="skills-right reveal">
+      <div class="skills-category">
+        <div class="skills-cat-label">ML &amp; MLOps</div>
+        <div class="skill-row"><span class="skill-name">PyTorch</span><div class="skill-bar-bg"><div class="skill-bar" data-pct="95"></div></div><span class="skill-pct">95%</span></div>
+        <div class="skill-row"><span class="skill-name">MLflow</span><div class="skill-bar-bg"><div class="skill-bar" data-pct="92"></div></div><span class="skill-pct">92%</span></div>
+        <div class="skill-row"><span class="skill-name">Kubeflow</span><div class="skill-bar-bg"><div class="skill-bar" data-pct="85"></div></div><span class="skill-pct">85%</span></div>
+        <div class="skill-row"><span class="skill-name">LangChain</span><div class="skill-bar-bg"><div class="skill-bar" data-pct="82"></div></div><span class="skill-pct">82%</span></div>
+      </div>
+      <div class="skills-category">
+        <div class="skills-cat-label m">Data &amp; Streaming</div>
+        <div class="skill-row"><span class="skill-name">Python</span><div class="skill-bar-bg"><div class="skill-bar" data-pct="97"></div></div><span class="skill-pct">97%</span></div>
+        <div class="skill-row"><span class="skill-name">Apache Kafka</span><div class="skill-bar-bg"><div class="skill-bar" data-pct="90"></div></div><span class="skill-pct">90%</span></div>
+        <div class="skill-row"><span class="skill-name">Apache Spark</span><div class="skill-bar-bg"><div class="skill-bar" data-pct="88"></div></div><span class="skill-pct">88%</span></div>
+        <div class="skill-row"><span class="skill-name">dbt</span><div class="skill-bar-bg"><div class="skill-bar" data-pct="90"></div></div><span class="skill-pct">90%</span></div>
+      </div>
+      <div class="skills-category">
+        <div class="skills-cat-label">Cloud &amp; Infra</div>
+        <div class="skill-row"><span class="skill-name">AWS SageMaker</span><div class="skill-bar-bg"><div class="skill-bar" data-pct="93"></div></div><span class="skill-pct">93%</span></div>
+        <div class="skill-row"><span class="skill-name">Redshift</span><div class="skill-bar-bg"><div class="skill-bar" data-pct="88"></div></div><span class="skill-pct">88%</span></div>
+        <div class="skill-row"><span class="skill-name">Snowflake</span><div class="skill-bar-bg"><div class="skill-bar" data-pct="85"></div></div><span class="skill-pct">85%</span></div>
+        <div class="skill-row"><span class="skill-name">Kubernetes</span><div class="skill-bar-bg"><div class="skill-bar" data-pct="82"></div></div><span class="skill-pct">82%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Certs -->
+<section id="certs">
+  <span class="section-eyebrow reveal">// Credentials</span>
+  <h2 class="section-title reveal">Certifications</h2>
+  <div class="certs-grid reveal">
+    <div class="cert-block">
+      <span class="cert-block-icon">[ AWS ]</span>
+      <div class="cert-block-name">AWS Certified Machine Learning — Specialty</div>
+      <div class="cert-block-issuer">Amazon Web Services</div>
+    </div>
+    <div class="cert-block">
+      <span class="cert-block-icon">[ AWS ]</span>
+      <div class="cert-block-name">AWS Certified Cloud Practitioner</div>
+      <div class="cert-block-issuer">Amazon Web Services</div>
+    </div>
+    <div class="cert-block">
+      <span class="cert-block-icon">[ GCP ]</span>
+      <div class="cert-block-name">Professional Data Engineer</div>
+      <div class="cert-block-issuer">Google Cloud Platform</div>
+    </div>
+    <div class="cert-block">
+      <span class="cert-block-icon">[ SNW ]</span>
+      <div class="cert-block-name">SnowPro Core Certification</div>
+      <div class="cert-block-issuer">Snowflake</div>
+    </div>
+    <div class="cert-block">
+      <span class="cert-block-icon">[ DBT ]</span>
+      <div class="cert-block-name">Analytics Engineering Certification</div>
+      <div class="cert-block-issuer">dbt Labs</div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <span class="section-eyebrow">// Open to Opportunities</span>
+      <h2 class="contact-glitch">Build the future of <span>financial AI</span> together</h2>
+      <p class="contact-text">
+        Targeting <strong>MLOps / ML Engineer</strong> roles at banks, FinTechs, hedge funds, and financial data platforms.
+        <strong>Remote USA</strong> · F-1 STEM OPT · $100K+ · Available immediately.
+      </p>
+      <div class="contact-links-col">
+        <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="btn btn-cyan">GITHUB</a>
+        <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="btn btn-outline-magenta">LINKEDIN</a>
+      </div>
+    </div>
+    <div class="contact-right reveal">
+      <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="contact-card">
+        <div class="cc-label">LinkedIn</div>
+        <div class="cc-value">linkedin.com/in/nagizaazshaik</div>
+        <div class="cc-sub">Connect for opportunities →</div>
+      </a>
+      <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="contact-card m">
+        <div class="cc-label">GitHub</div>
+        <div class="cc-value">github.com/shaikn6</div>
+        <div class="cc-sub m">View all repositories →</div>
+      </a>
+      <div class="contact-card full" style="cursor:default;">
+        <div class="cc-label">Work Authorization</div>
+        <div class="cc-value">F-1 STEM OPT · Remote USA · Ohio (Any Mode)</div>
+        <div class="cc-sub">Available immediately · Targeting $100K+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>NAGIZAAZ SHAIK · MLOPS ENGINEER · 2026</span>
+  <span>
+    <a href="https://github.com/shaikn6" target="_blank" rel="noopener">GITHUB</a>
+    &nbsp;&nbsp;
+    <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener">LINKEDIN</a>
+  </span>
+</footer>
+
+<script>
+// Cursor
+const dot = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px';
+  dot.style.top = my + 'px';
+});
+(function animCursor() {
+  rx += (mx - rx) * 0.1;
+  ry += (my - ry) * 0.1;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+})();
+
+// Data stream canvas (Matrix-style sparse elegant)
+(function() {
+  const canvas = document.getElementById('stream-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const chars = '01アイウエオMLOPS0xFFCAFE RISK CREDIT $₿€ FAIR FED PY 42 NaN 1.0 0.0 ERR OK 00 ff 3.14'.split('');
+  const cols = [];
+  const colCount = 40;
+  for (let i = 0; i < colCount; i++) {
+    cols.push({
+      x: Math.random(),
+      y: Math.random() * -100,
+      speed: Math.random() * 0.5 + 0.15,
+      chars: Array.from({length: Math.floor(Math.random() * 12 + 4)}, () => chars[Math.floor(Math.random() * chars.length)]),
+      alpha: Math.random() * 0.3 + 0.05
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    cols.forEach(col => {
+      const x = col.x * W;
+      col.chars.forEach((c, i) => {
+        const y = col.y * H + i * 18;
+        if (y < 0 || y > H) return;
+        const isHead = i === col.chars.length - 1;
+        ctx.fillStyle = isHead
+          ? `rgba(0,229,255,${col.alpha * 2})`
+          : `rgba(0,229,255,${col.alpha * (1 - i / col.chars.length)})`;
+        ctx.font = '12px Space Mono, monospace';
+        ctx.fillText(c, x, y);
+      });
+      // Randomly swap a char
+      if (Math.random() < 0.02) {
+        const ri = Math.floor(Math.random() * col.chars.length);
+        col.chars[ri] = chars[Math.floor(Math.random() * chars.length)];
+      }
+      col.y += col.speed / 60;
+      if (col.y > 1.2) { col.y = -0.3; col.x = Math.random(); }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// Counter animation
+function animateCounter(el, target, duration) {
+  if (el.dataset.animated) return;
+  el.dataset.animated = '1';
+  const t0 = performance.now();
+  function upd(now) {
+    const prog = Math.min((now - t0) / duration, 1);
+    const ease = 1 - Math.pow(1 - prog, 3);
+    el.textContent = Math.round(target * ease);
+    if (prog < 1) requestAnimationFrame(upd);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(upd);
+}
+
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('.counter').forEach(c => {
+      animateCounter(c, parseInt(c.dataset.target), 1600);
+    });
+    counterObs.unobserve(entry.target);
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.stats-cols, .stats-inner > div').forEach(el => counterObs.observe(el));
+
+// Reveal
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// Skills bar animation
+const skillsObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('.skill-bar').forEach(bar => {
+      const pct = bar.dataset.pct;
+      setTimeout(() => { bar.style.width = pct + '%'; }, 200);
+    });
+    // Radar polygon
+    const poly = document.getElementById('radar-poly');
+    if (poly) {
+      poly.style.transition = 'opacity 1s';
+      poly.style.opacity = '1';
+      poly.querySelectorAll && poly.parentElement.querySelectorAll('circle').forEach(c => {
+        c.style.transition = 'opacity 1s';
+        c.style.opacity = '1';
+      });
+    }
+    skillsObs.unobserve(entry.target);
+  });
+}, { threshold: 0.2 });
+const skillsSection = document.getElementById('skills');
+if (skillsSection) skillsObs.observe(skillsSection);
+
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+function closeMobileMenu() { mobileMenu.classList.remove('open'); }
+</script>
+</body>
+</html>

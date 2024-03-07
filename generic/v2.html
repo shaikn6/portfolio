@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAGIZAAZ SHAIK — MLOPS ENGINEER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #000000;
+    --white: #ffffff;
+    --yellow: #ffdd00;
+    --shadow: 5px 5px 0px var(--black);
+    --shadow-lg: 8px 8px 0px var(--black);
+    --shadow-sm: 3px 3px 0px var(--black);
+    --border: 2.5px solid var(--black);
+    --border-thick: 4px solid var(--black);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Courier New', Courier, monospace;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+    background-image:
+      linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    border-bottom: var(--border-thick);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--yellow);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+  .nav-links a {
+    display: block;
+    padding: 0 20px;
+    height: 64px;
+    line-height: 64px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-left: 1px solid rgba(255,255,255,0.15);
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-links a:hover {
+    background: var(--yellow);
+    color: var(--black);
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nav-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 4px 10px;
+  }
+  .nav-hire {
+    background: var(--yellow);
+    color: var(--black);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border: var(--border);
+    transition: background 0.15s;
+  }
+  .nav-hire:hover { background: var(--white); }
+
+  /* HERO */
+  #hero {
+    border-bottom: var(--border-thick);
+    padding: 64px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-overline {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    background: var(--yellow);
+    padding: 5px 14px;
+    border: var(--border);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 32px;
+    font-weight: 700;
+  }
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 14vw, 14rem);
+    line-height: 0.88;
+    letter-spacing: 0.02em;
+    margin-bottom: 0;
+    display: block;
+  }
+  .hero-name .highlight {
+    -webkit-text-stroke: 3px var(--black);
+    color: var(--yellow);
+  }
+  .hero-divider {
+    width: 100%;
+    height: 4px;
+    background: var(--black);
+    margin: 24px 0;
+  }
+  .hero-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-title-block {}
+  .hero-role {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 4rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .hero-role-alt {
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    color: rgba(0,0,0,0.55);
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+  .hero-cta-block {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn-brutalist {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: var(--border-thick);
+    box-shadow: var(--shadow);
+    transition: transform 0.1s, box-shadow 0.1s;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+  }
+  .btn-brutalist:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0px var(--black);
+  }
+  .btn-brutalist:active {
+    transform: translate(5px, 5px);
+    box-shadow: none;
+  }
+  .btn-black { background: var(--black); color: var(--white); }
+  .btn-yellow { background: var(--yellow); color: var(--black); }
+  .btn-white { background: var(--white); color: var(--black); }
+  .hero-decor {
+    position: absolute;
+    right: 48px;
+    top: 48px;
+    width: 200px;
+    height: 200px;
+    border: var(--border-thick);
+    box-shadow: var(--shadow-lg);
+    background: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* CONTAINER */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+  .full-border { border-bottom: var(--border-thick); }
+
+  /* STATS SECTION */
+  #stats { border-bottom: var(--border-thick); }
+  .stats-header {
+    padding: 48px 48px 32px;
+    border-bottom: var(--border);
+  }
+  .stats-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    letter-spacing: 0.04em;
+    display: inline;
+  }
+  .stats-heading .underline {
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+    text-underline-offset: 6px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .stat-cell {
+    padding: 48px 40px;
+    border-right: var(--border);
+    position: relative;
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 8vw, 8rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    display: block;
+    position: relative;
+  }
+  .stat-number::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--black);
+    margin-top: 12px;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 16px;
+    font-weight: 700;
+  }
+  .stat-sub {
+    font-size: 0.7rem;
+    color: rgba(0,0,0,0.5);
+    margin-top: 4px;
+    letter-spacing: 0.06em;
+  }
+  .stat-highlight { background: var(--yellow); }
+
+  /* WORK SECTION */
+  #work { border-bottom: var(--border-thick); }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 48px;
+    border-bottom: var(--border);
+  }
+  .section-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    letter-spacing: 0.04em;
+  }
+  .section-count {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--black);
+    color: var(--white);
+    padding: 6px 14px;
+    font-weight: 700;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .work-card {
+    border-right: var(--border);
+    border-bottom: var(--border);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--black);
+    transition: background 0.12s;
+    position: relative;
+  }
+  .work-card:nth-child(3n) { border-right: none; }
+  .work-card:hover { background: var(--black); color: var(--white); }
+  .work-card:hover .work-category,
+  .work-card:hover .work-tech-pill { border-color: var(--white); color: var(--white); }
+  .work-card:hover .work-link { color: var(--yellow); }
+  .work-card.is-private:hover { background: rgba(0,0,0,0.04); color: var(--black); cursor: default; }
+  .work-category {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1.5px solid var(--black);
+    padding: 3px 10px;
+    display: inline-block;
+    width: fit-content;
+    transition: border-color 0.12s, color 0.12s;
+  }
+  .cat-clinical { background: var(--yellow); }
+  .cat-llmops {}
+  .cat-dataeng {}
+  .cat-finance {}
+  .cat-mlops {}
+  .work-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    opacity: 0.3;
+    position: absolute;
+    top: 20px;
+    right: 24px;
+  }
+  .work-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.03em;
+    line-height: 1.05;
+  }
+  .work-desc {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    opacity: 0.75;
+    flex: 1;
+  }
+  .work-card:hover .work-desc { opacity: 0.8; }
+  .work-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .work-tech-pill {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border: 1.5px solid var(--black);
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: border-color 0.12s, color 0.12s;
+  }
+  .work-link {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.12s;
+  }
+  .work-link.private-link { opacity: 0.4; text-decoration: none; }
+
+  /* SKILLS */
+  #skills { border-bottom: var(--border-thick); }
+  .skills-body { padding: 48px; }
+  .skills-categories { display: flex; flex-direction: column; gap: 0; }
+  .skill-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    border-bottom: var(--border);
+    padding: 20px 0;
+  }
+  .skill-row:last-child { border-bottom: none; }
+  .skill-cat-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    min-width: 240px;
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 4px;
+  }
+  .skill-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1;
+  }
+  .skill-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 7px 14px;
+    border: var(--border);
+    box-shadow: var(--shadow-sm);
+    background: var(--white);
+    transition: background 0.12s, color 0.12s, transform 0.1s, box-shadow 0.1s;
+  }
+  .skill-tag:hover {
+    background: var(--black);
+    color: var(--white);
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
+  .skill-tag.highlight { background: var(--yellow); }
+  .skill-tag.highlight:hover { background: var(--black); color: var(--white); }
+
+  /* CERTS */
+  #certs { border-bottom: var(--border-thick); }
+  .certs-body { padding: 48px; }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .cert-block {
+    border: var(--border-thick);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  .cert-block:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0px var(--black);
+  }
+  .cert-issuer-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: var(--black);
+    color: var(--white);
+    padding: 3px 10px;
+    display: inline-block;
+    width: fit-content;
+  }
+  .cert-name-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+  }
+  .cert-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--yellow);
+    margin-top: 8px;
+  }
+
+  /* CONTACT */
+  #contact { }
+  .contact-body { padding: 80px 48px; }
+  .contact-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 10rem);
+    line-height: 0.85;
+    letter-spacing: 0.02em;
+    margin-bottom: 48px;
+  }
+  .contact-big .inv {
+    -webkit-text-stroke: 3px var(--black);
+    color: var(--white);
+    -webkit-text-fill-color: transparent;
+  }
+  .contact-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .contact-info {
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    color: rgba(0,0,0,0.5);
+    margin-top: 32px;
+    border-top: var(--border);
+    padding-top: 20px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.4);
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  footer a { color: var(--yellow); text-decoration: none; }
+
+  /* SLAM-IN ANIMATIONS */
+  .slam {
+    transform: translateX(-80px);
+    opacity: 0;
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.2s ease;
+  }
+  .slam.in {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .slam-right {
+    transform: translateX(80px);
+    opacity: 0;
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.2s ease;
+  }
+  .slam-right.in {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .slam-up {
+    transform: translateY(60px);
+    opacity: 0;
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.2s ease;
+  }
+  .slam-up.in {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    #hero { padding: 40px 24px 60px; }
+    .hero-decor { display: none; }
+    .container, .stats-header, .stats-grid,
+    .section-header, .work-grid, .skills-body,
+    .certs-body, .contact-body { padding-left: 24px; padding-right: 24px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .work-grid { grid-template-columns: repeat(2, 1fr); }
+    .work-card:nth-child(3n) { border-right: var(--border); }
+    .work-card:nth-child(2n) { border-right: none; }
+  }
+  @media (max-width: 600px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .work-grid { grid-template-columns: 1fr; }
+    .work-card { border-right: none !important; }
+    .hero-name { font-size: clamp(3.5rem, 18vw, 8rem); }
+    .skill-row { flex-direction: column; gap: 12px; }
+    .skill-cat-label { min-width: auto; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">NS</a>
+  <ul class="nav-links">
+    <li><a href="#stats">STATS</a></li>
+    <li><a href="#work">WORK</a></li>
+    <li><a href="#skills">SKILLS</a></li>
+    <li><a href="#certs">CERTS</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-tag">F-1 STEM OPT</span>
+    <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="nav-hire">HIRE ME</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-overline">MLOps · ML Engineering · AI Systems</div>
+  <span class="hero-name">NAGIZAAZ<br><span class="highlight">SHAIK</span></span>
+  <div class="hero-divider"></div>
+  <div class="hero-row">
+    <div class="hero-title-block">
+      <div class="hero-role">ML ENGINEER / AI SYSTEMS</div>
+      <div class="hero-role-alt">4+ Years · Financial Services · Healthcare · Cloud-Native · Remote USA</div>
+    </div>
+    <div class="hero-cta-block">
+      <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="btn-brutalist btn-black">LINKEDIN ↗</a>
+      <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="btn-brutalist btn-yellow">GITHUB ↗</a>
+    </div>
+  </div>
+  <div class="hero-decor">AVAILABLE<br>NOW</div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-header">
+    <h2 class="stats-heading"><span class="underline">BY THE NUMBERS</span> — IMPACT</h2>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-cell stat-highlight slam">
+      <span class="stat-number" data-target="40">0</span>
+      <div class="stat-label">GitHub Repositories</div>
+      <div class="stat-sub">Public + private across all ML domains</div>
+    </div>
+    <div class="stat-cell slam">
+      <span class="stat-number" data-target="4">0</span>
+      <div class="stat-label">+ Years Experience</div>
+      <div class="stat-sub">Financial services · Healthcare</div>
+    </div>
+    <div class="stat-cell slam-right">
+      <span class="stat-number" data-target="5">0</span>
+      <div class="stat-label">Certifications</div>
+      <div class="stat-sub">AWS ML · GCP DE · Snowflake · dbt</div>
+    </div>
+    <div class="stat-cell slam">
+      <span class="stat-number" data-target="92">0</span>
+      <div class="stat-label">% AUC</div>
+      <div class="stat-sub">CheXpert pathology classifier</div>
+    </div>
+    <div class="stat-cell stat-highlight slam">
+      <span class="stat-number" data-target="3">0</span>
+      <div class="stat-label">Cloud Platforms</div>
+      <div class="stat-sub">AWS · GCP · Azure</div>
+    </div>
+    <div class="stat-cell slam-right">
+      <span class="stat-number" data-target="10">0</span>
+      <div class="stat-label">+ ML Frameworks</div>
+      <div class="stat-sub">PyTorch · TF · HuggingFace · more</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-header">
+    <h2 class="section-heading slam">SELECTED WORK</h2>
+    <span class="section-count slam-right">12 Projects</span>
+  </div>
+  <div class="work-grid">
+
+    <a class="work-card" href="https://github.com/shaikn6/chexpert-pathology-classifier" target="_blank" rel="noopener">
+      <span class="work-number">001</span>
+      <span class="work-category cat-clinical">Clinical AI</span>
+      <div class="work-headline">CheXpert Pathology Classifier</div>
+      <div class="work-desc">Multi-label chest X-ray classification at 92% AUC. DenseNet-121 backbone with uncertainty-aware label handling on Stanford's CheXpert benchmark.</div>
+      <div class="work-tech">
+        <span class="work-tech-pill">PyTorch</span>
+        <span class="work-tech-pill">DenseNet</span>
+        <span class="work-tech-pill">DICOM</span>
+        <span class="work-tech-pill">SageMaker</span>
+      </div>
+      <span class="work-link">VIEW ON GITHUB ↗</span>
+    </a>
+
+    <a class="work-card" href="https://github.com/shaikn6/clinical-survival-analysis" target="_blank" rel="noopener">
+      <span class="work-number">002</span>
+      <span class="work-category cat-clinical">Clinical AI</span>
+      <div class="work-headline">Clinical Survival Analysis</div>
+      <div class="work-desc">Cox PH and Kaplan-Meier modeling on EHR data with SHAP explainability layers. Built for clinical decision support at scale on Snowflake.</div>
+      <div class="work-tech">
+        <span class="work-tech-pill">lifelines</span>
+        <span class="work-tech-pill">SHAP</span>
+        <span class="work-tech-pill">PySpark</span>
+        <span class="work-tech-pill">Snowflake</span>
+      </div>
+      <span class="work-link">VIEW ON GITHUB ↗</span>
+    </a>
+
+    <a class="work-card" href="https://github.com/shaikn6/medical-imaging-ai" target="_blank" rel="noopener">
+      <span class="work-number">003</span>
+      <span class="work-category cat-clinical">Clinical AI</span>
+      <div class="work-headline">Medical Imaging AI</div>
+      <div class="work-desc">End-to-end radiology segmentation pipeline using U-Net with MONAI. Grad-CAM visualization for model transparency in clinical workflows.</div>
+      <div class="work-tech">
+        <span class="work-tech-pill">U-Net</span>
+        <span class="work-tech-pill">MONAI</span>
+        <span class="work-tech-pill">Grad-CAM</span>
+        <span class="work-tech-pill">Docker</span>
+      </div>
+      <span class="work-link">VIEW ON GITHUB ↗</span>
+    </a>
+
+    <a class="work-card" href="https://github.com/shaikn6/agentic-pipeline-healer" target="_blank" rel="noopener">
+      <span class="work-number">004</span>
+      <span class="work-category cat-llmops">LLMOps</span>
+      <div class="work-headline">Agentic Pipeline Healer</div>
+      <div class="work-desc">Self-healing ML pipeline agent using GPT-4 + LangGraph. Detects failures, diagnoses causes, applies fixes, rolls back on failure. Zero-downtime MLOps.</div>
+      <div class="work-tech">
+        <span class="work-tech-pill">LangGraph</span>
+        <span class="work-tech-pill">GPT-4</span>
+        <span class="work-tech-pill">Airflow</span>
+        <span class="work-tech-pill">Redis</span>
+      </div>
+      <span class="work-link">VIEW ON GITHUB ↗</span>
+    </a>
+
+    <a class="work-card" href="https://github.com/shaikn6/llm-safety-auditor" target="_blank" rel="noopener">
+      <span class="work-number">005</span>
+      <span class="work-category cat-llmops">LLMOps</span>
+      <div class="work-headline">LLM Safety Auditor</div>
+      <div class="work-desc">Automated red-teaming framework for production LLMs. Jailbreak detection, bias scoring, NIST AI RMF compliance. Runs as CI gate before any model deployment.</div>
+      <div class="work-tech">
+        <span class="work-tech-pill">Guardrails AI</span>
+        <span class="work-tech-pill">Claude API</span>
+        <span class="work-tech-pill">MLflow</span>
+      </div>
+      <span class="work-link">VIEW ON GITHUB ↗</span>
+    </a>
+
+    <a class="work-card" href="https://github.com/shaikn6/sql-to-dag-compiler" target="_blank" rel="noopener">
+      <span class="work-number">006</span>
+      <span class="work-category cat-dataeng">Data Eng</span>
+      <div class="work-headline">SQL-to-DAG Compiler</div>
+      <div class="work-desc">Compiles complex SQL into optimized Airflow DAGs with automatic lineage tracking, dependency resolution, and incremental processing. Used in prod pipelines.</div>
+      <div class="work-tech">
+        <span class="work-tech-pill">SQLGlot</span>
+        <span class="work-tech-pill">Airflow</span>
+        <span class="work-tech-pill">dbt</span>
+        <span class="work-tech-pill">NetworkX</span>
+      </div>
+      <span class="work-link">VIEW ON GITHUB ↗</span>
+    </a>
+
+    <a class="work-card" href="https://github.com/shaikn6/flight-ops-intelligence" target="_blank" rel="noopener">
+      <span class="work-number">007</span>
+      <span class="work-category cat-finance">Finance / Ops</span>
+      <div class="work-headline">Flight Ops Intelligence</div>
+      <div class="work-desc">Real-time flight analytics platform. Delay prediction with XGBoost, route optimization, streaming data on Kafka. Executive dashboards in Tableau.</div>
+      <div class="work-tech">
+        <span class="work-tech-pill">Kafka</span>
+        <span class="work-tech-pill">XGBoost</span>
+        <span class="work-tech-pill">Spark</span>
+        <span class="work-tech-pill">Tableau</span>
+      </div>
+      <span class="work-link">VIEW ON GITHUB ↗</span>
+    </a>
+
+    <div class="work-card is-private">
+      <span class="work-number">008</span>
+      <span class="work-category cat-mlops">MLOps</span>
+      <div class="work-headline">ML Drift Monitoring</div>
+      <div class="work-desc">Production drift detection with Evidently AI, KS/PSI/KL tests, Slack alerting, automated retraining triggers. Powers multiple financial models in production.</div>
+      <div class="work-tech">
+        <span class="work-tech-pill">Evidently</span>
+        <span class="work-tech-pill">Grafana</span>
+        <span class="work-tech-pill">Great Expectations</span>
+      </div>
+      <span class="work-link private-link">PRIVATE — REQUEST ACCESS</span>
+    </div>
+
+    <div class="work-card is-private">
+      <span class="work-number">009</span>
+      <span class="work-category cat-llmops">LLMOps</span>
+      <div class="work-headline">Clinical Note LLMOps</div>
+      <div class="work-desc">Llama 3 fine-tuned for clinical note summarization. RAG over FHIR data. vLLM on AWS, hitting ≤200ms P99 latency SLA across 10K+ daily requests.</div>
+      <div class="work-tech">
+        <span class="work-tech-pill">Llama 3</span>
+        <span class="work-tech-pill">vLLM</span>
+        <span class="work-tech-pill">FHIR</span>
+        <span class="work-tech-pill">LangChain</span>
+      </div>
+      <span class="work-link private-link">PRIVATE — REQUEST ACCESS</span>
+    </div>
+
+    <div class="work-card is-private">
+      <span class="work-number">010</span>
+      <span class="work-category cat-dataeng">Data Eng</span>
+      <div class="work-headline">Kafka Stream Feature Store</div>
+      <div class="work-desc">Real-time feature engineering on Kafka. Point-in-time correct joins, Feast integration, sub-50ms feature retrieval for online serving across 5 models.</div>
+      <div class="work-tech">
+        <span class="work-tech-pill">Kafka</span>
+        <span class="work-tech-pill">Feast</span>
+        <span class="work-tech-pill">Flink</span>
+        <span class="work-tech-pill">Redis</span>
+      </div>
+      <span class="work-link private-link">PRIVATE — REQUEST ACCESS</span>
+    </div>
+
+    <div class="work-card is-private">
+      <span class="work-number">011</span>
+      <span class="work-category cat-finance">Finance</span>
+      <div class="work-headline">Federated Credit Risk</div>
+      <div class="work-desc">Federated learning for credit scoring across financial institutions without raw data sharing. PySyft + differential privacy guarantees. Passed regulatory audit.</div>
+      <div class="work-tech">
+        <span class="work-tech-pill">PySyft</span>
+        <span class="work-tech-pill">Diff Privacy</span>
+        <span class="work-tech-pill">TensorFlow</span>
+      </div>
+      <span class="work-link private-link">PRIVATE — REQUEST ACCESS</span>
+    </div>
+
+    <div class="work-card is-private">
+      <span class="work-number">012</span>
+      <span class="work-category cat-mlops">MLOps</span>
+      <div class="work-headline">MLOps Retraining Pipeline</div>
+      <div class="work-desc">Fully automated Champion/Challenger retraining on SageMaker Pipelines. Shadow deployment, canary promotion, Terraform-managed infrastructure.</div>
+      <div class="work-tech">
+        <span class="work-tech-pill">SageMaker</span>
+        <span class="work-tech-pill">MLflow</span>
+        <span class="work-tech-pill">Terraform</span>
+      </div>
+      <span class="work-link private-link">PRIVATE — REQUEST ACCESS</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <h2 class="section-heading slam">SKILLS</h2>
+  </div>
+  <div class="skills-body">
+    <div class="skills-categories">
+      <div class="skill-row slam">
+        <div class="skill-cat-label">MLOPS</div>
+        <div class="skill-tags-row">
+          <span class="skill-tag highlight">MLflow</span>
+          <span class="skill-tag">Kubeflow</span>
+          <span class="skill-tag highlight">SageMaker Pipelines</span>
+          <span class="skill-tag">Airflow</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">Terraform</span>
+          <span class="skill-tag">CI/CD</span>
+          <span class="skill-tag">Evidently AI</span>
+          <span class="skill-tag">Great Expectations</span>
+        </div>
+      </div>
+      <div class="skill-row slam">
+        <div class="skill-cat-label">LLMs / AI</div>
+        <div class="skill-tags-row">
+          <span class="skill-tag highlight">LangChain</span>
+          <span class="skill-tag">LangGraph</span>
+          <span class="skill-tag">RAG</span>
+          <span class="skill-tag">LoRA / QLoRA</span>
+          <span class="skill-tag">vLLM</span>
+          <span class="skill-tag highlight">Claude API</span>
+          <span class="skill-tag">OpenAI API</span>
+          <span class="skill-tag">Guardrails AI</span>
+          <span class="skill-tag">Ollama</span>
+        </div>
+      </div>
+      <div class="skill-row slam">
+        <div class="skill-cat-label">DEEP LEARNING</div>
+        <div class="skill-tags-row">
+          <span class="skill-tag highlight">PyTorch</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">HuggingFace</span>
+          <span class="skill-tag">scikit-learn</span>
+          <span class="skill-tag">XGBoost</span>
+          <span class="skill-tag">SHAP</span>
+          <span class="skill-tag">Computer Vision</span>
+          <span class="skill-tag">NLP</span>
+          <span class="skill-tag">Time Series</span>
+        </div>
+      </div>
+      <div class="skill-row slam">
+        <div class="skill-cat-label">DATA ENG</div>
+        <div class="skill-tags-row">
+          <span class="skill-tag highlight">Apache Spark</span>
+          <span class="skill-tag">Kafka</span>
+          <span class="skill-tag highlight">dbt</span>
+          <span class="skill-tag">Snowflake</span>
+          <span class="skill-tag">BigQuery</span>
+          <span class="skill-tag">Feast</span>
+          <span class="skill-tag">Flink</span>
+          <span class="skill-tag">Delta Lake</span>
+        </div>
+      </div>
+      <div class="skill-row slam">
+        <div class="skill-cat-label">CLOUD / LANG</div>
+        <div class="skill-tags-row">
+          <span class="skill-tag highlight">AWS</span>
+          <span class="skill-tag highlight">GCP</span>
+          <span class="skill-tag">Azure</span>
+          <span class="skill-tag highlight">Python</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Scala</span>
+          <span class="skill-tag">Bash</span>
+          <span class="skill-tag">FastAPI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="section-header">
+    <h2 class="section-heading slam">CERTIFICATIONS</h2>
+  </div>
+  <div class="certs-body">
+    <div class="certs-grid">
+      <div class="cert-block slam">
+        <span class="cert-issuer-tag">Amazon Web Services</span>
+        <div class="cert-name-text">AWS Machine Learning Specialty</div>
+        <div class="cert-bar"></div>
+      </div>
+      <div class="cert-block slam">
+        <span class="cert-issuer-tag">Amazon Web Services</span>
+        <div class="cert-name-text">AWS Cloud Practitioner</div>
+        <div class="cert-bar"></div>
+      </div>
+      <div class="cert-block slam">
+        <span class="cert-issuer-tag">Google Cloud</span>
+        <div class="cert-name-text">Professional Data Engineer</div>
+        <div class="cert-bar"></div>
+      </div>
+      <div class="cert-block slam">
+        <span class="cert-issuer-tag">Snowflake</span>
+        <div class="cert-name-text">SnowPro Core Certification</div>
+        <div class="cert-bar"></div>
+      </div>
+      <div class="cert-block slam">
+        <span class="cert-issuer-tag">dbt Labs</span>
+        <div class="cert-name-text">Analytics Engineering Certification</div>
+        <div class="cert-bar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-body">
+    <div class="contact-big slam">
+      LET'S<br><span class="inv">BUILD</span><br>SOMETHING.
+    </div>
+    <div class="contact-row">
+      <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="btn-brutalist btn-black">LINKEDIN ↗</a>
+      <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="btn-brutalist btn-yellow">GITHUB ↗</a>
+      <a href="mailto:shaik.izaaz009@gmail.com" class="btn-brutalist btn-white">EMAIL ↗</a>
+    </div>
+    <div class="contact-info">
+      NAGIZAAZ SHAIK · MLOPS ENGINEER · F-1 STEM OPT · REMOTE USA · AVAILABLE NOW
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>&copy; 2026 NAGIZAAZ SHAIK</span>
+  <span>
+    <a href="https://github.com/shaikn6" target="_blank" rel="noopener">GITHUB</a>
+    &nbsp;·&nbsp;
+    <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener">LINKEDIN</a>
+  </span>
+</footer>
+
+<script>
+// SLAM-IN OBSERVER
+(function() {
+  const els = document.querySelectorAll('.slam, .slam-right, .slam-up');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
+})();
+
+// COUNTER ANIMATION
+(function() {
+  const counters = document.querySelectorAll('[data-target]');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.getAttribute('data-target'), 10);
+      let val = 0;
+      const step = Math.max(1, Math.ceil(target / 30));
+      const tick = () => {
+        val = Math.min(val + step, target);
+        el.textContent = val;
+        if (val < target) requestAnimationFrame(tick);
+        else el.textContent = target;
+      };
+      tick();
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => obs.observe(c));
+})();
+</script>
+</body>
+</html>
