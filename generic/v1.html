@@ -33,6 +33,7 @@
     color: var(--text);
     cursor: none;
     overflow-x: hidden;
+    padding-top: 36px;
   }
 
   /* CUSTOM CURSOR */
@@ -699,9 +700,35 @@
     .contact-glass { padding: 40px 24px; }
     .metrics-grid { grid-template-columns: repeat(2, 1fr); }
   }
+  /* ── DOMAIN SWITCHER ── */
+  .domain-switcher-bar {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 36px; z-index: 99999;
+    background: rgba(2,4,8,0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex; align-items: center; justify-content: center; gap: 2px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .domain-tab {
+    display: inline-flex; align-items: center;
+    padding: 4px 16px; border-radius: 100px;
+    text-decoration: none; color: rgba(255,255,255,0.35);
+    transition: color 0.2s; border: 1px solid transparent;
+  }
+  .domain-tab:hover { color: rgba(255,255,255,0.75); }
+  .domain-tab.active { color: #fff; background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.14); }
 </style>
 </head>
 <body>
+
+<div class="domain-switcher-bar">
+  <a href="../generic/v1.html" class="domain-tab active">All Projects</a>
+  <a href="../finance/v1.html" class="domain-tab">Finance</a>
+  <a href="../healthcare/v1.html" class="domain-tab">Healthcare</a>
+</div>
 
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
