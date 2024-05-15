@@ -34,6 +34,7 @@
     line-height: 1.6;
     cursor: none;
     overflow-x: hidden;
+    padding-top: 36px;
   }
 
   /* Custom cursor */
@@ -635,9 +636,35 @@
     .hero-name { font-size: 2.2rem; }
     .certs-grid { grid-template-columns: 1fr 1fr; }
   }
+  /* ── DOMAIN SWITCHER ── */
+  .domain-switcher-bar {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 36px; z-index: 99999;
+    background: rgba(2,4,8,0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,255,136,0.12);
+    display: flex; align-items: center; justify-content: center; gap: 2px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .domain-tab {
+    display: inline-flex; align-items: center;
+    padding: 4px 16px; border-radius: 100px;
+    text-decoration: none; color: rgba(200,216,200,0.35);
+    transition: color 0.2s; border: 1px solid transparent;
+  }
+  .domain-tab:hover { color: rgba(200,216,200,0.8); }
+  .domain-tab.active { color: #00ff88; background: rgba(0,255,136,0.07); border-color: rgba(0,255,136,0.2); }
 </style>
 </head>
 <body>
+
+<div class="domain-switcher-bar">
+  <a href="../generic/v1.html" class="domain-tab">All Projects</a>
+  <a href="../finance/v1.html" class="domain-tab active">Finance</a>
+  <a href="../healthcare/v1.html" class="domain-tab">Healthcare</a>
+</div>
 
 <canvas id="particle-canvas"></canvas>
 <div id="cursor"></div>
