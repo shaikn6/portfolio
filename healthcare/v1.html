@@ -832,6 +832,42 @@
         <div class="project-arrow">→</div>
       </a>
 
+      <div class="project-row private reveal reveal-delay-1" style="cursor:default;">
+        <div class="sev-dot sev-red"></div>
+        <div class="project-body">
+          <div class="project-name">ICU Mortality Predictor <span class="access-chip chip-priv">Awaiting MIMIC</span></div>
+          <div class="project-desc">30-day ICU mortality prediction from first 24h of clinical chart data. XGBoost + Logistic Regression + Random Forest comparison on MIMIC-III. SHAP waterfall plots per patient. Optuna hyperparameter tuning. FastAPI inference endpoint with HMAC-signed model artifacts.</div>
+          <div class="project-tags">
+            <span class="project-tag">XGBoost</span><span class="project-tag">SHAP</span><span class="project-tag">Optuna</span><span class="project-tag">MIMIC-III</span><span class="project-tag">ICU</span><span class="project-tag">FastAPI</span>
+          </div>
+        </div>
+        <div class="project-arrow" style="color:var(--text-3)">🔒</div>
+      </div>
+
+      <div class="project-row private reveal reveal-delay-2" style="cursor:default;">
+        <div class="sev-dot sev-orange"></div>
+        <div class="project-body">
+          <div class="project-name">Sepsis Early Warning System <span class="access-chip chip-priv">Awaiting MIMIC</span></div>
+          <div class="project-desc">Sepsis-3 compliant early warning system using bidirectional LSTM on rolling 6-hour windows of ICU time-series data. Simulated Kafka streaming inference pipeline. Target: sensitivity &gt;0.80 at 6h before clinical onset on MIMIC-III.</div>
+          <div class="project-tags">
+            <span class="project-tag">BiLSTM</span><span class="project-tag">Sepsis-3</span><span class="project-tag">Kafka Streaming</span><span class="project-tag">MIMIC-III</span><span class="project-tag">PyTorch</span>
+          </div>
+        </div>
+        <div class="project-arrow" style="color:var(--text-3)">🔒</div>
+      </div>
+
+      <div class="project-row private reveal reveal-delay-3" style="cursor:default;">
+        <div class="sev-dot sev-purple"></div>
+        <div class="project-body">
+          <div class="project-name">Hospital Readmission Predictor <span class="access-chip chip-priv">Awaiting MIMIC</span></div>
+          <div class="project-desc">30-day readmission risk using BioBERT discharge note embeddings + XGBoost structured features. fairlearn demographic parity audit across insurance, race, and gender subgroups. ReportLab PDF reporting. Designed for CMS penalty reduction workflows.</div>
+          <div class="project-tags">
+            <span class="project-tag">BioBERT</span><span class="project-tag">XGBoost</span><span class="project-tag">fairlearn</span><span class="project-tag">FHIR</span><span class="project-tag">MIMIC-III</span><span class="project-tag">ReportLab</span>
+          </div>
+        </div>
+        <div class="project-arrow" style="color:var(--text-3)">🔒</div>
+      </div>
+
     </div>
   </div>
 </section>
