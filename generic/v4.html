@@ -133,6 +133,17 @@ main { position:relative; z-index:1; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+.hero-avatar {
+  width: 140px; height: 140px;
+  margin: 0 auto 28px;
+  border-radius: 50%;
+  overflow: visible;
+  position: relative;
+}
+.hero-avatar svg {
+  width: 140px; height: 140px;
+  filter: drop-shadow(0 0 24px rgba(56,189,248,0.25)) drop-shadow(0 0 48px rgba(129,140,248,0.15));
+}
 .hero-role {
   font-family: 'Inter', sans-serif;
   font-size: clamp(1rem, 2vw, 1.35rem);
@@ -571,19 +582,83 @@ footer {
 
 <!-- ── HERO ── -->
 <section id="hero" style="position:relative;">
+  <div class="hero-avatar">
+    <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="bgG" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#1e3a5f"/>
+          <stop offset="100%" stop-color="#0d1b2a"/>
+        </radialGradient>
+        <clipPath id="cc"><circle cx="100" cy="110" r="98"/></clipPath>
+      </defs>
+      <circle cx="100" cy="110" r="98" fill="url(#bgG)"/>
+      <g clip-path="url(#cc)">
+        <!-- sweater body -->
+        <ellipse cx="100" cy="230" rx="80" ry="60" fill="#236b4e"/>
+        <ellipse cx="100" cy="195" rx="55" ry="45" fill="#236b4e"/>
+        <!-- neck -->
+        <rect x="83" y="157" width="34" height="38" rx="5" fill="#c07a50"/>
+      </g>
+      <!-- face -->
+      <ellipse cx="100" cy="116" rx="48" ry="52" fill="#c07a50"/>
+      <!-- ears -->
+      <ellipse cx="52" cy="116" rx="9" ry="11" fill="#c07a50"/>
+      <ellipse cx="148" cy="116" rx="9" ry="11" fill="#c07a50"/>
+      <!-- hair base -->
+      <ellipse cx="100" cy="73" rx="53" ry="36" fill="#180805"/>
+      <circle cx="54" cy="90" r="21" fill="#180805"/>
+      <circle cx="146" cy="90" r="21" fill="#180805"/>
+      <circle cx="63" cy="75" r="17" fill="#180805"/>
+      <circle cx="137" cy="75" r="17" fill="#180805"/>
+      <circle cx="80" cy="63" r="19" fill="#180805"/>
+      <circle cx="120" cy="63" r="19" fill="#180805"/>
+      <circle cx="100" cy="60" r="21" fill="#180805"/>
+      <!-- side hair blocks -->
+      <rect x="51" y="92" width="15" height="28" rx="7" fill="#180805"/>
+      <rect x="134" y="92" width="15" height="28" rx="7" fill="#180805"/>
+      <!-- eyebrows -->
+      <path d="M72 100 Q82 94 93 98" stroke="#180805" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M107 98 Q118 94 128 100" stroke="#180805" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <!-- eyes white -->
+      <ellipse cx="82" cy="110" rx="11" ry="12" fill="white"/>
+      <ellipse cx="118" cy="110" rx="11" ry="12" fill="white"/>
+      <!-- irises — light blue-grey -->
+      <circle cx="82" cy="111" r="8" fill="#7bafc8"/>
+      <circle cx="118" cy="111" r="8" fill="#7bafc8"/>
+      <circle cx="82" cy="111" r="5.5" fill="#5a90ab"/>
+      <circle cx="118" cy="111" r="5.5" fill="#5a90ab"/>
+      <!-- pupils -->
+      <circle cx="82" cy="111" r="3" fill="#0a0705"/>
+      <circle cx="118" cy="111" r="3" fill="#0a0705"/>
+      <!-- shine -->
+      <circle cx="84" cy="108" r="1.8" fill="white" opacity="0.9"/>
+      <circle cx="120" cy="108" r="1.8" fill="white" opacity="0.9"/>
+      <!-- nose -->
+      <path d="M97 121 Q100 130 103 121" stroke="#a05e34" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="93" cy="128" rx="5" ry="4" fill="#a05e34" opacity="0.35"/>
+      <ellipse cx="107" cy="128" rx="5" ry="4" fill="#a05e34" opacity="0.35"/>
+      <!-- smile -->
+      <path d="M85 139 Q100 151 115 139" stroke="#7a4020" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="100" cy="140" rx="13" ry="5" fill="#b86040" opacity="0.25"/>
+      <!-- beard / stubble -->
+      <ellipse cx="100" cy="152" rx="40" ry="19" fill="#2d1408" opacity="0.28"/>
+      <ellipse cx="78" cy="141" rx="15" ry="10" fill="#2d1408" opacity="0.2"/>
+      <ellipse cx="122" cy="141" rx="15" ry="10" fill="#2d1408" opacity="0.2"/>
+      <ellipse cx="100" cy="158" rx="25" ry="12" fill="#2d1408" opacity="0.22"/>
+    </svg>
+  </div>
   <div class="hero-label">ML Engineer · AI Engineer · Cloud Architect</div>
   <h1 class="hero-name">Nagizaaz Shaik</h1>
-  <p class="hero-role">Building production ML infrastructure that ships and scales.</p>
+  <p class="hero-role">I ship ML to production. Currently in grad school. Open to internships.</p>
   <p class="hero-desc">
-    6 years across production ML deployment, clinical AI, and AWS cloud infrastructure.
-    9 public projects spanning LLMs, AI agents, privacy-preserving ML, and real-time data pipelines.
-    M.S. Computer Science, University of Dayton · GPA 3.93.
+    5 live SageMaker models. BERT serving 10K requests/week. Zero audit findings on $400M member data.
+    9 open-source ML projects — all CI green. GPA 3.93. Targeting ML, AI, and Cloud roles in tech &amp; healthcare.
   </p>
   <div class="hero-targeting">◈ Open to internships · ML Engineer · AI Engineer · Cloud Architect · Tech &amp; Healthcare</div>
   <div class="hero-ctas">
     <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="btn-primary">Connect on LinkedIn</a>
     <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="btn-secondary">View GitHub</a>
-    <a href="#projects" class="btn-secondary">Projects ↓</a>
+    <a href="../assets/resume.pdf" target="_blank" rel="noopener" class="btn-secondary">Resume ↓</a>
   </div>
   <div class="scroll-cue">
     <span>Scroll</span>
@@ -672,8 +747,8 @@ footer {
 <section id="projects">
   <div class="wrap">
     <div class="section-tag reveal">Projects</div>
-    <h2 class="section-h reveal">Production-grade ML systems.</h2>
-    <p class="section-sub reveal">9 public repos — all CI green, security audited. Spanning AI agents, privacy ML, clinical AI, and real-time data infrastructure.</p>
+    <h2 class="section-h reveal">Things I've actually built.</h2>
+    <p class="section-sub reveal">9 open-source repos. Real code, real tests, real CI. AI agents · clinical AI · privacy ML · data infrastructure.</p>
 
     <div class="proj-grid">
 
@@ -975,7 +1050,7 @@ footer {
       <div class="section-tag" style="justify-content:center; margin-bottom:18px;">Contact</div>
       <h2 class="contact-heading">Let's build something.</h2>
       <p class="contact-sub">
-        Open to internships in ML Engineering, AI Engineering, and Cloud Architecture.<br>
+        ML Engineering · AI Engineering · Cloud Architecture internships.<br>
         Tech &amp; Healthcare · Remote USA · Available now.
       </p>
       <div class="contact-links">
@@ -985,8 +1060,14 @@ footer {
         <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="contact-link">
           <span>⌥</span> GitHub
         </a>
-        <a href="mailto:shaik.izaaz009@gmail.com" class="contact-link">
-          <span>@</span> Email
+        <a href="mailto:shaikn6@udayton.edu" class="contact-link">
+          <span>@</span> shaikn6@udayton.edu
+        </a>
+        <a href="tel:+19453940116" class="contact-link">
+          <span>☎</span> (945) 394-0116
+        </a>
+        <a href="../assets/resume.pdf" target="_blank" rel="noopener" class="contact-link">
+          <span>↓</span> Resume
         </a>
       </div>
     </div>
