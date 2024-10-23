@@ -133,17 +133,46 @@ main { position:relative; z-index:1; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-.hero-avatar {
-  width: 140px; height: 140px;
-  margin: 0 auto 28px;
-  border-radius: 50%;
-  overflow: visible;
-  position: relative;
+/* captcha */
+.captcha-wrap { margin-bottom: 12px; }
+.captcha-box {
+  display: inline-block;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 20px 28px;
 }
-.hero-avatar svg {
-  width: 140px; height: 140px;
-  filter: drop-shadow(0 0 24px rgba(56,189,248,0.25)) drop-shadow(0 0 48px rgba(129,140,248,0.15));
+.captcha-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
 }
+.captcha-q { font-size: 1.05rem; font-weight: 600; margin-bottom: 14px; }
+.captcha-row { display: flex; gap: 8px; justify-content: center; }
+.captcha-row input {
+  width: 88px; padding: 8px 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem; text-align: center; outline: none;
+}
+.captcha-row input:focus { border-color: var(--accent); }
+.captcha-row button {
+  padding: 8px 18px;
+  background: var(--accent); color: var(--bg);
+  border: none; border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600; font-size: 0.85rem;
+  cursor: pointer; transition: opacity 0.2s;
+}
+.captcha-row button:hover { opacity: 0.85; }
+.captcha-err { font-size: 0.72rem; color: #f85149; margin-top: 8px; min-height: 16px; }
+#contact-private { display: none; gap: 12px; flex-wrap: wrap; justify-content: center; }
 .hero-role {
   font-family: 'Inter', sans-serif;
   font-size: clamp(1rem, 2vw, 1.35rem);
@@ -582,79 +611,14 @@ footer {
 
 <!-- ── HERO ── -->
 <section id="hero" style="position:relative;">
-  <div class="hero-avatar">
-    <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="bgG" cx="50%" cy="40%" r="60%">
-          <stop offset="0%" stop-color="#1e3a5f"/>
-          <stop offset="100%" stop-color="#0d1b2a"/>
-        </radialGradient>
-        <clipPath id="cc"><circle cx="100" cy="110" r="98"/></clipPath>
-      </defs>
-      <circle cx="100" cy="110" r="98" fill="url(#bgG)"/>
-      <g clip-path="url(#cc)">
-        <!-- sweater body -->
-        <ellipse cx="100" cy="230" rx="80" ry="60" fill="#236b4e"/>
-        <ellipse cx="100" cy="195" rx="55" ry="45" fill="#236b4e"/>
-        <!-- neck -->
-        <rect x="83" y="157" width="34" height="38" rx="5" fill="#c07a50"/>
-      </g>
-      <!-- face -->
-      <ellipse cx="100" cy="116" rx="48" ry="52" fill="#c07a50"/>
-      <!-- ears -->
-      <ellipse cx="52" cy="116" rx="9" ry="11" fill="#c07a50"/>
-      <ellipse cx="148" cy="116" rx="9" ry="11" fill="#c07a50"/>
-      <!-- hair base -->
-      <ellipse cx="100" cy="73" rx="53" ry="36" fill="#180805"/>
-      <circle cx="54" cy="90" r="21" fill="#180805"/>
-      <circle cx="146" cy="90" r="21" fill="#180805"/>
-      <circle cx="63" cy="75" r="17" fill="#180805"/>
-      <circle cx="137" cy="75" r="17" fill="#180805"/>
-      <circle cx="80" cy="63" r="19" fill="#180805"/>
-      <circle cx="120" cy="63" r="19" fill="#180805"/>
-      <circle cx="100" cy="60" r="21" fill="#180805"/>
-      <!-- side hair blocks -->
-      <rect x="51" y="92" width="15" height="28" rx="7" fill="#180805"/>
-      <rect x="134" y="92" width="15" height="28" rx="7" fill="#180805"/>
-      <!-- eyebrows -->
-      <path d="M72 100 Q82 94 93 98" stroke="#180805" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <path d="M107 98 Q118 94 128 100" stroke="#180805" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <!-- eyes white -->
-      <ellipse cx="82" cy="110" rx="11" ry="12" fill="white"/>
-      <ellipse cx="118" cy="110" rx="11" ry="12" fill="white"/>
-      <!-- irises — light blue-grey -->
-      <circle cx="82" cy="111" r="8" fill="#7bafc8"/>
-      <circle cx="118" cy="111" r="8" fill="#7bafc8"/>
-      <circle cx="82" cy="111" r="5.5" fill="#5a90ab"/>
-      <circle cx="118" cy="111" r="5.5" fill="#5a90ab"/>
-      <!-- pupils -->
-      <circle cx="82" cy="111" r="3" fill="#0a0705"/>
-      <circle cx="118" cy="111" r="3" fill="#0a0705"/>
-      <!-- shine -->
-      <circle cx="84" cy="108" r="1.8" fill="white" opacity="0.9"/>
-      <circle cx="120" cy="108" r="1.8" fill="white" opacity="0.9"/>
-      <!-- nose -->
-      <path d="M97 121 Q100 130 103 121" stroke="#a05e34" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <ellipse cx="93" cy="128" rx="5" ry="4" fill="#a05e34" opacity="0.35"/>
-      <ellipse cx="107" cy="128" rx="5" ry="4" fill="#a05e34" opacity="0.35"/>
-      <!-- smile -->
-      <path d="M85 139 Q100 151 115 139" stroke="#7a4020" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <ellipse cx="100" cy="140" rx="13" ry="5" fill="#b86040" opacity="0.25"/>
-      <!-- beard / stubble -->
-      <ellipse cx="100" cy="152" rx="40" ry="19" fill="#2d1408" opacity="0.28"/>
-      <ellipse cx="78" cy="141" rx="15" ry="10" fill="#2d1408" opacity="0.2"/>
-      <ellipse cx="122" cy="141" rx="15" ry="10" fill="#2d1408" opacity="0.2"/>
-      <ellipse cx="100" cy="158" rx="25" ry="12" fill="#2d1408" opacity="0.22"/>
-    </svg>
-  </div>
   <div class="hero-label">ML Engineer · AI Engineer · Cloud Architect</div>
   <h1 class="hero-name">Nagizaaz Shaik</h1>
-  <p class="hero-role">I ship ML to production. Currently in grad school. Open to internships.</p>
+  <p class="hero-role">Production ML systems · Clinical AI · Cloud Infrastructure.</p>
   <p class="hero-desc">
-    5 live SageMaker models. BERT serving 10K requests/week. Zero audit findings on $400M member data.
-    9 open-source ML projects — all CI green. GPA 3.93. Targeting ML, AI, and Cloud roles in tech &amp; healthcare.
+    5 SageMaker models in production. BERT classifier at sub-200ms p99.
+    Zero compliance findings on $400M member data. 9 open-source projects, all CI green. GPA 3.93.
   </p>
-  <div class="hero-targeting">◈ Open to internships · ML Engineer · AI Engineer · Cloud Architect · Tech &amp; Healthcare</div>
+  <div class="hero-targeting">◈ ML models · AI agents · Cloud infrastructure · Tech &amp; Healthcare</div>
   <div class="hero-ctas">
     <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="btn-primary">Connect on LinkedIn</a>
     <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="btn-secondary">View GitHub</a>
@@ -689,17 +653,6 @@ footer {
             <li>Fine-tuned BERT on internal ticket data as a FastAPI microservice — sub-200ms p99, 40% reduction in misrouting across 10K+ weekly requests.</li>
             <li>Passed 2 consecutive NCUA audits with zero findings on $400M in member financial data — AES-256, IAM least privilege, CloudTrail on all inference calls.</li>
           </ul>
-        </div>
-      </div>
-
-      <div class="exp-item reveal">
-        <div class="exp-period">Aug 2023 – May 2025</div>
-        <div class="exp-body">
-          <div class="exp-edu">
-            <div class="exp-role">M.S. Computer Science</div>
-            <div class="exp-company">University of Dayton · Dayton, OH</div>
-            <div class="exp-edu-meta">GPA 3.93 / 4.0 · Focus: Machine Learning, AI Systems, NLP</div>
-          </div>
         </div>
       </div>
 
@@ -1049,25 +1002,35 @@ footer {
     <div class="contact-box reveal">
       <div class="section-tag" style="justify-content:center; margin-bottom:18px;">Contact</div>
       <h2 class="contact-heading">Let's build something.</h2>
-      <p class="contact-sub">
-        ML Engineering · AI Engineering · Cloud Architecture internships.<br>
-        Tech &amp; Healthcare · Remote USA · Available now.
-      </p>
-      <div class="contact-links">
+      <p class="contact-sub">ML models · AI agents · cloud infrastructure.</p>
+      <div class="contact-links" style="margin-bottom:24px;">
         <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="contact-link">
           <span>in</span> LinkedIn
         </a>
         <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="contact-link">
           <span>⌥</span> GitHub
         </a>
-        <a href="mailto:shaikn6@udayton.edu" class="contact-link">
-          <span>@</span> shaikn6@udayton.edu
-        </a>
-        <a href="tel:+19453940116" class="contact-link">
-          <span>☎</span> (945) 394-0116
-        </a>
         <a href="../assets/resume.pdf" target="_blank" rel="noopener" class="contact-link">
           <span>↓</span> Resume
+        </a>
+      </div>
+      <div class="captcha-wrap">
+        <div class="captcha-box">
+          <p class="captcha-label">Verify you're human to unlock contact</p>
+          <p class="captcha-q" id="captcha-q"></p>
+          <div class="captcha-row">
+            <input type="number" id="captcha-input" placeholder="Answer" autocomplete="off">
+            <button onclick="verifyCaptcha()">Unlock →</button>
+          </div>
+          <p class="captcha-err" id="captcha-err"></p>
+        </div>
+      </div>
+      <div id="contact-private" class="contact-links">
+        <a href="mailto:shaikn6@udayton.edu" class="contact-link">
+          <span>@</span> Email
+        </a>
+        <a href="tel:+19453940116" class="contact-link">
+          <span>☎</span> Phone
         </a>
       </div>
     </div>
@@ -1101,6 +1064,40 @@ document.querySelectorAll('.proj-grid, .skills-grid, .cert-list, .metrics-row').
     child.style.transitionDelay = (i * 70) + 'ms';
   });
 });
+
+// Captcha
+(function() {
+  const ops = [
+    ['+', (a,b) => a+b],
+    ['×', (a,b) => a*b],
+    ['−', (a,b) => a-b],
+  ];
+  const [sym, fn] = ops[Math.floor(Math.random() * ops.length)];
+  let a, b;
+  if (sym === '×') { a = Math.floor(Math.random()*8)+2; b = Math.floor(Math.random()*8)+2; }
+  else if (sym === '−') { a = Math.floor(Math.random()*20)+15; b = Math.floor(Math.random()*14)+1; }
+  else { a = Math.floor(Math.random()*30)+5; b = Math.floor(Math.random()*30)+5; }
+  window._captchaAnswer = fn(a, b);
+  const q = document.getElementById('captcha-q');
+  if (q) q.textContent = 'What is ' + a + ' ' + sym + ' ' + b + '?';
+
+  const inp = document.getElementById('captcha-input');
+  if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') verifyCaptcha(); });
+})();
+
+function verifyCaptcha() {
+  const val = parseInt(document.getElementById('captcha-input').value, 10);
+  const err = document.getElementById('captcha-err');
+  if (val === window._captchaAnswer) {
+    document.querySelector('.captcha-wrap').style.display = 'none';
+    const priv = document.getElementById('contact-private');
+    priv.style.display = 'flex';
+  } else {
+    err.textContent = 'Incorrect — try again.';
+    document.getElementById('captcha-input').value = '';
+    document.getElementById('captcha-input').focus();
+  }
+}
 </script>
 
 </body>
