@@ -173,6 +173,21 @@ main { position:relative; z-index:1; }
 .captcha-row button:hover { opacity: 0.85; }
 .captcha-err { font-size: 0.72rem; color: #f85149; margin-top: 8px; min-height: 16px; }
 #contact-private { display: none; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.hero-photo-wrap {
+  width: 160px; height: 160px;
+  margin: 0 auto 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 0 2px rgba(56,189,248,0.3), 0 0 40px rgba(56,189,248,0.18), 0 0 80px rgba(129,140,248,0.12);
+}
+.hero-photo-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: contrast(1.08) saturate(0.85) brightness(0.96);
+  transform: scale(1.08);
+}
 .hero-role {
   font-family: 'Inter', sans-serif;
   font-size: clamp(1rem, 2vw, 1.35rem);
@@ -611,13 +626,16 @@ footer {
 
 <!-- ── HERO ── -->
 <section id="hero" style="position:relative;">
+  <div class="hero-photo-wrap">
+    <img src="../assets/photo.jpg" alt="Nagizaaz Shaik" loading="eager">
+  </div>
   <div class="hero-label">ML Engineer · AI Engineer · Cloud Architect</div>
   <h1 class="hero-name">Nagizaaz Shaik</h1>
-  <p class="hero-role">Production ML systems · Clinical AI · Cloud Infrastructure.</p>
+  <p class="hero-role">It doesn't matter where you start. It matters that you build.</p>
   <p class="hero-desc">
-    Six years shipping ML systems — XGBoost underwriting, BERT classifier, and RAG compliance tooling
-    in production at Wright-Patt Credit Union. Clinical AI: CheXpert at 92% AUC, HIPAA-compliant
-    BioBERT NLP with FHIR R4 output. Zero NCUA audit findings on $400M in member data.
+    Intern at Uber writing anomaly scripts. Now: production ML for 450K members,
+    zero audit findings, five models in deployment, clinical AI shipping FHIR R4 to Epic.
+    The journey doesn't stop here.
   </p>
   <div class="hero-targeting">◈ ML models · AI agents · Cloud infrastructure · Tech &amp; Healthcare</div>
   <div class="hero-ctas">
