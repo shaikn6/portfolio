@@ -1214,5 +1214,22 @@ function verifyCaptcha() {
 }
 </script>
 
+<!-- Private analytics — fires on visit + records time spent on leave -->
+<script>
+(function(){
+  var API='https://portfolio-analytics-five.vercel.app/api/track';
+  var sid=Math.random().toString(36).slice(2)+Date.now().toString(36);
+  var t0=Date.now();
+  try{
+    fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({type:'visit',session_id:sid,page:location.pathname,referrer:document.referrer||''})
+    }).catch(function(){});
+    window.addEventListener('beforeunload',function(){
+      navigator.sendBeacon(API,JSON.stringify({type:'leave',session_id:sid,time_spent:Math.round((Date.now()-t0)/1000)}));
+    });
+  }catch(e){}
+})();
+</script>
+
 </body>
 </html>
