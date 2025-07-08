@@ -1,0 +1,35 @@
+:root {
+  /* ── Palette ── */
+  --color-bg:       #07080f;
+  --color-bg2:      #0a0b14;
+  --color-surface:  rgba(255, 255, 255, 0.035);
+  --color-surface2: rgba(255, 255, 255, 0.06);
+  --color-border:   rgba(56, 189, 248, 0.18);
+  --color-border2:  rgba(255, 255, 255, 0.07);
+  --color-accent:   #38bdf8;
+  --color-accent2:  #818cf8;
+  --color-accent3:  #a5f3fc;
+  --color-green:    #34d399;
+  --color-text:     #e2e8f0;
+  --color-muted:    rgba(226, 232, 240, 0.5);
+
+  /* ── Typography ── */
+  --font-serif:  'DM Serif Display', serif;
+  --font-mono:   'JetBrains Mono', monospace;
+  --font-sans:   'Inter', sans-serif;
+
+  --text-hero:   clamp(3.4rem, 9vw, 7.5rem);
+  --text-h2:     clamp(2.1rem, 4vw, 3rem);
+  --text-base:   1rem;
+
+  /* ── Spacing ── */
+  --space-section: clamp(4rem, 6vw, 5.5rem);
+  --radius:        14px;
+
+  /* ── Motion ── */
+  --dur:  280ms;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Effects ── */
+  --glow: 0 0 24px rgba(56, 189, 248, 0.18);
+}
