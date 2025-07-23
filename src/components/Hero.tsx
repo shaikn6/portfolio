@@ -17,8 +17,10 @@ export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
       <motion.div variants={VARIANTS.container} initial="hidden" animate="show">
-        <motion.div variants={VARIANTS.item} className={styles.avatarWrap}>
-          <LegoAvatar />
+        <motion.div variants={VARIANTS.item} className={styles.avatarOuter}>
+          <div className={styles.avatarWrap}>
+            <LegoAvatar />
+          </div>
         </motion.div>
         <motion.div variants={VARIANTS.item} className={styles.label}>
           ML Engineer · AI Engineer · Cloud Architect
