@@ -13,77 +13,55 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
-  {
-    href: 'https://github.com/shaikn6/agentic-pipeline-healer',
-    domain: 'AI Agents', domainClass: styles.dAgents,
-    name: 'Agentic Pipeline Healer',
-    desc: 'LangGraph multi-DAG orchestrator that monitors Airflow pipelines, classifies failures, generates AST-level code fixes, and dispatches Slack Block Kit alerts with a full SQLite audit log.',
-    pills: ['LangGraph', 'Airflow', 'AST', 'FastAPI'],
-    stat: 'CI passing',
-  },
+  // ── ML Engineer ──
   {
     href: 'https://github.com/shaikn6/chexpert-pathology-classifier',
-    domain: 'Computer Vision', domainClass: styles.dCv,
+    domain: 'ML Engineering', domainClass: styles.dMl,
     name: 'CheXpert Pathology Classifier',
-    desc: 'DenseNet121 + EfficientNet-B4 ensemble on the CheXpert 14-label benchmark. MC Dropout uncertainty, Grad-CAM + ScoreCAM explainability, DICOM pipeline, and clinical PDF report generator.',
-    pills: ['PyTorch', 'DenseNet121', 'Grad-CAM', 'pydicom'],
+    desc: 'Multi-label chest X-ray classification across all 14 CheXpert classes at 92% AUC. DenseNet121 + EfficientNet-B4 ensemble with MC Dropout uncertainty quantification and Grad-CAM / ScoreCAM explainability overlays for radiologist review. Full DICOM ingestion pipeline with PHI scrubbing.',
+    pills: ['PyTorch', 'DenseNet121', 'EfficientNet-B4', 'Grad-CAM', 'DICOM', 'SageMaker'],
     stat: '92% AUC',
   },
   {
-    href: 'https://github.com/shaikn6/llm-safety-auditor',
-    domain: 'LLM Safety', domainClass: styles.dSafety,
-    name: 'LLM Safety Auditor',
-    desc: 'Automated red-teaming framework generating 250+ adversarial attacks across 6 mutation strategies. Scores against OWASP LLM Top 10 and NIST AI RMF. Produces PDF audit reports with risk matrices.',
-    pills: ['sentence-transformers', 'ReportLab', 'OWASP'],
-    stat: '250+ attack vectors',
-  },
-  {
-    href: 'https://github.com/shaikn6/clinical-note-llmops',
-    domain: 'Healthcare AI', domainClass: styles.dClinical,
-    name: 'Clinical Note LLMOps',
-    desc: 'HIPAA-compliant LLMOps pipeline for clinical NLP. BioBERT + Presidio PII de-identification, FHIR R4 Epic integration, automated model drift detection, and full audit trail.',
-    pills: ['BioBERT', 'Presidio', 'FHIR R4', 'SageMaker'],
-    stat: 'HIPAA compliant',
+    href: 'https://github.com/shaikn6/medical-imaging-ai',
+    domain: 'ML Engineering', domainClass: styles.dMl,
+    name: 'Medical Imaging AI',
+    desc: 'End-to-end radiology image segmentation pipeline using U-Net architecture — automated preprocessing, Grad-CAM explainability overlays, and a containerised inference service built on MONAI for clinical imaging standards compliance.',
+    pills: ['U-Net', 'MONAI', 'Grad-CAM', 'PyTorch', 'Docker'],
+    stat: 'Clinical-grade',
   },
   {
     href: 'https://github.com/shaikn6/federated-credit-risk',
-    domain: 'Privacy ML', domainClass: styles.dPrivacy,
+    domain: 'ML · Cloud', domainClass: styles.dCloud,
     name: 'Federated Credit Risk',
-    desc: '3-institution federated learning via Flower FedAvg — zero raw data sharing. L2-norm model poisoning guard, gradient clipping, ECOA Fair Lending feature audit, and differential privacy integration.',
-    pills: ['Flower', 'PyTorch', 'FastAPI', 'ECOA'],
+    desc: 'Three-institution federated credit risk modeling via Flower FedAvg — zero raw data exchange. L2-norm model poisoning detection gate, gradient clipping, and ECOA / Fair Lending compliance constraints applied to the global model. Deployed as a containerised multi-node system with FastAPI coordination layer.',
+    pills: ['PyTorch', 'Flower', 'Federated Learning', 'ECOA', 'Docker', 'FastAPI'],
     stat: 'Zero data sharing',
   },
+  // ── AI Engineer ──
   {
-    href: 'https://github.com/shaikn6/differential-privacy-llm',
-    domain: 'Privacy AI', domainClass: styles.dPrivacy,
-    name: 'Differential Privacy LLM',
-    desc: 'DP-SGD fine-tuning from first principles with Rényi differential privacy budget accounting. Interactive Streamlit dashboard visualizing privacy-utility tradeoffs across ε values and noise multiplier configurations.',
-    pills: ['PyTorch', 'Opacus', 'FastAPI', 'Streamlit'],
-    stat: 'Rényi DP accounting',
+    href: 'https://github.com/shaikn6/clinical-note-llmops',
+    domain: 'AI · Cloud', domainClass: styles.dClinical,
+    name: 'Clinical Note LLMOps',
+    desc: 'HIPAA-compliant NLP pipeline for unstructured clinical notes — Presidio PII de-identification, BioBERT NER, ICD-10 code extraction, and FHIR R4 structured output. Covers all 18 PHI identifier types with full audit logging. Designed for Epic / HL7 integration.',
+    pills: ['BioBERT', 'Presidio', 'FHIR R4', 'ICD-10', 'FastAPI', 'spaCy'],
+    stat: 'HIPAA compliant',
   },
   {
-    href: 'https://github.com/shaikn6/kafka-stream-feature-store',
-    domain: 'Data Engineering', domainClass: styles.dDataeng,
-    name: 'Kafka Stream Feature Store',
-    desc: 'Real-time ML feature store: Kafka producers → Redis with sub-60s freshness guarantee. JSON serialization, per-IP rate limiting, and a FastAPI serving layer with feature versioning and TTL management.',
-    pills: ['Kafka', 'Redis', 'FastAPI', 'Pydantic'],
-    stat: '< 60s freshness',
+    href: 'https://github.com/shaikn6/llm-safety-auditor',
+    domain: 'AI Engineering', domainClass: styles.dSafety,
+    name: 'LLM Safety Auditor',
+    desc: 'Automated red-teaming and safety evaluation framework for production LLMs. Executes 250+ adversarial attack vectors across six mutation strategies. Scores against the full OWASP LLM Top 10 taxonomy and generates structured PDF audit reports suitable for compliance review.',
+    pills: ['HuggingFace', 'OWASP LLM Top 10', 'Red-Teaming', 'FastAPI', 'ReportLab'],
+    stat: '250+ attack vectors',
   },
   {
-    href: 'https://github.com/shaikn6/mlops-retraining-pipeline',
-    domain: 'MLOps', domainClass: styles.dMlops,
-    name: 'MLOps Retraining Pipeline',
-    desc: 'Automated model retraining on data drift using Airflow + MLflow + SageMaker. Evidently AI drift detection triggers retraining jobs, tracks experiments, and promotes champions via A/B shadow deployment.',
-    pills: ['Airflow', 'MLflow', 'SageMaker', 'Evidently'],
-    stat: 'Auto retraining',
-  },
-  {
-    href: 'https://github.com/shaikn6/enhanced-ai-proctor',
-    domain: 'Computer Vision', domainClass: styles.dCv,
-    name: 'Enhanced AI Proctor',
-    desc: 'Real-time exam proctoring: YOLOv8 object detection + DeepFace identity verification + gaze tracking. Flags prohibited objects, identity switches, and attention loss with timestamped evidence reports via FastAPI.',
-    pills: ['YOLOv8', 'DeepFace', 'OpenCV', 'FastAPI'],
-    stat: 'Real-time detection',
+    href: 'https://github.com/shaikn6/agentic-pipeline-healer',
+    domain: 'AI · Cloud', domainClass: styles.dAgents,
+    name: 'Agentic Pipeline Healer',
+    desc: 'LangGraph multi-DAG orchestrator that monitors Airflow pipelines, performs LLM-driven root cause diagnosis, applies AST-level code fixes with automated rollback, and fires Slack Block Kit alerts — with a full SQLite audit trail.',
+    pills: ['LangGraph', 'Airflow', 'AST', 'FastAPI', 'SQLite', 'Slack API'],
+    stat: 'Self-healing CI',
   },
 ]
 
@@ -134,7 +112,7 @@ export default function Projects() {
         <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>Things I've actually built.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className={styles.sectionSub}>
-            9 open-source repos. Real code, real tests, real CI. AI agents · clinical AI · privacy ML · data infrastructure.
+            6 open-source repos across ML Engineering, AI Engineering, and Cloud Architecture. Real code, real tests, real CI.
           </p>
         </ScrollReveal>
 
