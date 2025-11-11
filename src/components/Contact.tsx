@@ -101,10 +101,10 @@ export default function Contact() {
               </div>
             ) : (
               <div className={styles.links}>
-                <a href="mailto:redacted" className={styles.link}>
+                <a href="mailto:nagizaazs@gmail.com" className={styles.link}>
                   <span>@</span> Email
                 </a>
-                <a href="tel:+19453940116" className={styles.link}>
+                <a href="tel:+1redacted" className={styles.link}>
                   <span>☎</span> Phone
                 </a>
               </div>
