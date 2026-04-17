@@ -42,14 +42,11 @@ export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
       <motion.div className={styles.textCol} variants={TEXT_VARIANTS.container} initial="hidden" animate="show">
-        <motion.div variants={TEXT_VARIANTS.item} className={styles.greeting}>
-          <span className={styles.statusDot} /> Available · Dayton, OH
-        </motion.div>
         <motion.h1 variants={TEXT_VARIANTS.item} className={styles.name}>
           Nagizaaz<br />Shaik
         </motion.h1>
         <motion.div variants={TEXT_VARIANTS.item} className={styles.kinetic}>
-          <span className={styles.kineticPrefix}>I engineer as a&nbsp;</span>
+          <span className={styles.kineticPrefix}>I am a&nbsp;</span>
           <RotatingRole />
         </motion.div>
         <motion.p variants={TEXT_VARIANTS.item} className={styles.desc}>
