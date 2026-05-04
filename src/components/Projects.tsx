@@ -26,15 +26,23 @@ const PROJECTS: Project[] = [
     href: 'https://github.com/shaikn6/medical-imaging-ai',
     domain: 'ML Engineering', domainClass: styles.dMl,
     name: 'Medical Imaging AI',
-    desc: 'End-to-end radiology image segmentation pipeline using U-Net architecture — automated preprocessing, Grad-CAM explainability overlays, and a containerised inference service built on MONAI for clinical imaging standards compliance.',
-    pills: ['U-Net', 'MONAI', 'Grad-CAM', 'PyTorch', 'Docker'],
+    desc: 'End-to-end radiology image segmentation pipeline using EfficientNet-B4 — automated preprocessing, Grad-CAM + ScoreCAM explainability overlays, DICOM pipeline, and PHI scrubbing. Containerised FastAPI inference service.',
+    pills: ['EfficientNet-B4', 'Grad-CAM', 'DICOM', 'PyTorch', 'FastAPI', 'Docker'],
     stat: 'Clinical-grade',
+  },
+  {
+    href: 'https://github.com/shaikn6/clinical-survival-analysis',
+    domain: 'Clinical ML', domainClass: styles.dClinical,
+    name: 'Clinical Survival Analysis',
+    desc: '6-model survival analysis — Kaplan-Meier, Cox PH, Random Survival Forest, XGBoost, DeepSurv, DeepHit — with competing risks, Aalen-Johansen CIF, Streamlit dashboard, and FastAPI serving layer.',
+    pills: ['PyTorch', 'scikit-survival', 'XGBoost', 'Streamlit', 'FastAPI'],
+    stat: '6 models',
   },
   {
     href: 'https://github.com/shaikn6/federated-credit-risk',
     domain: 'ML · Cloud', domainClass: styles.dCloud,
     name: 'Federated Credit Risk',
-    desc: 'Three-institution federated credit risk modeling via Flower FedAvg — zero raw data exchange. L2-norm model poisoning detection gate, gradient clipping, and ECOA / Fair Lending compliance constraints applied to the global model. Deployed as a containerised multi-node system with FastAPI coordination layer.',
+    desc: 'Three-institution federated credit risk modeling via Flower FedAvg — zero raw data exchange. L2-norm model poisoning detection gate, gradient clipping, and ECOA / Fair Lending compliance constraints applied to the global model.',
     pills: ['PyTorch', 'Flower', 'Federated Learning', 'ECOA', 'Docker', 'FastAPI'],
     stat: 'Zero data sharing',
   },
@@ -46,6 +54,14 @@ const PROJECTS: Project[] = [
     desc: 'HIPAA-compliant NLP pipeline for unstructured clinical notes — Presidio PII de-identification, BioBERT NER, ICD-10 code extraction, and FHIR R4 structured output. Covers all 18 PHI identifier types with full audit logging. Designed for Epic / HL7 integration.',
     pills: ['BioBERT', 'Presidio', 'FHIR R4', 'ICD-10', 'FastAPI', 'spaCy'],
     stat: 'HIPAA compliant',
+  },
+  {
+    href: 'https://github.com/shaikn6/healthcare-rag',
+    domain: 'AI · Healthcare', domainClass: styles.dClinical,
+    name: 'Healthcare RAG',
+    desc: 'HIPAA-safe RAG pipeline with PHI detection and redaction, vector store, clinical Q&A with disclaimer injection. Designed for structured clinical document retrieval with audit trail.',
+    pills: ['LangChain', 'RAG', 'Presidio', 'FAISS', 'FastAPI'],
+    stat: 'PHI-safe RAG',
   },
   {
     href: 'https://github.com/shaikn6/llm-safety-auditor',
@@ -63,15 +79,15 @@ const PROJECTS: Project[] = [
     pills: ['LangGraph', 'Airflow', 'AST', 'FastAPI', 'SQLite', 'Slack API'],
     stat: 'Self-healing CI',
   },
-  // ── More public projects ──
   {
-    href: 'https://github.com/shaikn6/mlops-retraining-pipeline',
-    domain: 'ML Engineering', domainClass: styles.dMl,
-    name: 'MLOps Retraining Pipeline',
-    desc: 'Automated ML retraining with statistical promotion gates — KS-test drift detection triggers retraining, Welch t-test and A/B validation gate promotion, with automated rollback. Airflow-orchestrated on MLflow and SageMaker.',
-    pills: ['Airflow', 'MLflow', 'SageMaker', 'scikit-learn', 'Drift Detection'],
-    stat: 'Drift-triggered',
+    href: 'https://github.com/shaikn6/ai-rag-app',
+    domain: 'AI Engineering', domainClass: styles.dAgents,
+    name: 'AI RAG Application',
+    desc: 'LangChain RAG application with document ingestion, vector search, OpenAI integration, and FastAPI serving layer. Full ingestion-to-query pipeline with citation support.',
+    pills: ['LangChain', 'RAG', 'OpenAI', 'FAISS', 'FastAPI'],
+    stat: 'Citation-grounded',
   },
+  // ── Data Engineering · Cloud ──
   {
     href: 'https://github.com/shaikn6/kafka-stream-feature-store',
     domain: 'ML · Cloud', domainClass: styles.dCloud,
@@ -81,60 +97,36 @@ const PROJECTS: Project[] = [
     stat: 'Sub-60s freshness',
   },
   {
-    href: 'https://github.com/shaikn6/finance-llmops-platform',
-    domain: 'AI Engineering', domainClass: styles.dSafety,
-    name: 'Finance LLMOps Platform',
-    desc: 'RAG platform over SEC 10-K filings and earnings calls — citation-grounded answers with hallucination detection, Evidently monitoring, and MLflow prompt versioning, fronted by a Streamlit analyst dashboard.',
-    pills: ['LangChain', 'RAG', 'MLflow', 'Evidently', 'Streamlit'],
-    stat: 'Citation-grounded',
-  },
-  {
-    href: 'https://github.com/shaikn6/prompt-ops',
-    domain: 'AI Engineering', domainClass: styles.dAgents,
-    name: 'PromptOps',
-    desc: 'Git-style version control and A/B testing for LLM prompts — diff, branch, and roll back prompt versions with experiment tracking and evaluation metrics. MLflow for prompts.',
-    pills: ['LLMOps', 'Prompt Engineering', 'A/B Testing', 'FastAPI'],
-    stat: 'Prompt versioning',
-  },
-  {
-    href: 'https://github.com/shaikn6/evidently-llm-sentinel',
-    domain: 'AI · Cloud', domainClass: styles.dSafety,
-    name: 'Evidently LLM Sentinel',
-    desc: 'Production LLM observability extending Evidently AI — tracks semantic drift, hallucination risk, and response-quality degradation over time with Grafana dashboards and alerting.',
-    pills: ['Evidently', 'Grafana', 'LLM Monitoring', 'Observability'],
-    stat: 'Semantic drift',
-  },
-  {
-    href: 'https://github.com/shaikn6/high-traffic-ticket-engine',
-    domain: 'Cloud Architecture', domainClass: styles.dCloud,
-    name: 'High-Traffic Ticket Engine',
-    desc: 'Distributed ticket-reservation engine handling 10K concurrent users with zero oversells. Redis distributed locks with atomic Lua reservation scripts and TTL-based hold expiry under load-tested concurrency.',
-    pills: ['Redis', 'Distributed Locks', 'FastAPI', 'Concurrency', 'Lua'],
-    stat: '10K concurrent · 0 oversells',
-  },
-  {
-    href: 'https://github.com/shaikn6/distributed-etl-ecommerce',
+    href: 'https://github.com/shaikn6/sql-to-dag-compiler',
     domain: 'Cloud · Data Eng', domainClass: styles.dCloud,
-    name: 'Distributed ETL — E-Commerce',
-    desc: 'Distributed ETL framework on a PySpark medallion architecture — dbt star-schema modeling, Airflow orchestration, Great Expectations quality gates, containerised with CI/CD.',
-    pills: ['PySpark', 'dbt', 'Airflow', 'Great Expectations', 'Docker'],
-    stat: 'Medallion architecture',
+    name: 'SQL-to-DAG Compiler',
+    desc: 'Oracle SQL/PLSQL + dbt models compiled to Airflow 2.x DAGs with lineage export in Mermaid, DOT, and JSON formats. Includes edge-case handler and dbt model parser.',
+    pills: ['Python', 'Airflow', 'dbt', 'Oracle PL/SQL', 'Mermaid'],
+    stat: 'Lineage-aware',
   },
   {
-    href: 'https://github.com/shaikn6/redshift-wlm-optimizer',
+    href: 'https://github.com/shaikn6/ml-churn-pipeline',
+    domain: 'ML Engineering', domainClass: styles.dMl,
+    name: 'ML Churn Pipeline',
+    desc: 'End-to-end customer churn prediction — scikit-learn pipeline with feature engineering, MLflow experiment tracking and model registry, and a REST API inference layer.',
+    pills: ['scikit-learn', 'MLflow', 'FastAPI', 'pandas', 'Docker'],
+    stat: 'MLflow tracked',
+  },
+  {
+    href: 'https://github.com/shaikn6/flight-ops-intelligence',
     domain: 'ML · Cloud', domainClass: styles.dCloud,
-    name: 'Redshift WLM Optimizer',
-    desc: 'XGBoost model predicts Redshift query cost and auto-routes each query to the optimal WLM queue, cutting financial-report runtime by 85%. ML-driven cloud cost optimization.',
-    pills: ['AWS Redshift', 'XGBoost', 'WLM', 'Cost Optimization'],
-    stat: '85% faster',
+    name: 'Flight Ops Intelligence',
+    desc: 'ML flight delay predictor with XGBoost + Open-Meteo live weather integration, real-time FastAPI endpoint, and a Folium route risk map for operational visibility.',
+    pills: ['XGBoost', 'Open-Meteo API', 'FastAPI', 'Folium', 'scikit-learn'],
+    stat: 'Live weather',
   },
   {
-    href: 'https://github.com/shaikn6/icu-mortality-predictor',
-    domain: 'Clinical ML', domainClass: styles.dClinical,
-    name: 'ICU Mortality Predictor',
-    desc: '30-day ICU mortality prediction from the first 24 hours of MIMIC-III data — XGBoost with SHAP explainability and a hardened FastAPI inference layer for clinical decision support.',
-    pills: ['XGBoost', 'SHAP', 'MIMIC-III', 'FastAPI'],
-    stat: 'AUC > 0.85',
+    href: 'https://github.com/shaikn6/cloud-iac',
+    domain: 'Cloud Architecture', domainClass: styles.dCloud,
+    name: 'Cloud IaC',
+    desc: 'Production AWS infrastructure as code — Terraform modules for VPC, ECS, RDS, S3, and IAM with security-hardened defaults, least-privilege policies, and CloudTrail logging.',
+    pills: ['Terraform', 'AWS', 'VPC', 'ECS', 'RDS', 'IAM'],
+    stat: 'Security-hardened',
   },
 ]
 
@@ -185,7 +177,7 @@ export default function Projects() {
         <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>Things I've actually built.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className={styles.sectionSub}>
-            6 open-source repos across ML Engineering, AI Engineering, and Cloud Architecture. Real code, real tests, real CI.
+            14 open-source repos across ML Engineering, AI Engineering, Healthcare AI, and Cloud Architecture. Real code, real tests, CI green on every repo.
           </p>
         </ScrollReveal>
 
