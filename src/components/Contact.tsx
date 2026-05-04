@@ -31,11 +31,17 @@ function generatePuzzle(): Puzzle {
   return { question: `What is ${a} ${op} ${b}?`, answer }
 }
 
+// Assembled at runtime — keeps email out of static source strings
+function getEmail(): string {
+  return ['shaik', '.izaaz009', '@', 'gmail', '.com'].join('')
+}
+
 export default function Contact() {
   const [puzzle, setPuzzle] = useState<Puzzle>(() => generatePuzzle())
   const [input, setInput] = useState('')
   const [error, setError] = useState('')
   const [unlocked, setUnlocked] = useState(false)
+  const [email, setEmail] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -45,6 +51,7 @@ export default function Contact() {
   const verify = () => {
     if (parseInt(input, 10) === puzzle.answer) {
       setUnlocked(true)
+      setEmail(getEmail())
       setError('')
     } else {
       setError('Incorrect — try again.')
@@ -81,7 +88,7 @@ export default function Contact() {
             {!unlocked ? (
               <div className={styles.captchaWrap}>
                 <div className={styles.captchaBox}>
-                  <p className={styles.captchaLabel}>Verify you're human to unlock contact</p>
+                  <p className={styles.captchaLabel}>Verify you're human to unlock email</p>
                   <p className={styles.captchaQ}>{puzzle.question}</p>
                   <div className={styles.captchaRow}>
                     <input
@@ -101,11 +108,8 @@ export default function Contact() {
               </div>
             ) : (
               <div className={styles.links}>
-                <a href="mailto:nagizaazs@gmail.com" className={styles.link}>
-                  <span>@</span> Email
-                </a>
-                <a href="tel:+12562514502" className={styles.link}>
-                  <span>☎</span> Phone
+                <a href={`mailto:${email}`} className={styles.link}>
+                  <span>@</span> {email}
                 </a>
               </div>
             )}
