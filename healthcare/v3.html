@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nagizaaz Shaik — Future Hospital AI Interface</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:      #050d1a;
+    --teal:      #00d4ff;
+    --teal-d:    #00a3c4;
+    --coral:     #ff6b6b;
+    --coral-d:   #d94f4f;
+    --purple:    #7c3aed;
+    --purple-l:  #a78bfa;
+    --bg:        #060e1f;
+    --surface:   rgba(255,255,255,0.05);
+    --surface2:  rgba(255,255,255,0.08);
+    --border:    rgba(255,255,255,0.1);
+    --border-t:  rgba(0,212,255,0.25);
+    --text:      #f0f8ff;
+    --text-2:    #94a3b8;
+    --text-3:    #4a6080;
+    --dur-fast:  150ms;
+    --dur-norm:  350ms;
+    --ease:      cubic-bezier(0.16,1,0.3,1);
+    --glass-blur: blur(16px) saturate(180%);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── AURORA BACKGROUND ── */
+  .aurora-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .aurora-layer {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+  }
+  .aurora-1 {
+    width: 70vw; height: 70vw;
+    top: -20%; left: -10%;
+    background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+    animation: aurora-drift-1 18s ease-in-out infinite;
+  }
+  .aurora-2 {
+    width: 60vw; height: 60vw;
+    top: 10%; right: -15%;
+    background: radial-gradient(circle, #00d4ff 0%, transparent 70%);
+    animation: aurora-drift-2 22s ease-in-out infinite;
+    opacity: 0.25;
+  }
+  .aurora-3 {
+    width: 50vw; height: 50vw;
+    bottom: -10%; left: 20%;
+    background: radial-gradient(circle, #0ea5e9 0%, transparent 70%);
+    animation: aurora-drift-3 16s ease-in-out infinite;
+    opacity: 0.2;
+  }
+  @keyframes aurora-drift-1 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33%      { transform: translate(5%,8%) scale(1.08); }
+    66%      { transform: translate(-4%,3%) scale(0.95); }
+  }
+  @keyframes aurora-drift-2 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50%      { transform: translate(-6%,10%) scale(1.12); }
+  }
+  @keyframes aurora-drift-3 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    40%      { transform: translate(8%,-5%) scale(1.06); }
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(5,13,26,0.7);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--border);
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+  }
+  .nav-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 62px;
+  }
+  .nav-logo {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 8px var(--teal);
+    animation: logo-pulse 2s ease-in-out infinite;
+  }
+  @keyframes logo-pulse {
+    0%,100% { box-shadow: 0 0 8px var(--teal); }
+    50%      { box-shadow: 0 0 18px var(--teal), 0 0 32px rgba(0,212,255,0.3); }
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color var(--dur-fast);
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta {
+    background: rgba(0,212,255,0.15) !important;
+    border: 1px solid var(--teal) !important;
+    color: var(--teal) !important;
+    padding: 0.4rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 600 !important;
+    backdrop-filter: blur(8px);
+  }
+  .nav-cta:hover { background: rgba(0,212,255,0.25) !important; box-shadow: 0 0 20px rgba(0,212,255,0.2); }
+
+  /* ── GLASS CARD ── */
+  .glass {
+    background: var(--surface);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+  .glass-teal {
+    background: rgba(0,212,255,0.07);
+    border-color: var(--border-t);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px clamp(1.5rem,5vw,4rem) 4rem;
+    text-align: center;
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+  .system-status {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .sys-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px #22c55e;
+    animation: sys-blink 2s ease-in-out infinite;
+  }
+  @keyframes sys-blink {
+    0%,100% { opacity: 1; }
+    50%      { opacity: 0.3; }
+  }
+  .sys-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.72rem;
+    color: #22c55e;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .hero-name {
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+  .hero-name-inner {
+    background: linear-gradient(135deg, #f0f8ff 0%, #a5f3fc 50%, #c4b5fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(0,212,255,0.3));
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--text-2);
+    font-weight: 400;
+    margin-bottom: 2rem;
+    letter-spacing: 0.01em;
+  }
+  .hero-sub strong { color: var(--teal); font-weight: 600; }
+
+  /* FLOATING STAT PILLS */
+  .stat-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  .stat-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: pill-float 4s ease-in-out infinite;
+  }
+  .stat-pill:nth-child(even) { animation-delay: -2s; }
+  .stat-pill:nth-child(3n)   { animation-delay: -1s; }
+  @keyframes pill-float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
+  }
+  .pill-teal  { background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); color: var(--teal); }
+  .pill-coral { background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.3); color: var(--coral); }
+  .pill-purple { background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.3); color: var(--purple-l); }
+  .pill-green { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #22c55e; }
+
+  /* VITAL SIGNS PANEL */
+  .vitals-panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto 2.5rem;
+  }
+  .vital-card {
+    padding: 1rem 0.75rem;
+    text-align: center;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .vital-icon {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.6rem;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .vital-value {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .vital-value.teal   { color: var(--teal); text-shadow: 0 0 16px rgba(0,212,255,0.4); }
+  .vital-value.coral  { color: var(--coral); text-shadow: 0 0 16px rgba(255,107,107,0.4); }
+  .vital-value.purple { color: var(--purple-l); text-shadow: 0 0 16px rgba(167,139,250,0.4); }
+  .vital-value.green  { color: #22c55e; text-shadow: 0 0 16px rgba(34,197,94,0.4); }
+  .vital-label { font-size: 0.72rem; color: var(--text-2); font-weight: 400; }
+  .vital-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+  .vital-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    animation: vital-pulse 2.5s ease-in-out infinite;
+  }
+  .vital-bar-fill.teal   { background: var(--teal); }
+  .vital-bar-fill.coral  { background: var(--coral); }
+  .vital-bar-fill.purple { background: var(--purple-l); }
+  .vital-bar-fill.green  { background: #22c55e; }
+  @keyframes vital-pulse {
+    0%,100% { width: 60%; opacity: 0.6; }
+    50%      { width: 85%; opacity: 1; }
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all var(--dur-fast) var(--ease);
+    border: 2px solid transparent;
+    backdrop-filter: blur(8px);
+  }
+  .btn-teal {
+    background: rgba(0,212,255,0.15);
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+  .btn-teal:hover { background: rgba(0,212,255,0.25); box-shadow: 0 0 24px rgba(0,212,255,0.25); transform: translateY(-2px); }
+  .btn-coral {
+    background: rgba(255,107,107,0.12);
+    border-color: var(--coral);
+    color: var(--coral);
+  }
+  .btn-coral:hover { background: rgba(255,107,107,0.22); box-shadow: 0 0 24px rgba(255,107,107,0.2); transform: translateY(-2px); }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+  }
+  .section-inner { max-width: 1320px; margin: 0 auto; }
+  .sec-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+  }
+  .sec-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 8px var(--teal);
+    animation: sys-blink 2s ease-in-out infinite;
+  }
+  .sec-tag {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+    color: var(--teal);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .sec-title {
+    font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .sec-title span { color: var(--teal); }
+  .sec-sub {
+    color: var(--text-2);
+    font-size: 1rem;
+    max-width: 580px;
+    margin-bottom: 2.5rem;
+    line-height: 1.65;
+  }
+
+  /* ── IMPACT METRICS ── */
+  #metrics {
+    background: rgba(0,0,0,0.25);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+  .metric-glass {
+    padding: 1.75rem 1.5rem;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    transition: transform var(--dur-norm) var(--ease);
+  }
+  .metric-glass:hover { transform: translateY(-4px); }
+  .metric-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(0,212,255,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .metric-num {
+    font-family: 'Fira Code', monospace;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--teal);
+    text-shadow: 0 0 24px rgba(0,212,255,0.5);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.03em;
+  }
+  .metric-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .metric-sub {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.65rem;
+    color: var(--text-3);
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+  }
+
+  /* ── BENTO GRID ── */
+  #projects { background: transparent; }
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(220px, auto);
+    gap: 1rem;
+  }
+  .bento-item {
+    padding: 1.5rem;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--dur-norm) var(--ease), box-shadow var(--dur-norm);
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .bento-item.pub { cursor: pointer; text-decoration: none; color: inherit; display: flex; }
+  .bento-item:hover {
+    transform: perspective(600px) rotateX(-2deg) rotateY(2deg) translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(0,212,255,0.1);
+  }
+  .bento-item.coral-hover:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(255,107,107,0.12); }
+  .bento-item.span-2 { grid-column: span 2; }
+  .bento-item.span-row { grid-row: span 2; }
+  .bento-glow {
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    pointer-events: none;
+    top: -80px; right: -80px;
+    opacity: 0.08;
+  }
+  .bento-item:hover .bento-glow { opacity: 0.16; }
+  .glow-teal   { background: radial-gradient(circle, var(--teal) 0%, transparent 70%); }
+  .glow-coral  { background: radial-gradient(circle, var(--coral) 0%, transparent 70%); }
+  .glow-purple { background: radial-gradient(circle, var(--purple-l) 0%, transparent 70%); }
+  .glow-green  { background: radial-gradient(circle, #22c55e 0%, transparent 70%); }
+  .bento-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .bento-name {
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .bento-chip {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.6rem;
+    padding: 0.18rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .chip-open   { background: rgba(0,212,255,0.12); color: var(--teal); border: 1px solid rgba(0,212,255,0.25); }
+  .chip-locked { background: rgba(167,139,250,0.12); color: var(--purple-l); border: 1px solid rgba(167,139,250,0.25); }
+  .bento-desc {
+    font-size: 0.875rem;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 0.85rem;
+    flex: 1;
+  }
+  .bento-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: auto; }
+  .b-tag {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.6rem;
+    padding: 0.13rem 0.4rem;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .bt-teal   { background: rgba(0,212,255,0.1); color: var(--teal); }
+  .bt-coral  { background: rgba(255,107,107,0.1); color: var(--coral); }
+  .bt-purple { background: rgba(167,139,250,0.1); color: var(--purple-l); }
+
+  /* ── SKILLS ── */
+  #skills { background: rgba(0,0,0,0.2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .skill-group-card {
+    padding: 1.4rem;
+    border-radius: 16px;
+    transition: transform var(--dur-norm) var(--ease);
+  }
+  .skill-group-card:hover { transform: translateY(-3px); }
+  .sg-head {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .sg-head::before {
+    content: '';
+    display: block;
+    width: 14px; height: 1px;
+    background: var(--teal);
+    opacity: 0.6;
+  }
+  .skill-tags-wrap { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .s-chip {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.3rem 0.65rem;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-2);
+    transition: all var(--dur-fast) var(--ease);
+    cursor: default;
+  }
+  .s-chip:hover { background: rgba(0,212,255,0.1); border-color: rgba(0,212,255,0.3); color: var(--teal); }
+  .s-chip.hl { background: rgba(0,212,255,0.08); border-color: rgba(0,212,255,0.25); color: var(--teal); }
+
+  /* ── CERTS ── */
+  #certs { background: transparent; }
+  .certs-grid-glass {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .cert-glass-card {
+    padding: 1.4rem 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--dur-norm) var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+  .cert-glass-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 20px rgba(0,212,255,0.08); }
+  .cert-glass-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,212,255,0.4), transparent);
+    transform: scaleX(0);
+    transition: transform var(--dur-norm) var(--ease);
+  }
+  .cert-glass-card:hover::before { transform: scaleX(1); }
+  .cert-icon-glass {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+  }
+  .cert-name-g { font-weight: 700; font-size: 0.95rem; line-height: 1.3; }
+  .cert-issuer-g { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: var(--text-3); margin-top: 0.15rem; letter-spacing: 0.04em; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: rgba(0,0,0,0.3);
+    border-top: 1px solid var(--border);
+  }
+  .contact-glass-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .contact-text-g h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+  }
+  .contact-text-g h2 span { color: var(--teal); }
+  .contact-text-g p { color: var(--text-2); line-height: 1.7; margin-bottom: 1.5rem; }
+  .clink-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .clink {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1rem 1.2rem;
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all var(--dur-norm) var(--ease);
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(8px);
+  }
+  .clink:hover { border-color: var(--teal); background: rgba(0,212,255,0.07); color: var(--teal); transform: translateX(4px); box-shadow: 0 0 20px rgba(0,212,255,0.08); }
+  .clink svg { flex-shrink: 0; opacity: 0.7; }
+  .clink:hover svg { opacity: 1; }
+  .contact-pulse-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pulse-card {
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pulse-ring {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(124,58,237,0.2));
+    border: 2px solid rgba(0,212,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    position: relative;
+    animation: pulse-card-ring 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse-card-ring {
+    0%,100% { box-shadow: 0 0 0 0 rgba(0,212,255,0.2); }
+    50%      { box-shadow: 0 0 0 16px rgba(0,212,255,0); }
+  }
+  .pulse-avatar {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--teal);
+    text-shadow: 0 0 20px rgba(0,212,255,0.5);
+  }
+  .pulse-name { font-weight: 800; font-size: 1.1rem; margin-bottom: 0.25rem; }
+  .pulse-role { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: var(--text-3); margin-bottom: 1.2rem; letter-spacing: 0.06em; }
+  .pulse-badges { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: var(--text-3);
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.3);
+    letter-spacing: 0.04em;
+  }
+  footer a { color: var(--teal); text-decoration: none; }
+
+  /* ── REVEAL / SCROLLYTELLING ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-delay-2 { transition-delay: 0.16s; }
+  .reveal-delay-3 { transition-delay: 0.24s; }
+  .reveal-delay-4 { transition-delay: 0.32s; }
+  .reveal-delay-5 { transition-delay: 0.40s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .bento { grid-template-columns: 1fr 1fr; }
+    .bento-item.span-2 { grid-column: span 2; }
+    .vitals-panel { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .bento { grid-template-columns: 1fr; }
+    .bento-item.span-2 { grid-column: span 1; }
+    .bento-item.span-row { grid-row: span 1; }
+    .contact-glass-grid { grid-template-columns: 1fr; }
+    .contact-pulse-visual { display: none; }
+    nav .nav-links { display: none; }
+    .vitals-panel { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- AURORA BACKGROUND -->
+<div class="aurora-bg" aria-hidden="true">
+  <div class="aurora-layer aurora-1"></div>
+  <div class="aurora-layer aurora-2"></div>
+  <div class="aurora-layer aurora-3"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logo-dot" aria-hidden="true"></div>
+      Nagizaaz Shaik
+    </a>
+    <ul class="nav-links">
+      <li><a href="#metrics">Metrics</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certs">Certs</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-name">
+  <div class="system-status" aria-label="Available for opportunities">
+    <div class="sys-dot" aria-hidden="true"></div>
+    <span class="sys-label">System Online — Available for Clinical AI Roles</span>
+  </div>
+
+  <h1 class="hero-name" id="hero-name">
+    <span class="hero-name-inner">Nagizaaz<br>Shaik</span>
+  </h1>
+
+  <p class="hero-sub">
+    <strong>MLOps Engineer · Clinical AI</strong> · Medical Imaging · 4+ years in production ML<br>
+    Building the infrastructure layer for next-generation healthcare AI
+  </p>
+
+  <div class="stat-pills" aria-label="Compliance and standards">
+    <span class="stat-pill pill-teal">HIPAA</span>
+    <span class="stat-pill pill-coral">FHIR R4</span>
+    <span class="stat-pill pill-purple">GDPR</span>
+    <span class="stat-pill pill-teal">DICOM</span>
+    <span class="stat-pill pill-purple">ICD-10</span>
+    <span class="stat-pill pill-green">DP-SGD</span>
+    <span class="stat-pill pill-teal">Federated ML</span>
+    <span class="stat-pill pill-coral">HL7</span>
+  </div>
+
+  <!-- VITAL SIGNS PANEL -->
+  <div class="vitals-panel" aria-label="Key metrics">
+    <div class="vital-card glass glass-teal">
+      <div class="vital-icon">AUROC</div>
+      <div class="vital-value teal" data-target="92">0</div>
+      <div class="vital-label">CheXpert AUC</div>
+      <div class="vital-bar"><div class="vital-bar-fill teal" style="width:92%"></div></div>
+    </div>
+    <div class="vital-card glass">
+      <div class="vital-icon">LABELS</div>
+      <div class="vital-value coral" data-target="14">0</div>
+      <div class="vital-label">Pathology Classes</div>
+      <div class="vital-bar"><div class="vital-bar-fill coral" style="width:70%"></div></div>
+    </div>
+    <div class="vital-card glass">
+      <div class="vital-icon">MODELS</div>
+      <div class="vital-value purple" data-target="6">0</div>
+      <div class="vital-label">Survival Models</div>
+      <div class="vital-bar"><div class="vital-bar-fill purple" style="width:60%"></div></div>
+    </div>
+    <div class="vital-card glass">
+      <div class="vital-icon">CERTS</div>
+      <div class="vital-value green" data-target="5">0</div>
+      <div class="vital-label">Certifications</div>
+      <div class="vital-bar"><div class="vital-bar-fill green" style="width:100%"></div></div>
+    </div>
+  </div>
+
+  <div class="hero-btns">
+    <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="btn btn-teal">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.026A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.026 2.747-1.026.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.933.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      GitHub
+    </a>
+    <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="btn btn-coral">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+  </div>
+</section>
+
+<!-- IMPACT METRICS -->
+<section id="metrics" aria-labelledby="metrics-h2">
+  <div class="section-inner">
+    <div class="sec-indicator" aria-hidden="true"><div class="sec-dot"></div></div>
+    <div class="sec-tag">Impact Metrics</div>
+    <h2 class="sec-title" id="metrics-h2">Clinical AI <span>Performance</span></h2>
+    <p class="sec-sub">Quantified results from production healthcare ML systems — chest X-ray classification, survival modeling, and HIPAA-compliant pipelines.</p>
+    <div class="metrics-row">
+      <div class="metric-glass glass glass-teal reveal">
+        <div class="metric-num" data-target="92" data-suffix="">0</div>
+        <div class="metric-label">CheXpert AUC %</div>
+        <div class="metric-sub">DenseNet121 + EfficientNet-B4<br>14-label chest X-ray pathology</div>
+      </div>
+      <div class="metric-glass glass reveal reveal-delay-1">
+        <div class="metric-num" data-target="14" data-suffix="">0</div>
+        <div class="metric-label">Pathology Labels</div>
+        <div class="metric-sub">Grad-CAM explainability<br>MC Dropout uncertainty</div>
+      </div>
+      <div class="metric-glass glass reveal reveal-delay-2">
+        <div class="metric-num" data-target="6" data-suffix="">0</div>
+        <div class="metric-label">Survival Models</div>
+        <div class="metric-sub">KM · Cox PH · RSF · XGBoost<br>DeepSurv · DeepHit</div>
+      </div>
+      <div class="metric-glass glass reveal reveal-delay-3">
+        <div class="metric-num" data-target="4" data-suffix="+">0</div>
+        <div class="metric-label">Years Experience</div>
+        <div class="metric-sub">Production ML engineering<br>Financial services → Healthcare</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT BENTO -->
+<section id="projects" aria-labelledby="projects-h2">
+  <div class="section-inner">
+    <div class="sec-indicator" aria-hidden="true"><div class="sec-dot"></div></div>
+    <div class="sec-tag">Project Portfolio</div>
+    <h2 class="sec-title" id="projects-h2">Healthcare <span>AI Systems</span></h2>
+    <p class="sec-sub">Production-grade clinical ML — public repos open on GitHub, private systems available for detailed review on request.</p>
+    <div class="bento">
+
+      <!-- Large span-2 card -->
+      <a href="https://github.com/shaikn6/chexpert-pathology-classifier" target="_blank" rel="noopener" class="bento-item glass glass-teal pub span-2 reveal">
+        <div class="bento-glow glow-teal"></div>
+        <div>
+          <div class="bento-top">
+            <div class="bento-name">CheXpert Pathology Classifier</div>
+            <span class="bento-chip chip-open">Public</span>
+          </div>
+          <p class="bento-desc">DenseNet121 + EfficientNet-B4 ensemble for 14-label chest X-ray pathology detection. Full DICOM input pipeline, Grad-CAM saliency maps for radiologist explainability, Monte Carlo Dropout uncertainty quantification. Designed for clinical-grade deployment with confidence calibration and multi-label thresholding.</p>
+        </div>
+        <div class="bento-tags">
+          <span class="b-tag bt-teal">DenseNet121</span><span class="b-tag bt-teal">EfficientNet-B4</span><span class="b-tag bt-teal">Grad-CAM</span><span class="b-tag bt-teal">MC Dropout</span><span class="b-tag bt-teal">DICOM</span><span class="b-tag bt-teal">14-label</span><span class="b-tag bt-teal">PyTorch</span>
+        </div>
+      </a>
+
+      <!-- Tall card -->
+      <a href="https://github.com/shaikn6/clinical-survival-analysis" target="_blank" rel="noopener" class="bento-item glass pub span-row reveal reveal-delay-1">
+        <div class="bento-glow glow-coral"></div>
+        <div>
+          <div class="bento-top">
+            <div class="bento-name">Clinical Survival Analysis</div>
+            <span class="bento-chip chip-open">Public</span>
+          </div>
+          <p class="bento-desc">Comprehensive benchmarking on NCCTG lung cancer and GBSG2 breast cancer datasets. KM estimator, Cox PH, RSF, XGBoost Survival, DeepSurv, DeepHit, and competing risks. Full concordance-index evaluation suite with visualizations.</p>
+        </div>
+        <div class="bento-tags">
+          <span class="b-tag bt-coral">KM</span><span class="b-tag bt-coral">Cox PH</span><span class="b-tag bt-coral">RSF</span><span class="b-tag bt-coral">DeepSurv</span><span class="b-tag bt-coral">Competing Risks</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/shaikn6/medical-imaging-ai" target="_blank" rel="noopener" class="bento-item glass pub reveal reveal-delay-2">
+        <div class="bento-glow glow-teal"></div>
+        <div>
+          <div class="bento-top">
+            <div class="bento-name">Medical Imaging AI</div>
+            <span class="bento-chip chip-open">Public</span>
+          </div>
+          <p class="bento-desc">Chest X-ray CNN with ScoreCAM and full DICOM ingestion pipeline. Production-ready for clinical data scarcity challenges.</p>
+        </div>
+        <div class="bento-tags">
+          <span class="b-tag bt-teal">CNN</span><span class="b-tag bt-teal">ScoreCAM</span><span class="b-tag bt-teal">DICOM</span>
+        </div>
+      </a>
+
+      <div class="bento-item glass coral-hover reveal reveal-delay-1">
+        <div class="bento-glow glow-purple"></div>
+        <div>
+          <div class="bento-top">
+            <div class="bento-name">Clinical Note LLMOps</div>
+            <span class="bento-chip chip-locked">Private</span>
+          </div>
+          <p class="bento-desc">HIPAA-compliant pipeline: Presidio PII de-identification, spaCy NER, ICD-10 auto-coding, FHIR R4 resource generation for Epic/HL7 integration.</p>
+        </div>
+        <div class="bento-tags">
+          <span class="b-tag bt-purple">HIPAA</span><span class="b-tag bt-purple">Presidio</span><span class="b-tag bt-purple">FHIR R4</span>
+        </div>
+      </div>
+
+      <div class="bento-item glass reveal reveal-delay-2">
+        <div class="bento-glow glow-coral"></div>
+        <div>
+          <div class="bento-top">
+            <div class="bento-name">Healthcare Claims Anomaly</div>
+            <span class="bento-chip chip-locked">Private</span>
+          </div>
+          <p class="bento-desc">Insurance fraud detection using Isolation Forest + Autoencoder ensembles on structured claims data. Real-time billing irregularity scoring.</p>
+        </div>
+        <div class="bento-tags">
+          <span class="b-tag bt-coral">Isolation Forest</span><span class="b-tag bt-coral">Autoencoder</span><span class="b-tag bt-coral">Fraud</span>
+        </div>
+      </div>
+
+      <div class="bento-item glass reveal reveal-delay-3">
+        <div class="bento-glow glow-purple"></div>
+        <div>
+          <div class="bento-top">
+            <div class="bento-name">Differential Privacy LLM</div>
+            <span class="bento-chip chip-locked">Private</span>
+          </div>
+          <p class="bento-desc">DP-SGD + Renyi DP accounting for privacy-preserving fine-tuning on patient data. HIPAA + GDPR compliant — no record memorization.</p>
+        </div>
+        <div class="bento-tags">
+          <span class="b-tag bt-purple">DP-SGD</span><span class="b-tag bt-purple">Renyi DP</span><span class="b-tag bt-purple">HIPAA</span>
+        </div>
+      </div>
+
+      <a href="https://github.com/shaikn6/agentic-pipeline-healer" target="_blank" rel="noopener" class="bento-item glass pub reveal reveal-delay-4">
+        <div class="bento-glow glow-teal"></div>
+        <div>
+          <div class="bento-top">
+            <div class="bento-name">Agentic Pipeline Healer</div>
+            <span class="bento-chip chip-open">Public</span>
+          </div>
+          <p class="bento-desc">Self-healing MLOps pipeline for clinical data reliability — agentic AI detects and remediates production ML failures autonomously.</p>
+        </div>
+        <div class="bento-tags">
+          <span class="b-tag bt-teal">Agentic AI</span><span class="b-tag bt-teal">MLOps</span><span class="b-tag bt-teal">Self-Healing</span>
+        </div>
+      </a>
+
+      <div class="bento-item glass reveal reveal-delay-5">
+        <div class="bento-glow glow-green"></div>
+        <div>
+          <div class="bento-top">
+            <div class="bento-name">Federated Learning — Cross-Institution</div>
+            <span class="bento-chip chip-locked">Private</span>
+          </div>
+          <p class="bento-desc">Federated risk modeling across isolated institutional silos without raw data exchange — directly applicable to multi-hospital EHR settings.</p>
+        </div>
+        <div class="bento-tags">
+          <span class="b-tag bt-teal">Federated Learning</span><span class="b-tag bt-teal">Privacy ML</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" aria-labelledby="skills-h2">
+  <div class="section-inner">
+    <div class="sec-indicator" aria-hidden="true"><div class="sec-dot"></div></div>
+    <div class="sec-tag">Technical Stack</div>
+    <h2 class="sec-title" id="skills-h2">Skills &amp; <span>Expertise</span></h2>
+    <p class="sec-sub">Full stack spanning clinical AI, healthcare data standards, MLOps infrastructure, and multi-cloud engineering.</p>
+    <div class="skills-grid">
+      <div class="skill-group-card glass reveal">
+        <div class="sg-head">Clinical AI</div>
+        <div class="skill-tags-wrap">
+          <span class="s-chip hl">Medical Imaging</span>
+          <span class="s-chip hl">Survival Analysis</span>
+          <span class="s-chip hl">DICOM</span>
+          <span class="s-chip">Grad-CAM</span>
+          <span class="s-chip">ScoreCAM</span>
+          <span class="s-chip">MC Dropout</span>
+          <span class="s-chip">Object Detection</span>
+          <span class="s-chip">Segmentation</span>
+        </div>
+      </div>
+      <div class="skill-group-card glass reveal reveal-delay-1">
+        <div class="sg-head">Healthcare Standards</div>
+        <div class="skill-tags-wrap">
+          <span class="s-chip hl">HIPAA</span>
+          <span class="s-chip hl">FHIR R4</span>
+          <span class="s-chip hl">GDPR</span>
+          <span class="s-chip">ICD-10</span>
+          <span class="s-chip">HL7</span>
+          <span class="s-chip">Presidio PII</span>
+          <span class="s-chip">DP-SGD</span>
+          <span class="s-chip">Federated Learning</span>
+        </div>
+      </div>
+      <div class="skill-group-card glass reveal reveal-delay-2">
+        <div class="sg-head">ML &amp; MLOps</div>
+        <div class="skill-tags-wrap">
+          <span class="s-chip hl">Python</span>
+          <span class="s-chip hl">PyTorch</span>
+          <span class="s-chip">HuggingFace</span>
+          <span class="s-chip">MLflow</span>
+          <span class="s-chip">Kubeflow</span>
+          <span class="s-chip">Airflow</span>
+          <span class="s-chip">spaCy</span>
+          <span class="s-chip">LangChain</span>
+        </div>
+      </div>
+      <div class="skill-group-card glass reveal reveal-delay-3">
+        <div class="sg-head">Cloud &amp; Infrastructure</div>
+        <div class="skill-tags-wrap">
+          <span class="s-chip hl">AWS SageMaker</span>
+          <span class="s-chip">GCP BigQuery</span>
+          <span class="s-chip">Snowflake</span>
+          <span class="s-chip">dbt</span>
+          <span class="s-chip">Docker</span>
+          <span class="s-chip">Kubernetes</span>
+          <span class="s-chip">Terraform</span>
+          <span class="s-chip">Apache Spark</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section id="certs" aria-labelledby="certs-h2">
+  <div class="section-inner">
+    <div class="sec-indicator" aria-hidden="true"><div class="sec-dot"></div></div>
+    <div class="sec-tag">Validated Credentials</div>
+    <h2 class="sec-title" id="certs-h2">Certi<span>fications</span></h2>
+    <p class="sec-sub">Industry-recognized cloud, ML, and analytics engineering certifications.</p>
+    <div class="certs-grid-glass">
+      <div class="cert-glass-card glass reveal">
+        <div class="cert-icon-glass">☁️</div>
+        <div>
+          <div class="cert-name-g">AWS ML Specialty</div>
+          <div class="cert-issuer-g">Amazon Web Services</div>
+        </div>
+      </div>
+      <div class="cert-glass-card glass reveal reveal-delay-1">
+        <div class="cert-icon-glass">☁️</div>
+        <div>
+          <div class="cert-name-g">AWS Cloud Practitioner</div>
+          <div class="cert-issuer-g">Amazon Web Services</div>
+        </div>
+      </div>
+      <div class="cert-glass-card glass reveal reveal-delay-2">
+        <div class="cert-icon-glass">🌿</div>
+        <div>
+          <div class="cert-name-g">GCP Professional Data Engineer</div>
+          <div class="cert-issuer-g">Google Cloud Platform</div>
+        </div>
+      </div>
+      <div class="cert-glass-card glass reveal reveal-delay-3">
+        <div class="cert-icon-glass">❄️</div>
+        <div>
+          <div class="cert-name-g">Snowflake SnowPro Core</div>
+          <div class="cert-issuer-g">Snowflake Inc.</div>
+        </div>
+      </div>
+      <div class="cert-glass-card glass reveal reveal-delay-4">
+        <div class="cert-icon-glass">🔧</div>
+        <div>
+          <div class="cert-name-g">dbt Analytics Engineering</div>
+          <div class="cert-issuer-g">dbt Labs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" aria-labelledby="contact-h2">
+  <div class="section-inner">
+    <div class="contact-glass-grid">
+      <div class="contact-text-g">
+        <div class="sec-indicator" aria-hidden="true"><div class="sec-dot"></div></div>
+        <div class="sec-tag">Open Channel</div>
+        <h2 id="contact-h2">Connect for<br><span>Clinical AI</span> Roles</h2>
+        <p>Targeting MLOps and ML engineering positions at Google Health, Apple Health, Microsoft Azure Health, Epic Systems, Philips Healthcare — organizations where production clinical AI changes patient outcomes.</p>
+        <div class="clink-list">
+          <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="clink">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.026A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.026 2.747-1.026.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.933.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            github.com/shaikn6
+          </a>
+          <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="clink">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            linkedin.com/in/nagizaazshaik
+          </a>
+        </div>
+      </div>
+      <div class="contact-pulse-visual">
+        <div class="pulse-card glass glass-teal">
+          <div class="pulse-ring" aria-hidden="true">
+            <div class="pulse-avatar">NS</div>
+          </div>
+          <div class="pulse-name">Nagizaaz Shaik</div>
+          <div class="pulse-role">MLOps · Clinical AI · F-1 STEM OPT</div>
+          <div class="pulse-badges">
+            <span class="stat-pill pill-teal" style="font-size:0.62rem;padding:0.25rem 0.6rem;">HIPAA</span>
+            <span class="stat-pill pill-coral" style="font-size:0.62rem;padding:0.25rem 0.6rem;">FHIR R4</span>
+            <span class="stat-pill pill-purple" style="font-size:0.62rem;padding:0.25rem 0.6rem;">AWS ML</span>
+            <span class="stat-pill pill-green" style="font-size:0.62rem;padding:0.25rem 0.6rem;">Available</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  Nagizaaz Shaik · Clinical AI &amp; MLOps Engineer ·
+  <a href="https://github.com/shaikn6" target="_blank" rel="noopener">github.com/shaikn6</a>
+  &nbsp;·&nbsp;
+  <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener">linkedin.com/in/nagizaazshaik</a>
+</footer>
+
+<script>
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => revealObs.observe(el));
+
+// ── COUNTER ANIMATION ──
+const counters = document.querySelectorAll('[data-target]');
+const cObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || '';
+    let start = null;
+    const anim = (ts) => {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / 1400, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(ease * target) + suffix;
+      if (p < 1) requestAnimationFrame(anim);
+      else el.textContent = target + suffix;
+    };
+    requestAnimationFrame(anim);
+    cObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+counters.forEach(el => cObs.observe(el));
+
+// ── 3D TILT on bento items ──
+document.querySelectorAll('.bento-item').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top  - rect.height / 2;
+    const rx = (-y / rect.height) * 10;
+    const ry = (x  / rect.width)  * 10;
+    card.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+</script>
+</body>
+</html>

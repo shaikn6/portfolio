@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nagizaaz Shaik — Clinical AI / MLOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue:       #0066cc;
+    --blue-light: #e8f0fb;
+    --blue-mid:   #3b82f6;
+    --mint:       #00b894;
+    --mint-light: #d4f5ee;
+    --bg:         #fafafa;
+    --surface:    #ffffff;
+    --border:     #dce6f0;
+    --text:       #0f1923;
+    --text-2:     #4a5568;
+    --text-3:     #718096;
+    --red:        #e53e3e;
+    --amber:      #d97706;
+    --dur-fast:   150ms;
+    --dur-normal: 300ms;
+    --ease-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+    --radius:     8px;
+    --radius-lg:  14px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(250,250,250,0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+  }
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color var(--dur-fast);
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--blue);
+    color: #fff !important;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-weight: 600 !important;
+  }
+  .nav-cta:hover { background: #0052a3 !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 60px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: clamp(1.5rem, 5vw, 4rem);
+    padding-right: clamp(1.5rem, 5vw, 4rem);
+    align-items: center;
+    gap: 4rem;
+  }
+  .hero-text { padding: 4rem 0; }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--mint-light);
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+  .pulse-dot {
+    width: 8px; height: 8px;
+    background: var(--mint);
+    border-radius: 50%;
+    animation: pulse-ring 1.5s ease-out infinite;
+  }
+  @keyframes pulse-ring {
+    0%   { box-shadow: 0 0 0 0 rgba(0,184,148,0.6); }
+    70%  { box-shadow: 0 0 0 7px rgba(0,184,148,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,184,148,0); }
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--blue); }
+  .hero-role {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-2);
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+  }
+  .compliance-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .badge-blue { background: var(--blue-light); color: var(--blue); border: 1px solid #bee3f8; }
+  .badge-mint { background: var(--mint-light); color: #065f46; border: 1px solid #a7f3d0; }
+  .badge-purple { background: #f3e8ff; color: #6b21a8; border: 1px solid #d8b4fe; }
+  .hero-desc {
+    color: var(--text-2);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+  .hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all var(--dur-fast) var(--ease-expo);
+    border: 2px solid transparent;
+  }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { background: #0052a3; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,102,204,0.3); }
+  .btn-outline { background: transparent; color: var(--blue); border-color: var(--blue); }
+  .btn-outline:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+  /* ECG PANEL */
+  .ecg-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .ecg-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    width: 100%;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+  .ecg-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .ecg-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--blue);
+  }
+  .ecg-unit { font-size: 0.9rem; color: var(--text-3); font-weight: 400; }
+  svg.ecg-svg { width: 100%; overflow: visible; }
+  .ecg-path {
+    fill: none;
+    stroke: var(--mint);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .ecg-path-anim {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: draw-ecg 3s linear infinite;
+  }
+  @keyframes draw-ecg {
+    0%   { stroke-dashoffset: 1200; }
+    60%  { stroke-dashoffset: 0; }
+    80%  { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: -400; opacity: 0; }
+  }
+  .mini-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    width: 100%;
+  }
+  .mini-stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.9rem 1rem;
+    text-align: center;
+  }
+  .mini-stat-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .mini-stat-lbl {
+    font-size: 0.7rem;
+    color: var(--text-3);
+    margin-top: 0.15rem;
+    font-weight: 500;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  section {
+    padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+  }
+  .section-inner { max-width: 1280px; margin: 0 auto; }
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+  }
+  .section-sub {
+    color: var(--text-2);
+    font-size: 1rem;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    line-height: 1.65;
+  }
+
+  /* ── STATS ── */
+  #stats { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .stat-card {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--blue);
+  }
+  .stat-card.mint::before { background: var(--mint); }
+  .stat-card.purple::before { background: #7c3aed; }
+  .stat-card.amber::before { background: var(--amber); }
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.03em;
+  }
+  .stat-label { font-size: 0.875rem; color: var(--text-2); font-weight: 500; }
+  .stat-sub { font-size: 0.75rem; color: var(--text-3); margin-top: 0.2rem; font-family: 'JetBrains Mono', monospace; }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--bg); }
+  .projects-list { display: flex; flex-direction: column; gap: 0.875rem; }
+  .project-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.25rem;
+    align-items: start;
+    transition: all var(--dur-normal) var(--ease-expo);
+    text-decoration: none;
+    color: inherit;
+  }
+  .project-row:hover {
+    border-color: var(--blue);
+    box-shadow: 0 4px 20px rgba(0,102,204,0.1);
+    transform: translateX(4px);
+  }
+  .project-row.private:hover { border-color: var(--text-3); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .sev-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .sev-green { background: var(--mint); box-shadow: 0 0 0 3px rgba(0,184,148,0.2); }
+  .sev-blue  { background: var(--blue); box-shadow: 0 0 0 3px rgba(0,102,204,0.2); }
+  .sev-purple { background: #7c3aed; box-shadow: 0 0 0 3px rgba(124,58,237,0.2); }
+  .sev-amber { background: var(--amber); box-shadow: 0 0 0 3px rgba(217,119,6,0.2); }
+  .project-body {}
+  .project-name {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .project-name .access-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .chip-pub  { background: #d1fae5; color: #065f46; }
+  .chip-priv { background: #f3f4f6; color: #6b7280; }
+  .project-desc { font-size: 0.875rem; color: var(--text-2); line-height: 1.6; margin-bottom: 0.6rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .project-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    background: var(--blue-light);
+    color: var(--blue);
+    font-weight: 500;
+  }
+  .project-arrow {
+    color: var(--text-3);
+    font-size: 1.1rem;
+    align-self: center;
+    transition: transform var(--dur-fast);
+  }
+  .project-row:hover .project-arrow { transform: translateX(3px); color: var(--blue); }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .skills-groups { display: flex; flex-direction: column; gap: 1.5rem; }
+  .skill-group-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    color: var(--text-2);
+    cursor: default;
+    transition: all var(--dur-fast) var(--ease-expo);
+  }
+  .skill-tag:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); transform: translateY(-1px); }
+  .skill-tag.highlight { border-color: var(--mint); color: #065f46; background: var(--mint-light); }
+
+  /* ── CERTS ── */
+  #certs { background: var(--bg); }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--dur-fast) var(--ease-expo);
+  }
+  .cert-card:hover { border-color: var(--blue); box-shadow: 0 4px 16px rgba(0,102,204,0.08); transform: translateY(-2px); }
+  .cert-icon {
+    width: 42px; height: 42px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+  .cert-icon.aws  { background: #fff8e7; }
+  .cert-icon.gcp  { background: #e8f5e9; }
+  .cert-icon.snow { background: #e3f2fd; }
+  .cert-icon.dbt  { background: #fce4ec; }
+  .cert-name { font-weight: 700; font-size: 0.9rem; line-height: 1.3; }
+  .cert-issuer { font-size: 0.75rem; color: var(--text-3); margin-top: 0.15rem; font-family: 'JetBrains Mono', monospace; }
+
+  /* ── COMPLIANCE ── */
+  .compliance-section {
+    background: var(--blue);
+    color: #fff;
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 5vw, 4rem);
+  }
+  .compliance-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .compliance-text h2 {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.75rem;
+  }
+  .compliance-text p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    opacity: 0.85;
+  }
+  .compliance-badges-big {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .cbadge {
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    letter-spacing: 0.06em;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--surface); border-top: 1px solid var(--border); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+  .contact-text h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.75rem;
+  }
+  .contact-text p { color: var(--text-2); line-height: 1.7; margin-bottom: 1.5rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.1rem;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all var(--dur-fast) var(--ease-expo);
+  }
+  .contact-link:hover { border-color: var(--blue); background: var(--blue-light); color: var(--blue); transform: translateX(3px); }
+  .contact-link svg { flex-shrink: 0; }
+  .contact-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .contact-card-big {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+    max-width: 320px;
+  }
+  .contact-avatar {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, var(--blue), var(--mint));
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: 800;
+  }
+  .contact-name { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.2rem; }
+  .contact-title { font-size: 0.8rem; color: var(--text-3); font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem; }
+  .contact-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: var(--text-3);
+    border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── REVEAL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s var(--ease-expo), transform 0.55s var(--ease-expo);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-delay-2 { transition-delay: 0.16s; }
+  .reveal-delay-3 { transition-delay: 0.24s; }
+  .reveal-delay-4 { transition-delay: 0.32s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 2rem; min-height: auto; padding-top: 80px; padding-bottom: 3rem; }
+    .hero-text { padding: 2rem 0 0; }
+    .ecg-panel { order: -1; }
+    .compliance-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-visual { display: none; }
+    nav .nav-links { display: none; }
+    .mini-stats { grid-template-columns: 1fr 1fr; }
+    .project-row { grid-template-columns: auto 1fr; }
+    .project-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Nagi<span>zaaz</span></a>
+    <ul class="nav-links">
+      <li><a href="#stats">Impact</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certs">Certs</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<main>
+<div class="hero">
+  <div class="hero-text">
+    <div class="status-pill">
+      <div class="pulse-dot"></div>
+      Available for Opportunities
+    </div>
+    <h1>Nagizaaz<br><span>Shaik</span></h1>
+    <p class="hero-role">MLOps Engineer · Clinical AI · Medical Imaging</p>
+    <div class="compliance-row">
+      <span class="badge badge-blue">HIPAA</span>
+      <span class="badge badge-mint">FHIR R4</span>
+      <span class="badge badge-purple">GDPR</span>
+      <span class="badge badge-blue">DICOM</span>
+      <span class="badge badge-mint">ICD-10</span>
+      <span class="badge badge-blue">DP-SGD</span>
+    </div>
+    <p class="hero-desc">
+      Building production-grade ML systems at the intersection of clinical AI and platform engineering.
+      4+ years in financial services applied to healthcare — from chest X-ray classifiers to HIPAA-compliant LLM pipelines.
+    </p>
+    <div class="hero-btns">
+      <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.026A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.026 2.747-1.026.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.933.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+
+  <!-- ECG Panel -->
+  <div class="ecg-panel">
+    <div class="ecg-card">
+      <div class="ecg-label">
+        <span style="color:var(--mint)">●</span> ECG — Model Health Monitor
+      </div>
+      <div class="ecg-value">98.7<span class="ecg-unit">%</span></div>
+      <svg class="ecg-svg" viewBox="0 0 400 80" height="80">
+        <path class="ecg-path ecg-path-anim" d="
+          M0,40 L30,40 L40,40 L50,40 L55,10 L60,70 L65,20 L70,40
+          L100,40 L120,40 L130,40 L135,8 L140,72 L145,18 L150,40
+          L180,40 L200,40 L210,40 L215,12 L220,68 L225,22 L230,40
+          L260,40 L280,40 L290,40 L295,14 L300,66 L305,24 L310,40
+          L340,40 L360,40 L370,40 L375,16 L380,64 L385,26 L390,40
+          L420,40
+        "/>
+      </svg>
+    </div>
+    <div class="mini-stats">
+      <div class="mini-stat">
+        <div class="mini-stat-val">14</div>
+        <div class="mini-stat-lbl">Pathology Labels</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat-val">92%</div>
+        <div class="mini-stat-lbl">AUROC (CheXpert)</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat-val">7</div>
+        <div class="mini-stat-lbl">Clinical Projects</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat-val">4+</div>
+        <div class="mini-stat-lbl">Years ML Eng</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="section-inner">
+    <div class="section-tag">Clinical Impact</div>
+    <h2 class="section-title">By the Numbers</h2>
+    <p class="section-sub">Measurable outcomes across clinical AI, MLOps, and healthcare data engineering projects.</p>
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-num" data-target="92">0</div>
+        <div class="stat-label">AUC — Chest X-ray Classification</div>
+        <div class="stat-sub">% AUROC · DenseNet121 + EfficientNet-B4</div>
+      </div>
+      <div class="stat-card mint reveal reveal-delay-1">
+        <div class="stat-num" data-target="14">0</div>
+        <div class="stat-label">Pathology Classes — CheXpert</div>
+        <div class="stat-sub">Multi-label · Grad-CAM explainability</div>
+      </div>
+      <div class="stat-card purple reveal reveal-delay-2">
+        <div class="stat-num" data-target="6">0</div>
+        <div class="stat-label">Survival Models Benchmarked</div>
+        <div class="stat-sub">KM · Cox PH · RSF · XGBoost · DeepSurv · DeepHit</div>
+      </div>
+      <div class="stat-card amber reveal reveal-delay-3">
+        <div class="stat-num" data-target="5">0</div>
+        <div class="stat-label">AWS / GCP / Snowflake Certifications</div>
+        <div class="stat-sub">ML Specialty · Cloud Practitioner · Pro DE · SnowPro · dbt</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-tag">Patient Records — Project Portfolio</div>
+    <h2 class="section-title">Healthcare & Clinical AI Projects</h2>
+    <p class="section-sub">Production-grade systems combining clinical rigor with modern MLOps infrastructure.</p>
+    <div class="projects-list">
+
+      <!-- Public -->
+      <a href="https://github.com/shaikn6/chexpert-pathology-classifier" target="_blank" rel="noopener" class="project-row reveal">
+        <div class="sev-dot sev-green"></div>
+        <div class="project-body">
+          <div class="project-name">CheXpert Pathology Classifier <span class="access-chip chip-pub">Public</span></div>
+          <div class="project-desc">DenseNet121 + EfficientNet-B4 ensemble for 14-label chest X-ray pathology detection. DICOM input pipeline, Grad-CAM saliency maps for radiologist explainability, Monte Carlo Dropout for uncertainty quantification. Designed for clinical deployment with confidence calibration.</div>
+          <div class="project-tags">
+            <span class="project-tag">PyTorch</span><span class="project-tag">DenseNet121</span><span class="project-tag">EfficientNet-B4</span><span class="project-tag">Grad-CAM</span><span class="project-tag">MC Dropout</span><span class="project-tag">DICOM</span><span class="project-tag">14-label</span>
+          </div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+
+      <a href="https://github.com/shaikn6/clinical-survival-analysis" target="_blank" rel="noopener" class="project-row reveal reveal-delay-1">
+        <div class="sev-dot sev-green"></div>
+        <div class="project-body">
+          <div class="project-name">Clinical Survival Analysis <span class="access-chip chip-pub">Public</span></div>
+          <div class="project-desc">Comprehensive benchmarking of survival models on NCCTG lung cancer and GBSG2 breast cancer datasets. Implements KM estimator, Cox PH, Random Survival Forests, XGBoost Survival, DeepSurv, DeepHit, and competing risks frameworks. Full concordance-index evaluation suite.</div>
+          <div class="project-tags">
+            <span class="project-tag">KM Estimator</span><span class="project-tag">Cox PH</span><span class="project-tag">RSF</span><span class="project-tag">DeepSurv</span><span class="project-tag">DeepHit</span><span class="project-tag">Competing Risks</span><span class="project-tag">NCCTG</span><span class="project-tag">GBSG2</span>
+          </div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+
+      <a href="https://github.com/shaikn6/medical-imaging-ai" target="_blank" rel="noopener" class="project-row reveal reveal-delay-2">
+        <div class="sev-dot sev-green"></div>
+        <div class="project-body">
+          <div class="project-name">Medical Imaging AI <span class="access-chip chip-pub">Public</span></div>
+          <div class="project-desc">End-to-end chest X-ray CNN classification pipeline with ScoreCAM visualization and full DICOM ingestion. Production-ready preprocessing, augmentation strategies for clinical data scarcity, and radiologist-interpretable output overlays.</div>
+          <div class="project-tags">
+            <span class="project-tag">CNN</span><span class="project-tag">ScoreCAM</span><span class="project-tag">DICOM</span><span class="project-tag">PyTorch</span><span class="project-tag">Chest X-ray</span>
+          </div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+
+      <!-- Private -->
+      <div class="project-row private reveal reveal-delay-1" style="cursor:default;">
+        <div class="sev-dot sev-blue"></div>
+        <div class="project-body">
+          <div class="project-name">Clinical Note LLMOps <span class="access-chip chip-priv">Private</span></div>
+          <div class="project-desc">HIPAA-compliant LLM pipeline for clinical note processing. Microsoft Presidio for PII de-identification, spaCy NER for medical entity extraction, automatic ICD-10 coding, and FHIR R4 resource generation. Designed for Epic and HL7 integration patterns.</div>
+          <div class="project-tags">
+            <span class="project-tag">HIPAA</span><span class="project-tag">Presidio</span><span class="project-tag">spaCy NER</span><span class="project-tag">ICD-10</span><span class="project-tag">FHIR R4</span><span class="project-tag">LLMOps</span>
+          </div>
+        </div>
+        <div class="project-arrow" style="color:var(--text-3)">🔒</div>
+      </div>
+
+      <div class="project-row private reveal reveal-delay-2" style="cursor:default;">
+        <div class="sev-dot sev-purple"></div>
+        <div class="project-body">
+          <div class="project-name">Healthcare Claims Anomaly Detection <span class="access-chip chip-priv">Private</span></div>
+          <div class="project-desc">Insurance fraud and claims anomaly detection using Isolation Forest and Autoencoder ensembles. Designed to surface billing irregularities and upcoding patterns at scale. Processes structured EHR-adjacent claims data with real-time scoring.</div>
+          <div class="project-tags">
+            <span class="project-tag">Isolation Forest</span><span class="project-tag">Autoencoder</span><span class="project-tag">Anomaly Detection</span><span class="project-tag">Fraud Detection</span><span class="project-tag">Claims Data</span>
+          </div>
+        </div>
+        <div class="project-arrow" style="color:var(--text-3)">🔒</div>
+      </div>
+
+      <div class="project-row private reveal reveal-delay-3" style="cursor:default;">
+        <div class="sev-dot sev-blue"></div>
+        <div class="project-body">
+          <div class="project-name">Differential Privacy LLM <span class="access-chip chip-priv">Private</span></div>
+          <div class="project-desc">Privacy-preserving fine-tuning for LLMs operating on sensitive patient data. Implements DP-SGD with Rényi differential privacy accounting. Enables model training without memorizing individual patient records — critical for HIPAA and GDPR compliance in healthcare AI.</div>
+          <div class="project-tags">
+            <span class="project-tag">DP-SGD</span><span class="project-tag">Rényi DP</span><span class="project-tag">HIPAA</span><span class="project-tag">GDPR</span><span class="project-tag">Privacy ML</span>
+          </div>
+        </div>
+        <div class="project-arrow" style="color:var(--text-3)">🔒</div>
+      </div>
+
+      <div class="project-row private reveal reveal-delay-4" style="cursor:default;">
+        <div class="sev-dot sev-amber"></div>
+        <div class="project-body">
+          <div class="project-name">Federated Credit Risk (Cross-Institution FL) <span class="access-chip chip-priv">Private</span></div>
+          <div class="project-desc">Federated learning framework enabling risk model training across isolated institutional silos without raw data exchange. Architecture directly applicable to multi-hospital federated EHR learning — each site trains locally, only model updates are shared.</div>
+          <div class="project-tags">
+            <span class="project-tag">Federated Learning</span><span class="project-tag">Privacy Preserving</span><span class="project-tag">Cross-Institution</span><span class="project-tag">PyTorch</span>
+          </div>
+        </div>
+        <div class="project-arrow" style="color:var(--text-3)">🔒</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-tag">Technical Stack</div>
+    <h2 class="section-title">Skills &amp; Technologies</h2>
+    <p class="section-sub">Spanning clinical AI, MLOps platform engineering, and healthcare data standards.</p>
+    <div class="skills-groups">
+      <div class="reveal">
+        <div class="skill-group-label">Clinical AI &amp; Medical Imaging</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">Clinical AI</span>
+          <span class="skill-tag highlight">Medical Imaging</span>
+          <span class="skill-tag highlight">Survival Analysis</span>
+          <span class="skill-tag">Deep Learning</span>
+          <span class="skill-tag">DICOM Processing</span>
+          <span class="skill-tag">Grad-CAM</span>
+          <span class="skill-tag">ScoreCAM</span>
+          <span class="skill-tag">MC Dropout</span>
+          <span class="skill-tag">Object Detection</span>
+          <span class="skill-tag">Segmentation</span>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="skill-group-label">Healthcare Standards &amp; Compliance</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">HIPAA</span>
+          <span class="skill-tag highlight">FHIR R4</span>
+          <span class="skill-tag highlight">GDPR</span>
+          <span class="skill-tag">ICD-10</span>
+          <span class="skill-tag">HL7</span>
+          <span class="skill-tag">Presidio PII</span>
+          <span class="skill-tag">DP-SGD</span>
+          <span class="skill-tag">Federated Learning</span>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="skill-group-label">ML &amp; MLOps</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">scikit-learn</span>
+          <span class="skill-tag">HuggingFace</span>
+          <span class="skill-tag">MLflow</span>
+          <span class="skill-tag">Kubeflow</span>
+          <span class="skill-tag">Apache Airflow</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">Terraform</span>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-3">
+        <div class="skill-group-label">Cloud &amp; Data</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS SageMaker</span>
+          <span class="skill-tag">AWS S3</span>
+          <span class="skill-tag">GCP BigQuery</span>
+          <span class="skill-tag">Snowflake</span>
+          <span class="skill-tag">dbt</span>
+          <span class="skill-tag">Apache Spark</span>
+          <span class="skill-tag">spaCy</span>
+          <span class="skill-tag">LangChain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE BAND -->
+<div class="compliance-section">
+  <div class="compliance-inner">
+    <div class="compliance-text">
+      <h2>Built for Regulated Healthcare Environments</h2>
+      <p>Every system designed with healthcare compliance at its core — from PHI de-identification and differential privacy to FHIR resource generation and HL7 interoperability. Ready for clinical deployment and enterprise audit requirements.</p>
+    </div>
+    <div class="compliance-badges-big">
+      <div class="cbadge">HIPAA</div>
+      <div class="cbadge">FHIR R4</div>
+      <div class="cbadge">GDPR</div>
+      <div class="cbadge">ICD-10</div>
+      <div class="cbadge">HL7</div>
+      <div class="cbadge">DICOM</div>
+      <div class="cbadge">DP-SGD</div>
+      <div class="cbadge">PHI Safe</div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="section-inner">
+    <div class="section-tag">Certifications</div>
+    <h2 class="section-title">Cloud &amp; Data Engineering Certifications</h2>
+    <p class="section-sub">Validated credentials spanning ML specialty, cloud infrastructure, and analytics engineering.</p>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon aws">☁️</div>
+        <div>
+          <div class="cert-name">AWS ML Specialty</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+        </div>
+      </div>
+      <div class="cert-card reveal reveal-delay-1">
+        <div class="cert-icon aws">☁️</div>
+        <div>
+          <div class="cert-name">AWS Cloud Practitioner</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+        </div>
+      </div>
+      <div class="cert-card reveal reveal-delay-2">
+        <div class="cert-icon gcp">🌿</div>
+        <div>
+          <div class="cert-name">GCP Professional Data Engineer</div>
+          <div class="cert-issuer">Google Cloud Platform</div>
+        </div>
+      </div>
+      <div class="cert-card reveal reveal-delay-3">
+        <div class="cert-icon snow">❄️</div>
+        <div>
+          <div class="cert-name">Snowflake SnowPro Core</div>
+          <div class="cert-issuer">Snowflake Inc.</div>
+        </div>
+      </div>
+      <div class="cert-card reveal reveal-delay-4">
+        <div class="cert-icon dbt">🔧</div>
+        <div>
+          <div class="cert-name">dbt Analytics Engineering</div>
+          <div class="cert-issuer">dbt Labs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-text">
+        <div class="section-tag">Get In Touch</div>
+        <h2>Open to Clinical AI &amp; MLOps Roles</h2>
+        <p>Targeting healthcare-focused ML engineering roles at Google Health, Apple Health, Microsoft Azure Health, Epic, Philips Healthcare, and similar organizations building at the frontier of clinical AI.</p>
+        <div class="contact-links">
+          <a href="https://github.com/shaikn6" target="_blank" rel="noopener" class="contact-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.026A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.026 2.747-1.026.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.933.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            github.com/shaikn6
+          </a>
+          <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener" class="contact-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            linkedin.com/in/nagizaazshaik
+          </a>
+        </div>
+      </div>
+      <div class="contact-visual">
+        <div class="contact-card-big">
+          <div class="contact-avatar">NS</div>
+          <div class="contact-name">Nagizaaz Shaik</div>
+          <div class="contact-title">MLOps · Clinical AI · F-1 STEM OPT</div>
+          <div class="contact-tags">
+            <span class="badge badge-blue">HIPAA</span>
+            <span class="badge badge-mint">FHIR R4</span>
+            <span class="badge badge-blue">AWS ML</span>
+            <span class="badge badge-mint">Open to Work</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div>Nagizaaz Shaik · Clinical AI &amp; MLOps Engineer ·
+    <a href="https://github.com/shaikn6" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:none;">github.com/shaikn6</a>
+  </div>
+</footer>
+
+<script>
+  // ── SCROLL REVEAL ──
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // ── COUNTER ANIMATION ──
+  const counters = document.querySelectorAll('[data-target]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target, 10);
+      const suffix = el.dataset.suffix || '';
+      let start = 0;
+      const duration = 1400;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(ease * target) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target + suffix;
+      };
+      requestAnimationFrame(step);
+      counterObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => counterObserver.observe(el));
+</script>
+</body>
+</html>
