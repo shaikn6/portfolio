@@ -931,41 +931,44 @@
         </div>
       </div>
 
-      <div class="project-card" data-domain="llmops">
-        <span class="project-domain domain-llmops">LLMOps</span>
+      <a class="project-card" data-domain="llmops" href="https://github.com/shaikn6/clinical-note-llmops" target="_blank" rel="noopener">
+        <span class="project-domain domain-llmops">Clinical NLP</span>
         <div class="project-name">Clinical Note LLMOps</div>
-        <div class="project-desc">Fine-tuned Llama 3 for clinical note summarization with RAG over FHIR data, deployed via vLLM on AWS with ≤200ms P99 latency SLA.</div>
+        <div class="project-desc">HIPAA-compliant pipeline: Presidio PII scrubbing → BioBERT NER → ICD-10 extraction → FHIR R4 output. 18-identifier PHI coverage with audit logging.</div>
         <div class="project-tech">
-          <span class="tech-pill">Llama 3</span><span class="tech-pill">vLLM</span><span class="tech-pill">FHIR</span><span class="tech-pill">LangChain</span>
+          <span class="tech-pill">Presidio</span><span class="tech-pill">BioBERT</span><span class="tech-pill">FHIR R4</span><span class="tech-pill">FastAPI</span>
         </div>
         <div class="project-footer">
-          <span class="project-link private">🔒 Private — Request Access</span>
+          <span class="project-link">↗ Public Repo</span>
+          <span class="star-count">★ Public</span>
         </div>
-      </div>
+      </a>
 
-      <div class="project-card" data-domain="dataeng">
+      <a class="project-card" data-domain="dataeng" href="https://github.com/shaikn6/kafka-stream-feature-store" target="_blank" rel="noopener">
         <span class="project-domain domain-dataeng">Data Eng</span>
         <div class="project-name">Kafka Stream Feature Store</div>
-        <div class="project-desc">Real-time feature engineering pipeline on Kafka with point-in-time correct joins, Feast integration, and sub-50ms feature retrieval for online serving.</div>
+        <div class="project-desc">Real-time feature store: Kafka → Redis pipeline with sub-60s freshness, JSON serialization, FastAPI serving layer, and per-IP rate limiting.</div>
         <div class="project-tech">
-          <span class="tech-pill">Kafka</span><span class="tech-pill">Feast</span><span class="tech-pill">Flink</span><span class="tech-pill">Redis</span>
+          <span class="tech-pill">Kafka</span><span class="tech-pill">Redis</span><span class="tech-pill">FastAPI</span><span class="tech-pill">Pydantic</span>
         </div>
         <div class="project-footer">
-          <span class="project-link private">🔒 Private — Request Access</span>
+          <span class="project-link">↗ Public Repo</span>
+          <span class="star-count">★ Public</span>
         </div>
-      </div>
+      </a>
 
-      <div class="project-card" data-domain="finance">
-        <span class="project-domain domain-finance">Finance</span>
+      <a class="project-card" data-domain="finance" href="https://github.com/shaikn6/federated-credit-risk" target="_blank" rel="noopener">
+        <span class="project-domain domain-finance">Finance AI</span>
         <div class="project-name">Federated Credit Risk</div>
-        <div class="project-desc">Federated learning framework for credit risk modeling across institutions without sharing raw data — PySyft with differential privacy guarantees.</div>
+        <div class="project-desc">3-institution federated learning via Flower FedAvg — zero raw data sharing. Model poisoning guard (L2-norm validation), gradient clipping, ECOA feature audit.</div>
         <div class="project-tech">
-          <span class="tech-pill">PySyft</span><span class="tech-pill">Differential Privacy</span><span class="tech-pill">TensorFlow</span>
+          <span class="tech-pill">Flower</span><span class="tech-pill">PyTorch</span><span class="tech-pill">FastAPI</span><span class="tech-pill">ECOA</span>
         </div>
         <div class="project-footer">
-          <span class="project-link private">🔒 Private — Request Access</span>
+          <span class="project-link">↗ Public Repo</span>
+          <span class="star-count">★ Public</span>
         </div>
-      </div>
+      </a>
 
       <div class="project-card" data-domain="mlops">
         <span class="project-domain domain-mlops">MLOps</span>
