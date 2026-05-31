@@ -954,6 +954,39 @@
         <span class="view-link" aria-hidden="true">View Repository →</span>
       </a>
 
+      <div class="specimen-card private reveal reveal-delay-1" style="cursor:default;">
+        <div class="specimen-header">
+          <div class="specimen-name">ICU Mortality Predictor</div>
+          <span class="specimen-badge badge-conf">Awaiting MIMIC</span>
+        </div>
+        <p class="specimen-desc">30-day ICU mortality from first 24h vitals + labs on MIMIC-III. XGBoost + SHAP per-patient explanations. Optuna-tuned, HMAC-signed model artifacts, FastAPI serving.</p>
+        <div class="specimen-tags">
+          <span class="s-tag v">XGBoost</span><span class="s-tag v">SHAP</span><span class="s-tag v">MIMIC-III</span><span class="s-tag v">ICU</span>
+        </div>
+      </div>
+
+      <div class="specimen-card private reveal reveal-delay-2" style="cursor:default;">
+        <div class="specimen-header">
+          <div class="specimen-name">Sepsis Early Warning</div>
+          <span class="specimen-badge badge-conf">Awaiting MIMIC</span>
+        </div>
+        <p class="specimen-desc">Sepsis-3 compliant BiLSTM on 6h rolling ICU windows. Kafka streaming inference simulation. Target sensitivity &gt;0.80 at 6h before clinical onset on MIMIC-III.</p>
+        <div class="specimen-tags">
+          <span class="s-tag v">BiLSTM</span><span class="s-tag v">Sepsis-3</span><span class="s-tag v">Kafka</span><span class="s-tag v">MIMIC-III</span>
+        </div>
+      </div>
+
+      <div class="specimen-card private reveal reveal-delay-3" style="cursor:default;">
+        <div class="specimen-header">
+          <div class="specimen-name">Hospital Readmission Predictor</div>
+          <span class="specimen-badge badge-conf">Awaiting MIMIC</span>
+        </div>
+        <p class="specimen-desc">BioBERT discharge notes + XGBoost tabular features. fairlearn equity audit across insurance, race, gender subgroups. ReportLab PDF reports. Targets CMS readmission penalty reduction.</p>
+        <div class="specimen-tags">
+          <span class="s-tag v">BioBERT</span><span class="s-tag v">fairlearn</span><span class="s-tag v">MIMIC-III</span><span class="s-tag v">XGBoost</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>

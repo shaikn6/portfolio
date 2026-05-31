@@ -987,6 +987,48 @@
         </div>
       </a>
 
+      <div class="bento-item glass reveal reveal-delay-1">
+        <div class="bento-glow glow-coral"></div>
+        <div>
+          <div class="bento-top">
+            <div class="bento-name">ICU Mortality Predictor</div>
+            <span class="bento-chip chip-locked">Awaiting MIMIC</span>
+          </div>
+          <p class="bento-desc">30-day ICU mortality from first-24h vitals + labs on MIMIC-III. XGBoost + SHAP per-patient explanations. Optuna-tuned, FastAPI serving.</p>
+        </div>
+        <div class="bento-tags">
+          <span class="b-tag bt-coral">XGBoost</span><span class="b-tag bt-coral">SHAP</span><span class="b-tag bt-coral">MIMIC-III</span>
+        </div>
+      </div>
+
+      <div class="bento-item glass reveal reveal-delay-2">
+        <div class="bento-glow glow-purple"></div>
+        <div>
+          <div class="bento-top">
+            <div class="bento-name">Sepsis Early Warning</div>
+            <span class="bento-chip chip-locked">Awaiting MIMIC</span>
+          </div>
+          <p class="bento-desc">Sepsis-3 BiLSTM on 6h rolling ICU windows with Kafka streaming inference. Target sensitivity &gt;0.80 at 6h before clinical onset.</p>
+        </div>
+        <div class="bento-tags">
+          <span class="b-tag bt-purple">BiLSTM</span><span class="b-tag bt-purple">Sepsis-3</span><span class="b-tag bt-purple">MIMIC-III</span>
+        </div>
+      </div>
+
+      <div class="bento-item glass reveal reveal-delay-3">
+        <div class="bento-glow glow-blue"></div>
+        <div>
+          <div class="bento-top">
+            <div class="bento-name">Hospital Readmission Predictor</div>
+            <span class="bento-chip chip-locked">Awaiting MIMIC</span>
+          </div>
+          <p class="bento-desc">BioBERT + XGBoost hybrid on MIMIC-III. fairlearn demographic equity audit. PDF reporting. Targets CMS 30-day readmission penalty reduction.</p>
+        </div>
+        <div class="bento-tags">
+          <span class="b-tag bt-blue">BioBERT</span><span class="b-tag bt-blue">fairlearn</span><span class="b-tag bt-blue">MIMIC-III</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
