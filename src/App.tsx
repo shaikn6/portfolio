@@ -1,5 +1,6 @@
 import ParticleBackground from './components/ParticleBackground'
 import Nav from './components/Nav'
+import SocialSidebar from './components/SocialSidebar'
 import Hero from './components/Hero'
 import Experience from './components/Experience'
 import Metrics from './components/Metrics'
@@ -23,6 +24,7 @@ export default function App() {
       <div className="bg-grid" aria-hidden="true" />
 
       <Nav />
+      <SocialSidebar />
 
       <main style={{ position: 'relative', zIndex: 2 }}>
         <Hero />
