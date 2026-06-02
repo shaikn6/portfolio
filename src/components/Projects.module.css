@@ -132,12 +132,10 @@
 }
 
 .dAgents   { background: rgba(56, 189, 248, 0.1);  color: #38bdf8; }
-.dCv       { background: rgba(129, 140, 248, 0.1); color: #818cf8; }
 .dSafety   { background: rgba(251, 113, 133, 0.1); color: #fb7185; }
 .dClinical { background: rgba(52, 211, 153, 0.1);  color: #34d399; }
-.dPrivacy  { background: rgba(251, 191, 36, 0.1);  color: #fbbf24; }
-.dDataeng  { background: rgba(167, 139, 250, 0.1); color: #a78bfa; }
-.dMlops    { background: rgba(56, 189, 248, 0.08); color: #67e8f9; }
+.dMl       { background: rgba(129, 140, 248, 0.12); color: #818cf8; }
+.dCloud    { background: rgba(251, 191, 36, 0.1);  color: #fbbf24; }
 
 .arrow {
   font-size: 1rem;
