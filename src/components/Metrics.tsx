@@ -2,9 +2,10 @@ import ScrollReveal from './ScrollReveal'
 import styles from './Metrics.module.css'
 
 const METRICS = [
-  { num: '58', lbl: 'GitHub Repos' },
-  { num: '5+', lbl: 'Years Experience' },
-  { num: '5',  lbl: 'Cloud Certifications' },
+  { num: '30+',  lbl: 'Public Repos' },
+  { num: '5',    lbl: 'Years Experience' },
+  { num: '6.7K', lbl: 'Contributions' },
+  { num: '5',    lbl: 'Certifications' },
 ]
 
 export default function Metrics() {
