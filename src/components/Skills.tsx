@@ -23,8 +23,8 @@ const SKILL_BLOCKS = [
     tags: ['AWS', 'GCP', 'Azure', 'Python', 'SQL / PL-SQL', 'Bash', 'Scala'],
   },
   {
-    title: 'Security & Governance',
-    tags: ['HIPAA', 'GDPR', 'ECOA / Fair Lending', 'PII Redaction', 'Differential Privacy', 'Audit Logging', 'FHIR R4'],
+    title: 'DevSecOps & Governance',
+    tags: ['GitHub Actions', 'Trivy', 'OPA Gatekeeper', 'Cosign', 'SBOM', 'SLSA', 'GDPR', 'ECOA / Fair Lending', 'Differential Privacy'],
   },
 ]
 

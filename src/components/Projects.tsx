@@ -13,55 +13,46 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
-  // ── ML Engineer ──
+  // ── AI Engineer ──
   {
-    href: 'https://github.com/shaikn6/chexpert-pathology-classifier',
-    domain: 'ML Engineering', domainClass: styles.dMl,
-    name: 'CheXpert Pathology Classifier',
-    desc: 'Multi-label chest X-ray classification across all 14 CheXpert classes at 92% AUC. DenseNet121 + EfficientNet-B4 ensemble with MC Dropout uncertainty quantification and Grad-CAM / ScoreCAM explainability overlays for radiologist review. Full DICOM ingestion pipeline with PHI scrubbing.',
-    pills: ['PyTorch', 'DenseNet121', 'EfficientNet-B4', 'Grad-CAM', 'DICOM', 'SageMaker'],
-    stat: '92% AUC',
+    href: 'https://github.com/shaikn6/agent-autopsy',
+    domain: 'AI Engineering', domainClass: styles.dAgents,
+    name: 'Agent Autopsy',
+    desc: 'Observability and debugging framework for production LLM agents. Captures full chain-of-thought traces, tool call sequences, and token budgets across multi-agent LangGraph workflows. Surfaces latency hotspots and hallucination patterns via a Streamlit dashboard with structured JSON export.',
+    pills: ['LangGraph', 'LangChain', 'Streamlit', 'OpenTelemetry', 'FastAPI', 'Redis'],
+    stat: 'Full trace capture',
   },
   {
-    href: 'https://github.com/shaikn6/medical-imaging-ai',
-    domain: 'ML Engineering', domainClass: styles.dMl,
-    name: 'Medical Imaging AI',
-    desc: 'End-to-end radiology image segmentation pipeline using EfficientNet-B4 — automated preprocessing, Grad-CAM + ScoreCAM explainability overlays, DICOM pipeline, and PHI scrubbing. Containerised FastAPI inference service.',
-    pills: ['EfficientNet-B4', 'Grad-CAM', 'DICOM', 'PyTorch', 'FastAPI', 'Docker'],
-    stat: 'Clinical-grade',
+    href: 'https://github.com/shaikn6/llm-gateway',
+    domain: 'AI Engineering', domainClass: styles.dAgents,
+    name: 'LLM Gateway',
+    desc: 'Unified API proxy for multi-provider LLM routing — semantic fallback, token-budget enforcement, latency-aware load balancing, and per-key cost accounting. Supports OpenAI, Anthropic, and local Ollama backends behind a single FastAPI interface with Prometheus metrics.',
+    pills: ['FastAPI', 'OpenAI', 'Anthropic', 'Ollama', 'Prometheus', 'Redis'],
+    stat: 'Multi-provider routing',
   },
   {
-    href: 'https://github.com/shaikn6/clinical-survival-analysis',
-    domain: 'Clinical ML', domainClass: styles.dClinical,
-    name: 'Clinical Survival Analysis',
-    desc: '6-model survival analysis — Kaplan-Meier, Cox PH, Random Survival Forest, XGBoost, DeepSurv, DeepHit — with competing risks, Aalen-Johansen CIF, Streamlit dashboard, and FastAPI serving layer.',
-    pills: ['PyTorch', 'scikit-survival', 'XGBoost', 'Streamlit', 'FastAPI'],
-    stat: '6 models',
+    href: 'https://github.com/shaikn6/autonomous-coding-agent',
+    domain: 'AI Engineering', domainClass: styles.dAgents,
+    name: 'Autonomous Coding Agent',
+    desc: 'LangGraph ReAct agent that autonomously plans, writes, executes, and iterates code against a test harness. Tool belt includes AST-level code diffing, sandboxed subprocess execution, GitHub PR creation, and a self-critique loop that halts on coverage regression.',
+    pills: ['LangGraph', 'OpenAI', 'AST', 'GitHub API', 'Docker', 'pytest'],
+    stat: 'Self-correcting loop',
+  },
+  {
+    href: 'https://github.com/shaikn6/finance-agent-crew',
+    domain: 'AI · Fintech', domainClass: styles.dAgents,
+    name: 'Finance Agent Crew',
+    desc: 'Multi-agent CrewAI system for financial research — parallel analyst, risk assessor, and report-writer agents collaborating on SEC filing analysis, earnings call summaries, and portfolio risk scoring. Outputs structured markdown reports with citation chains.',
+    pills: ['CrewAI', 'LangChain', 'OpenAI', 'SEC EDGAR API', 'FAISS', 'FastAPI'],
+    stat: '3-agent pipeline',
   },
   {
     href: 'https://github.com/shaikn6/federated-credit-risk',
-    domain: 'ML · Cloud', domainClass: styles.dCloud,
+    domain: 'ML · Fintech', domainClass: styles.dCloud,
     name: 'Federated Credit Risk',
     desc: 'Three-institution federated credit risk modeling via Flower FedAvg — zero raw data exchange. L2-norm model poisoning detection gate, gradient clipping, and ECOA / Fair Lending compliance constraints applied to the global model.',
     pills: ['PyTorch', 'Flower', 'Federated Learning', 'ECOA', 'Docker', 'FastAPI'],
     stat: 'Zero data sharing',
-  },
-  // ── AI Engineer ──
-  {
-    href: 'https://github.com/shaikn6/clinical-note-llmops',
-    domain: 'AI · Cloud', domainClass: styles.dClinical,
-    name: 'Clinical Note LLMOps',
-    desc: 'HIPAA-compliant NLP pipeline for unstructured clinical notes — Presidio PII de-identification, BioBERT NER, ICD-10 code extraction, and FHIR R4 structured output. Covers all 18 PHI identifier types with full audit logging. Designed for Epic / HL7 integration.',
-    pills: ['BioBERT', 'Presidio', 'FHIR R4', 'ICD-10', 'FastAPI', 'spaCy'],
-    stat: 'HIPAA compliant',
-  },
-  {
-    href: 'https://github.com/shaikn6/healthcare-rag',
-    domain: 'AI · Healthcare', domainClass: styles.dClinical,
-    name: 'Healthcare RAG',
-    desc: 'HIPAA-safe RAG pipeline with PHI detection and redaction, vector store, clinical Q&A with disclaimer injection. Designed for structured clinical document retrieval with audit trail.',
-    pills: ['LangChain', 'RAG', 'Presidio', 'FAISS', 'FastAPI'],
-    stat: 'PHI-safe RAG',
   },
   {
     href: 'https://github.com/shaikn6/llm-safety-auditor',
@@ -177,7 +168,7 @@ export default function Projects() {
         <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>Things I've actually built.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className={styles.sectionSub}>
-            14 open-source repos across ML Engineering, AI Engineering, Healthcare AI, and Cloud Architecture. Real code, real tests, CI green on every repo.
+            15 open-source repos across LLM Engineering, AI Agents, MLOps, and Cloud Architecture. Real code, real tests, CI green on every repo.
           </p>
         </ScrollReveal>
 
