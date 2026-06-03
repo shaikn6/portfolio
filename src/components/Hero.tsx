@@ -50,8 +50,9 @@ export default function Hero() {
           <RotatingRole />
         </motion.div>
         <motion.p variants={TEXT_VARIANTS.item} className={styles.desc}>
-          From intern writing anomaly scripts at Uber — now production ML serving
-          450K members, clinical AI shipping FHIR R4 to Epic, five models in deployment.
+          From intern writing anomaly scripts at Uber — now building production
+          LLM systems, multi-agent pipelines, and MLOps infrastructure serving
+          450K+ members across fintech and tech.
         </motion.p>
         <motion.div variants={TEXT_VARIANTS.item} className={styles.ctas}>
           <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>Connect on LinkedIn</a>
@@ -59,7 +60,7 @@ export default function Hero() {
           <a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" className={`${styles.btnSecondary} ${styles.resumeBtn}`}>Resume ↓</a>
         </motion.div>
         <motion.div variants={TEXT_VARIANTS.item} className={styles.targeting}>
-          ◈ ML models · AI agents · Cloud infrastructure · Healthcare tech
+          ◈ LLM engineering · AI agents · MLOps · DevSecOps · Fintech
         </motion.div>
       </motion.div>
 
