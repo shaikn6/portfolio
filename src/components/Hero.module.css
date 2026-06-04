@@ -26,9 +26,9 @@
 
 .name {
   font-family: var(--font-serif);
-  font-size: clamp(3.6rem, 8vw, 7.2rem);
-  line-height: 0.93;
-  margin-bottom: 28px;
+  font-size: clamp(4rem, 9.5vw, 8.4rem);
+  line-height: 0.9;
+  margin-bottom: 16px;
   background: linear-gradient(120deg, #e2e8f0 0%, var(--color-accent) 30%, var(--color-accent2) 60%, #a5f3fc 100%);
   background-size: 300% 300%;
   -webkit-background-clip: text;
@@ -245,3 +245,41 @@
   .name       { animation: none; }
   .scrollLine { animation: none; }
 }
+
+
+/* ── Hero redesign: status dot + kinetic rotating role ── */
+.greeting { display: flex; align-items: center; }
+.statusDot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--color-green);
+  box-shadow: 0 0 10px var(--color-green);
+  margin-right: 9px;
+  animation: blink 2.4s ease-in-out infinite;
+}
+.kinetic {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  margin-bottom: 30px;
+}
+.kineticPrefix {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.6em;
+  color: var(--color-muted);
+}
+.rotator { display: inline-grid; }
+.rotWord {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  font-weight: 600;
+  background: linear-gradient(110deg, var(--color-accent), var(--color-accent2) 55%, var(--color-accent3));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.resumeBtn { border-color: rgba(56, 189, 248, 0.4); }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+@media (max-width: 900px) { .greeting, .kinetic { justify-content: center; } }

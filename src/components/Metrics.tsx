@@ -4,7 +4,6 @@ import styles from './Metrics.module.css'
 const METRICS = [
   { num: '58', lbl: 'GitHub Repos' },
   { num: '5+', lbl: 'Years Experience' },
-  { num: '50+', lbl: 'Public Projects' },
   { num: '5',  lbl: 'Cloud Certifications' },
 ]
 
