@@ -23,8 +23,9 @@
   --text-base:   1rem;
 
   /* ── Spacing ── */
-  --space-section: clamp(4rem, 6vw, 5.5rem);
+  --space-section: clamp(5rem, 8vw, 7rem);
   --radius:        14px;
+  --radius-lg:     20px;
 
   /* ── Motion ── */
   --dur:  280ms;
