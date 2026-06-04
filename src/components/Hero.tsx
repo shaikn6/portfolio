@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import styles from './Hero.module.css'
 import LegoAvatar from './LegoAvatar'
 
-const ROLES = ['ML Engineer', 'AI Engineer', 'Cloud Architect'] as const
+const ROLES = ['an ML Engineer', 'an AI Engineer', 'a Cloud Architect'] as const
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 const TEXT_VARIANTS = {
@@ -46,7 +46,7 @@ export default function Hero() {
           Nagizaaz<br />Shaik
         </motion.h1>
         <motion.div variants={TEXT_VARIANTS.item} className={styles.kinetic}>
-          <span className={styles.kineticPrefix}>I am a&nbsp;</span>
+          <span className={styles.kineticPrefix}>I am&nbsp;</span>
           <RotatingRole />
         </motion.div>
         <motion.p variants={TEXT_VARIANTS.item} className={styles.desc}>
