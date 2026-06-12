@@ -3,7 +3,7 @@ import styles from './Experience.module.css'
 
 const EXPERIENCE = [
   {
-    period: 'Jul 2024 – Jun 2026',
+    period: 'Jul 2024 – Present',
     current: true,
     role: 'Cloud Architect',
     company: 'Wright-Patt Credit Union · Fairborn, OH',
