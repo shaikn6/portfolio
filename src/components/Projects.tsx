@@ -13,7 +13,7 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
-  // ── AI Engineer ──
+  // ── LLM Engineering · AgentOps ──
   {
     href: 'https://github.com/shaikn6/agent-autopsy',
     domain: 'AI Engineering', domainClass: styles.dAgents,
@@ -31,6 +31,30 @@ const PROJECTS: Project[] = [
     stat: 'Multi-provider routing',
   },
   {
+    href: 'https://github.com/shaikn6/llmops-eval-platform',
+    domain: 'LLMOps', domainClass: styles.dAgents,
+    name: 'LLMOps Eval Platform',
+    desc: 'Production LLM evaluation platform — LLM-as-judge scoring, RAGAS RAG metrics, safety checks, prompt versioning, A/B testing, and per-experiment cost tracking. Built for evaluating fintech AI systems before they ship.',
+    pills: ['RAGAS', 'LLM-as-Judge', 'FastAPI', 'A/B Testing', 'Prompt Versioning'],
+    stat: 'Judge + RAG metrics',
+  },
+  {
+    href: 'https://github.com/shaikn6/nvidia-nim-rag-techniques',
+    domain: 'AI Engineering', domainClass: styles.dAgents,
+    name: 'NVIDIA NIM RAG Techniques',
+    desc: 'Five production RAG optimization techniques powered by NVIDIA NIM — hybrid search with RRF, cross-encoder reranking, query rewriting (HyDE / multi-query / step-back), context compression, and corrective RAG via LangGraph.',
+    pills: ['NVIDIA NIM', 'LangGraph', 'RRF', 'Cross-Encoder', 'HyDE'],
+    stat: '5 RAG techniques',
+  },
+  {
+    href: 'https://github.com/shaikn6/adaptive-cognitive-rag',
+    domain: 'AI Engineering', domainClass: styles.dAgents,
+    name: 'Adaptive Cognitive RAG',
+    desc: 'RAG system that measures user cognitive state in real time from behavioral signals (response latency, clarification patterns) and adapts explanation depth accordingly. Builds a persistent per-session knowledge graph tracking mastery gaps — the Feynman Technique as a system.',
+    pills: ['RAG', 'Knowledge Graph', 'LangChain', 'Adaptive UX', 'FastAPI'],
+    stat: 'Cognitive-adaptive',
+  },
+  {
     href: 'https://github.com/shaikn6/autonomous-coding-agent',
     domain: 'AI Engineering', domainClass: styles.dAgents,
     name: 'Autonomous Coding Agent',
@@ -38,6 +62,15 @@ const PROJECTS: Project[] = [
     pills: ['LangGraph', 'OpenAI', 'AST', 'GitHub API', 'Docker', 'pytest'],
     stat: 'Self-correcting loop',
   },
+  {
+    href: 'https://github.com/shaikn6/mcp-diagram-agent',
+    domain: 'AI Engineering', domainClass: styles.dAgents,
+    name: 'MCP Diagram Agent',
+    desc: 'Model Context Protocol server that turns a plain-text system description into a production-ready Excalidraw architecture diagram via Claude. Fully typed MCP tool surface with 97%+ test coverage and a strict mypy + ruff CI gate.',
+    pills: ['MCP', 'Claude', 'Excalidraw', 'FastAPI', 'mypy'],
+    stat: '97%+ coverage',
+  },
+  // ── ML · Fintech ──
   {
     href: 'https://github.com/shaikn6/finance-agent-crew',
     domain: 'AI · Fintech', domainClass: styles.dAgents,
@@ -47,77 +80,37 @@ const PROJECTS: Project[] = [
     stat: '3-agent pipeline',
   },
   {
-    href: 'https://github.com/shaikn6/federated-credit-risk',
-    domain: 'ML · Fintech', domainClass: styles.dCloud,
-    name: 'Federated Credit Risk',
-    desc: 'Three-institution federated credit risk modeling via Flower FedAvg — zero raw data exchange. L2-norm model poisoning detection gate, gradient clipping, and ECOA / Fair Lending compliance constraints applied to the global model.',
-    pills: ['PyTorch', 'Flower', 'Federated Learning', 'ECOA', 'Docker', 'FastAPI'],
-    stat: 'Zero data sharing',
+    href: 'https://github.com/shaikn6/nano-finbert',
+    domain: 'ML · Fintech', domainClass: styles.dMl,
+    name: 'nano-finbert',
+    desc: 'A tiny transformer encoder (~2M params) trained from scratch on financial text — no pretrained weights, no HuggingFace dependency. Inspired by nanoGPT, every component is annotated. Feed it a financial headline, get back a structured market signal: sentiment, entities, sectors, event type, impact score.',
+    pills: ['PyTorch', 'Transformers', 'NLP', 'From Scratch', 'Fintech'],
+    stat: '~2M params',
   },
+  // ── Safety · SRE · DevSecOps ──
   {
     href: 'https://github.com/shaikn6/llm-safety-auditor',
-    domain: 'AI Engineering', domainClass: styles.dSafety,
+    domain: 'AI Safety', domainClass: styles.dSafety,
     name: 'LLM Safety Auditor',
     desc: 'Automated red-teaming and safety evaluation framework for production LLMs. Executes 250+ adversarial attack vectors across six mutation strategies. Scores against the full OWASP LLM Top 10 taxonomy and generates structured PDF audit reports suitable for compliance review.',
     pills: ['HuggingFace', 'OWASP LLM Top 10', 'Red-Teaming', 'FastAPI', 'ReportLab'],
     stat: '250+ attack vectors',
   },
   {
-    href: 'https://github.com/shaikn6/agentic-pipeline-healer',
-    domain: 'AI · Cloud', domainClass: styles.dAgents,
-    name: 'Agentic Pipeline Healer',
-    desc: 'LangGraph multi-DAG orchestrator that monitors Airflow pipelines, performs LLM-driven root cause diagnosis, applies AST-level code fixes with automated rollback, and fires Slack Block Kit alerts — with a full SQLite audit trail.',
-    pills: ['LangGraph', 'Airflow', 'AST', 'FastAPI', 'SQLite', 'Slack API'],
-    stat: 'Self-healing CI',
+    href: 'https://github.com/shaikn6/ops-autopilot',
+    domain: 'AI · SRE', domainClass: styles.dCloud,
+    name: 'Ops Autopilot',
+    desc: 'Autonomous SRE agent that diagnoses incidents and opens PRs while you sleep. On a Prometheus/Kubernetes alert — OOMKilled, CrashLoopBackOff, failed deploy — it performs LLM root-cause analysis, creates a GitHub fix PR, posts a Slack summary, and writes a runbook entry.',
+    pills: ['LangGraph', 'Prometheus', 'Kubernetes', 'GitHub API', 'Slack API'],
+    stat: 'Auto root-cause + PR',
   },
   {
-    href: 'https://github.com/shaikn6/ai-rag-app',
-    domain: 'AI Engineering', domainClass: styles.dAgents,
-    name: 'AI RAG Application',
-    desc: 'LangChain RAG application with document ingestion, vector search, OpenAI integration, and FastAPI serving layer. Full ingestion-to-query pipeline with citation support.',
-    pills: ['LangChain', 'RAG', 'OpenAI', 'FAISS', 'FastAPI'],
-    stat: 'Citation-grounded',
-  },
-  // ── Data Engineering · Cloud ──
-  {
-    href: 'https://github.com/shaikn6/kafka-stream-feature-store',
-    domain: 'ML · Cloud', domainClass: styles.dCloud,
-    name: 'Kafka Stream Feature Store',
-    desc: 'Real-time ML feature store delivering sub-60s feature freshness. Kafka streaming producers into a Redis online store with point-in-time correctness and a FastAPI feature-serving layer for low-latency inference.',
-    pills: ['Kafka', 'Redis', 'FastAPI', 'Feature Store', 'Streaming'],
-    stat: 'Sub-60s freshness',
-  },
-  {
-    href: 'https://github.com/shaikn6/sql-to-dag-compiler',
-    domain: 'Cloud · Data Eng', domainClass: styles.dCloud,
-    name: 'SQL-to-DAG Compiler',
-    desc: 'Oracle SQL/PLSQL + dbt models compiled to Airflow 2.x DAGs with lineage export in Mermaid, DOT, and JSON formats. Includes edge-case handler and dbt model parser.',
-    pills: ['Python', 'Airflow', 'dbt', 'Oracle PL/SQL', 'Mermaid'],
-    stat: 'Lineage-aware',
-  },
-  {
-    href: 'https://github.com/shaikn6/ml-churn-pipeline',
-    domain: 'ML Engineering', domainClass: styles.dMl,
-    name: 'ML Churn Pipeline',
-    desc: 'End-to-end customer churn prediction — scikit-learn pipeline with feature engineering, MLflow experiment tracking and model registry, and a REST API inference layer.',
-    pills: ['scikit-learn', 'MLflow', 'FastAPI', 'pandas', 'Docker'],
-    stat: 'MLflow tracked',
-  },
-  {
-    href: 'https://github.com/shaikn6/flight-ops-intelligence',
-    domain: 'ML · Cloud', domainClass: styles.dCloud,
-    name: 'Flight Ops Intelligence',
-    desc: 'ML flight delay predictor with XGBoost + Open-Meteo live weather integration, real-time FastAPI endpoint, and a Folium route risk map for operational visibility.',
-    pills: ['XGBoost', 'Open-Meteo API', 'FastAPI', 'Folium', 'scikit-learn'],
-    stat: 'Live weather',
-  },
-  {
-    href: 'https://github.com/shaikn6/cloud-iac',
-    domain: 'Cloud Architecture', domainClass: styles.dCloud,
-    name: 'Cloud IaC',
-    desc: 'Production AWS infrastructure as code — Terraform modules for VPC, ECS, RDS, S3, and IAM with security-hardened defaults, least-privilege policies, and CloudTrail logging.',
-    pills: ['Terraform', 'AWS', 'VPC', 'ECS', 'RDS', 'IAM'],
-    stat: 'Security-hardened',
+    href: 'https://github.com/shaikn6/fintech-devsecops-pipeline',
+    domain: 'DevSecOps · Fintech', domainClass: styles.dCloud,
+    name: 'Fintech DevSecOps Pipeline',
+    desc: 'Production DevSecOps platform for fintech — Terraform on AWS EKS, Helm + ArgoCD GitOps, Checkov IaC scanning, OPA/Rego policies, Gitleaks secret scanning, SLSA provenance, and container signing, mapped to PCI-DSS and SOC 2 controls.',
+    pills: ['Terraform', 'AWS EKS', 'ArgoCD', 'OPA', 'Checkov', 'SLSA'],
+    stat: 'PCI-DSS / SOC 2',
   },
 ]
 
@@ -168,7 +161,7 @@ export default function Projects() {
         <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>Things I've actually built.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className={styles.sectionSub}>
-            15 open-source repos across LLM Engineering, AI Agents, MLOps, and Cloud Architecture. Real code, real tests, CI green on every repo.
+            12 open-source repos across LLM Engineering, AI Agents, MLOps, and DevSecOps. Real code, real tests, CI green on every repo.
           </p>
         </ScrollReveal>
 
