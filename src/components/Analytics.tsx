@@ -5,31 +5,15 @@ export default function Analytics() {
     const API = 'https://portfolio-analytics-five.vercel.app/api/track'
     const t0 = Date.now()
 
-    function fp(): string {
-      try {
-        const c = document.createElement('canvas')
-        const x = c.getContext('2d')!
-        x.textBaseline = 'top'
-        x.font = '14px Arial'
-        x.fillStyle = '#f60'
-        x.fillRect(125, 1, 62, 20)
-        x.fillStyle = '#069'
-        x.fillText('Nagizaaz\u{1F499}', 2, 15)
-        x.fillStyle = 'rgba(102,204,0,0.7)'
-        x.fillText('Nagizaaz\u{1F499}', 4, 17)
-        return c.toDataURL().slice(-32)
-      } catch {
-        return ''
-      }
-    }
-
-    const fprint = fp()
+    // Anonymous, per-session id only — no canvas/browser fingerprinting.
+    // Cleared when the tab closes (sessionStorage), so it cannot track a
+    // visitor across sessions. Keeps analytics consent-free under GDPR/CCPA.
     let stored = sessionStorage.getItem('_vsid')
     if (!stored) {
       stored = Math.random().toString(36).slice(2) + Date.now().toString(36)
       sessionStorage.setItem('_vsid', stored)
     }
-    const sid = stored + (fprint ? fprint.replace(/[^a-z0-9]/gi, '').slice(0, 8) : '')
+    const sid = stored
 
     try {
       fetch(API, {
