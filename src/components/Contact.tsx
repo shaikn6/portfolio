@@ -31,9 +31,19 @@ function generatePuzzle(): Puzzle {
   return { question: `What is ${a} ${op} ${b}?`, answer }
 }
 
-// Assembled at runtime — keeps email out of static source strings
+// Assembled at runtime — keeps contact details out of static source strings
+// so scrapers crawling the bundle never see a complete address. Only revealed
+// in the DOM after the human-verification puzzle is solved.
 function getEmail(): string {
-  return ['shaik', '.izaaz009', '@', 'gmail', '.com'].join('')
+  return ['nagizaazs', '@', 'gmail', '.com'].join('')
+}
+
+function getPhoneDisplay(): string {
+  return ['+1', ' ', '256', '-', '251', '-', '4502'].join('')
+}
+
+function getPhoneTel(): string {
+  return ['+1', '256', '251', '4502'].join('')
 }
 
 export default function Contact() {
@@ -42,6 +52,8 @@ export default function Contact() {
   const [error, setError] = useState('')
   const [unlocked, setUnlocked] = useState(false)
   const [email, setEmail] = useState('')
+  const [phoneDisplay, setPhoneDisplay] = useState('')
+  const [phoneTel, setPhoneTel] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -52,6 +64,8 @@ export default function Contact() {
     if (parseInt(input, 10) === puzzle.answer) {
       setUnlocked(true)
       setEmail(getEmail())
+      setPhoneDisplay(getPhoneDisplay())
+      setPhoneTel(getPhoneTel())
       setError('')
     } else {
       setError('Incorrect — try again.')
@@ -108,6 +122,9 @@ export default function Contact() {
               </div>
             ) : (
               <div className={styles.links}>
+                <a href={`tel:${phoneTel}`} className={styles.link}>
+                  <span>☎</span> {phoneDisplay}
+                </a>
                 <a href={`mailto:${email}`} className={styles.link}>
                   <span>@</span> {email}
                 </a>
