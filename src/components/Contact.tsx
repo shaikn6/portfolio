@@ -38,10 +38,6 @@ function getEmail(): string {
   return ['nagizaazs', '@', 'gmail', '.com'].join('')
 }
 
-function getPhoneDisplay(): string {
-  return ['+1', ' ', '256', '-', '251', '-', '4502'].join('')
-}
-
 function getPhoneTel(): string {
   return ['+1', 'redacted'].join('')
 }
@@ -52,7 +48,6 @@ export default function Contact() {
   const [error, setError] = useState('')
   const [unlocked, setUnlocked] = useState(false)
   const [email, setEmail] = useState('')
-  const [phoneDisplay, setPhoneDisplay] = useState('')
   const [phoneTel, setPhoneTel] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -64,7 +59,6 @@ export default function Contact() {
     if (parseInt(input, 10) === puzzle.answer) {
       setUnlocked(true)
       setEmail(getEmail())
-      setPhoneDisplay(getPhoneDisplay())
       setPhoneTel(getPhoneTel())
       setError('')
     } else {
@@ -122,11 +116,11 @@ export default function Contact() {
               </div>
             ) : (
               <div className={styles.links}>
-                <a href={`tel:${phoneTel}`} className={styles.link}>
-                  <span>☎</span> {phoneDisplay}
+                <a href={`tel:${phoneTel}`} className={styles.link} aria-label="Call">
+                  <span>☎</span> Call
                 </a>
-                <a href={`mailto:${email}`} className={styles.link}>
-                  <span>@</span> {email}
+                <a href={`mailto:${email}`} className={styles.link} aria-label="Email">
+                  <span>@</span> Email
                 </a>
               </div>
             )}
