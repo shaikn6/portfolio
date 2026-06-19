@@ -1,13 +1,10 @@
 import { useState, useEffect, useRef, lazy, Suspense } from 'react'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import styles from './Hero.module.css'
 import { useMagnetic } from '../hooks/useMagnetic'
 import SafeBoundary from './SafeBoundary'
 
 const Scene3D = lazy(() => import('./Scene3D'))
-
 const ROLES = ['LLM systems', 'AI agents', 'ML platforms'] as const
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
 function RotatingRole() {
   const [index, setIndex] = useState(0)
@@ -17,34 +14,21 @@ function RotatingRole() {
   }, [])
   return (
     <span className={styles.rotator} aria-live="polite">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={ROLES[index]}
-          className={styles.rotWord}
-          initial={{ opacity: 0, y: '0.5em' }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: '-0.5em' }}
-          transition={{ duration: 0.6, ease: EASE }}
-        >
-          {ROLES[index]}
-        </motion.span>
-      </AnimatePresence>
+      {/* key change remounts the span → CSS wordIn animation re-runs */}
+      <span key={index} className={styles.rotWord}>{ROLES[index]}</span>
     </span>
   )
 }
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], [0, 160])
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+  const innerRef = useRef<HTMLDivElement>(null)
 
   const m1 = useMagnetic<HTMLAnchorElement>(0.4)
   const m2 = useMagnetic<HTMLAnchorElement>(0.4)
   const m3 = useMagnetic<HTMLAnchorElement>(0.4)
 
-  // Defer the 3D until the page has painted + gone idle — keeps it off the
-  // critical path so text FCP/LCP land fast and TBT stays low.
+  // Defer the 3D until idle — keeps three.js off the critical path.
   const [show3D, setShow3D] = useState(false)
   useEffect(() => {
     const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback
@@ -56,15 +40,22 @@ export default function Hero() {
     return () => clearTimeout(id)
   }, [])
 
-  const reveal = {
-    hidden: { opacity: 0, y: 40 },
-    show: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 1, ease: EASE, delay: 0.15 + i * 0.12 } }),
-  }
-  // Name is the LCP element — paint it immediately (transform-only reveal, no opacity fade)
-  const nameReveal = {
-    hidden: { y: 30 },
-    show: (i: number) => ({ y: 0, transition: { duration: 0.9, ease: EASE, delay: i * 0.08 } }),
-  }
+  // Lightweight scroll-fade (replaces framer useScroll) — rAF-throttled, passive.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let raf = 0
+    const update = () => {
+      const sec = ref.current, inner = innerRef.current
+      if (!sec || !inner) return
+      const p = Math.min(1, Math.max(0, -sec.getBoundingClientRect().top / window.innerHeight))
+      inner.style.opacity = String(1 - Math.min(1, p / 0.8))
+      inner.style.transform = `translateY(${p * 140}px)`
+    }
+    const onScroll = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update) }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    update()
+    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf) }
+  }, [])
 
   return (
     <section id="hero" ref={ref} className={styles.hero}>
@@ -78,27 +69,27 @@ export default function Hero() {
         )}
       </div>
 
-      <motion.div className={styles.inner} style={{ y, opacity }}>
-        <motion.p custom={0} variants={reveal} initial="hidden" animate="show" className={styles.eyebrow}>
+      <div className={styles.inner} ref={innerRef}>
+        <p className={`${styles.eyebrow} ${styles.up}`} style={{ animationDelay: '0.05s' }}>
           AI / LLM Engineer — Fintech
-        </motion.p>
+        </p>
 
         <h1 className={styles.name}>
-          <motion.span custom={0} variants={nameReveal} initial="hidden" animate="show" className={styles.line}>Nagizaaz</motion.span>
-          <motion.span custom={1} variants={nameReveal} initial="hidden" animate="show" className={styles.line}>Shaik</motion.span>
+          <span className={`${styles.line} ${styles.rise}`} style={{ animationDelay: '0.08s' }}>Nagizaaz</span>
+          <span className={`${styles.line} ${styles.rise}`} style={{ animationDelay: '0.16s' }}>Shaik</span>
         </h1>
 
-        <motion.div custom={3} variants={reveal} initial="hidden" animate="show" className={styles.kinetic}>
+        <div className={`${styles.kinetic} ${styles.up}`} style={{ animationDelay: '0.34s' }}>
           <span className={styles.kineticPrefix}>I build</span>&nbsp;<RotatingRole />
-        </motion.div>
+        </div>
 
-        <motion.p custom={4} variants={reveal} initial="hidden" animate="show" className={styles.desc}>
+        <p className={`${styles.desc} ${styles.up}`} style={{ animationDelay: '0.46s' }}>
           Production AI for financial services — credit-risk models, multi-agent
           pipelines, and the secure ML platforms that ship them. I don't just write
           code; I build systems that pass the audit.
-        </motion.p>
+        </p>
 
-        <motion.div custom={5} variants={reveal} initial="hidden" animate="show" className={styles.ctas}>
+        <div className={`${styles.ctas} ${styles.up}`} style={{ animationDelay: '0.58s' }}>
           <a ref={m1} href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.cta}>
             <span>Résumé</span><span className={styles.arrow}>→</span>
           </a>
@@ -108,8 +99,8 @@ export default function Hero() {
           <a ref={m3} href="https://github.com/shaikn6" target="_blank" rel="noopener noreferrer" className={styles.cta}>
             <span>GitHub</span><span className={styles.arrow}>↗</span>
           </a>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       <div className={styles.scrollCue} aria-hidden="true">
         <span>Scroll</span>
