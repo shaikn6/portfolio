@@ -10,10 +10,13 @@ import Education from './components/Education'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Analytics from './components/Analytics'
+import Manifesto from './components/Manifesto'
 import { useScrollProgress } from './hooks/useScrollProgress'
+import { useLenis } from './hooks/useLenis'
 
 export default function App() {
   useScrollProgress()
+  useLenis()
 
   return (
     <>
@@ -29,6 +32,7 @@ export default function App() {
 
       <main style={{ position: 'relative', zIndex: 2 }}>
         <Hero />
+        <Manifesto />
         <Experience />
         <Metrics />
         <Projects />
