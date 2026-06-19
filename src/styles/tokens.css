@@ -1,22 +1,32 @@
 :root {
-  /* ── Palette ── */
-  --color-bg:       #07080f;
-  --color-bg2:      #0a0b14;
-  --color-surface:  rgba(255, 255, 255, 0.035);
-  --color-surface2: rgba(255, 255, 255, 0.06);
-  --color-border:   rgba(56, 189, 248, 0.18);
-  --color-border2:  rgba(255, 255, 255, 0.07);
-  --color-accent:   #38bdf8;
-  --color-accent2:  #818cf8;
-  --color-accent3:  #a5f3fc;
+  /* ── Palette: deep indigo-black with violet glass + electric accent ── */
+  --color-bg:       #070612;
+  --color-bg2:      #0b0a1c;
+  --color-bg3:      #100d28;
+
+  /* glass surfaces (used with backdrop-filter) */
+  --glass:          rgba(255, 255, 255, 0.045);
+  --glass-2:        rgba(255, 255, 255, 0.07);
+  --glass-hi:       rgba(255, 255, 255, 0.10);
+  --color-surface:  rgba(255, 255, 255, 0.045);
+  --color-surface2: rgba(255, 255, 255, 0.07);
+
+  --color-border:   rgba(167, 139, 250, 0.22);
+  --color-border2:  rgba(255, 255, 255, 0.08);
+  --glass-border:   linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02) 40%, rgba(139,92,246,0.18));
+
+  --color-accent:   #8b5cf6;   /* violet */
+  --color-accent2:  #6366f1;   /* indigo */
+  --color-accent3:  #c4b5fd;   /* light violet */
+  --color-accent4:  #e879f9;   /* fuchsia spark */
   --color-green:    #34d399;
-  --color-text:     #e2e8f0;
-  --color-muted:    rgba(226, 232, 240, 0.5);
+  --color-text:     #ece9ff;
+  --color-muted:    rgba(236, 233, 255, 0.55);
 
   /* ── Typography ── */
-  --font-serif:  'DM Serif Display', serif;
+  --font-serif:  'DM Serif Display', Georgia, serif;
   --font-mono:   'JetBrains Mono', monospace;
-  --font-sans:   'Inter', sans-serif;
+  --font-sans:   'Sora', system-ui, sans-serif;
 
   --text-hero:   clamp(3.4rem, 9vw, 7.5rem);
   --text-h2:     clamp(2.5rem, 5.2vw, 3.9rem);
@@ -24,13 +34,17 @@
 
   /* ── Spacing ── */
   --space-section: clamp(5rem, 8vw, 7rem);
-  --radius:        14px;
-  --radius-lg:     20px;
+  --radius:        16px;
+  --radius-lg:     24px;
 
   /* ── Motion ── */
-  --dur:  280ms;
+  --dur:  300ms;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* ── Effects ── */
-  --glow: 0 0 24px rgba(56, 189, 248, 0.18);
+  /* ── Glass effects ── */
+  --blur:       saturate(150%) blur(16px);
+  --blur-soft:  saturate(140%) blur(10px);
+  --glow:       0 0 28px rgba(139, 92, 246, 0.25);
+  --shadow-glass: 0 8px 40px -8px rgba(8, 5, 30, 0.7), inset 0 1px 0 rgba(255,255,255,0.08);
+  --shadow-lift:  0 24px 70px -18px rgba(99, 102, 241, 0.45), inset 0 1px 0 rgba(255,255,255,0.14);
 }
