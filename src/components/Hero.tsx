@@ -43,6 +43,18 @@ export default function Hero() {
   const m2 = useMagnetic<HTMLAnchorElement>(0.4)
   const m3 = useMagnetic<HTMLAnchorElement>(0.4)
 
+  // Defer the 3D until the page has painted + gone idle — keeps it off the
+  // critical path so text FCP/LCP land fast and TBT stays low.
+  const [show3D, setShow3D] = useState(false)
+  useEffect(() => {
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }
+    const start = () => setShow3D(true)
+    const id = w.requestIdleCallback
+      ? w.requestIdleCallback(start, { timeout: 2500 })
+      : window.setTimeout(start, 1500)
+    return () => { if (w.requestIdleCallback) (window as Window & { cancelIdleCallback?: (h: number) => void }).cancelIdleCallback?.(id as number); else clearTimeout(id as number) }
+  }, [])
+
   const reveal = {
     hidden: { opacity: 0, y: 40 },
     show: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 1, ease: EASE, delay: 0.15 + i * 0.12 } }),
@@ -51,11 +63,13 @@ export default function Hero() {
   return (
     <section id="hero" ref={ref} className={styles.hero}>
       <div className={styles.scene} aria-hidden="true">
-        <SafeBoundary>
-          <Suspense fallback={null}>
-            <Scene3D />
-          </Suspense>
-        </SafeBoundary>
+        {show3D && (
+          <SafeBoundary>
+            <Suspense fallback={null}>
+              <Scene3D />
+            </Suspense>
+          </SafeBoundary>
+        )}
       </div>
 
       <motion.div className={styles.inner} style={{ y, opacity }}>
