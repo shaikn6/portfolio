@@ -10,6 +10,7 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Analytics from './components/Analytics'
 import Manifesto from './components/Manifesto'
+import Marquee from './components/Marquee'
 import CustomCursor from './components/CustomCursor'
 import { useScrollProgress } from './hooks/useScrollProgress'
 import { useLenis } from './hooks/useLenis'
@@ -35,6 +36,7 @@ export default function App() {
       <main style={{ position: 'relative', zIndex: 2 }}>
         <Hero />
         <Manifesto />
+        <Marquee />
         <Experience />
         <Metrics />
         <Projects />
