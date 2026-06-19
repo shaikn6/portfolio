@@ -79,3 +79,11 @@
     display: none;
   }
 }
+
+/* scroll state — condense + solidify */
+.scrolled {
+  height: 48px;
+  background: rgba(10, 10, 12, 0.85);
+  box-shadow: 0 1px 0 var(--color-border2), 0 12px 40px -24px rgba(0, 0, 0, 0.8);
+}
+.nav { transition: height var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
