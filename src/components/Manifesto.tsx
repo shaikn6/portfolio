@@ -8,7 +8,9 @@ const LINE =
 const WORDS = LINE.split(' ')
 
 function Word({ children, range, progress }: { children: string; range: [number, number]; progress: MotionValue<number> }) {
-  const opacity = useTransform(progress, range, [0.12, 1])
+  // Dim floor kept readable (≥3:1 contrast for large text) so the scroll-reveal
+  // still pops but passes WCAG color-contrast.
+  const opacity = useTransform(progress, range, [0.42, 1])
   const y = useTransform(progress, range, [8, 0])
   return (
     <motion.span className={styles.word} style={{ opacity, y }}>
