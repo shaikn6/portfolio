@@ -28,16 +28,34 @@ body {
   background: var(--color-bg);
 }
 
-/* ── Clean white card (Apple product-card style) ── */
+/* ── Dark editorial surface ── */
 .glass {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
   position: relative;
 }
-.glass-hover { transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
-.glass-hover:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+.glass-hover { transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), background var(--dur); }
+.glass-hover:hover { transform: translateY(-6px); border-color: var(--color-accent); background: var(--color-surface2); }
+
+/* ── GSAP reveal base (JS animates to visible) ── */
+.reveal { opacity: 0; transform: translateY(40px); will-change: opacity, transform; }
+
+/* ── Custom cursor ── */
+@media (hover: hover) and (pointer: fine) {
+  * { cursor: none !important; }
+  .cursor-dot, .cursor-ring {
+    position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;
+    border-radius: 50%; transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+  }
+  .cursor-dot { width: 6px; height: 6px; background: #fff; }
+  .cursor-ring {
+    width: 38px; height: 38px; border: 1px solid rgba(255,255,255,0.6);
+    transition: width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s var(--ease);
+  }
+  .cursor-ring.hovering { width: 64px; height: 64px; background: rgba(255,255,255,0.1); }
+}
 
 /* Scroll progress bar — filled via JS */
 #scroll-bar {
@@ -69,8 +87,8 @@ body {
 html { scroll-padding-top: 84px; }
 
 ::selection {
-  background: rgba(0, 113, 227, 0.18);
-  color: #1d1d1f;
+  background: rgba(200, 176, 138, 0.25);
+  color: #f0ece4;
 }
 
 :focus-visible {

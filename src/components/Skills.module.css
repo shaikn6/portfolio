@@ -10,7 +10,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(0, 113, 227, 0.25), transparent);
+  background: linear-gradient(to right, transparent, rgba(200, 176, 138, 0.25), transparent);
 }
 
 .wrap {
@@ -35,7 +35,7 @@
   content: '';
   flex: 1;
   height: 1px;
-  background: linear-gradient(to right, rgba(0, 113, 227, 0.4), transparent);
+  background: linear-gradient(to right, rgba(200, 176, 138, 0.4), transparent);
   max-width: 100px;
 }
 
@@ -44,7 +44,7 @@
   font-size: var(--text-h2);
   margin-bottom: 8px;
   letter-spacing: -0.015em;
-  background: linear-gradient(120deg, #1d1d1f 0%, var(--color-accent3) 50%, var(--color-accent) 100%);
+  background: linear-gradient(120deg, var(--color-ink) 0%, var(--color-accent3) 50%, var(--color-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -74,7 +74,7 @@
 }
 
 .block:hover {
-  border-color: rgba(0, 113, 227, 0.28);
+  border-color: rgba(200, 176, 138, 0.28);
   transform: translateY(-2px);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.022));
 }
@@ -97,7 +97,7 @@
 .tag {
   font-size: 0.8rem;
   padding: 4px 10px;
-  background: #f5f5f7;
+  background: var(--color-surface);
   border: 1px solid var(--color-border2);
   border-radius: 6px;
   color: var(--color-text);
@@ -106,9 +106,9 @@
 }
 
 .tag:hover {
-  border-color: rgba(0, 113, 227, 0.4);
+  border-color: rgba(200, 176, 138, 0.4);
   color: var(--color-accent);
-  background: rgba(0, 113, 227, 0.08);
+  background: rgba(200, 176, 138, 0.08);
   transform: translateY(-1px);
 }
 

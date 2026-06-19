@@ -10,16 +10,20 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Analytics from './components/Analytics'
 import Manifesto from './components/Manifesto'
+import CustomCursor from './components/CustomCursor'
 import { useScrollProgress } from './hooks/useScrollProgress'
 import { useLenis } from './hooks/useLenis'
+import { useReveal } from './hooks/useReveal'
 
 export default function App() {
   useScrollProgress()
   useLenis()
+  useReveal()
 
   return (
     <>
       <Analytics />
+      <CustomCursor />
       <div id="scroll-bar" />
       <div className="bg-aurora" aria-hidden="true" />
       <div className="bg-grain" aria-hidden="true" />

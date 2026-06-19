@@ -1,48 +1,46 @@
 :root {
-  /* ── Apple-style light system: white canvas, near-black ink, one blue accent ── */
-  --color-bg:       #ffffff;
-  --color-bg2:      #f5f5f7;   /* Apple section gray */
-  --color-bg3:      #fafafc;
-  --color-ink:      #1d1d1f;   /* Apple near-black text */
-  --color-text:     #1d1d1f;
-  --color-muted:    #6e6e73;   /* Apple secondary gray */
-  --color-faint:    #86868b;
+  /* ── Cinematic dark luxury — warm near-black, off-white ink, restrained gold ── */
+  --color-bg:       #0a0a0b;
+  --color-bg2:      #101012;
+  --color-bg3:      #16161a;
+  --color-ink:      #f0ece4;   /* warm off-white */
+  --color-text:     #e8e3d9;
+  --color-muted:    #9a948a;   /* warm gray */
+  --color-faint:    #6b665e;
 
-  --color-accent:   #0071e3;   /* Apple blue */
-  --color-accent2:  #0077ed;
-  --color-accent3:  #2997ff;   /* bright link blue */
+  --color-accent:   #c8b08a;   /* muted champagne gold */
+  --color-accent2:  #d9c4a0;
+  --color-accent3:  #b59b73;
 
-  /* card surfaces — clean, not frosted */
-  --color-surface:  #ffffff;
-  --color-surface2: #f5f5f7;
-  --color-border:   #d2d2d7;   /* Apple hairline */
-  --color-border2:  rgba(0, 0, 0, 0.08);
-  --glass:          #ffffff;
-  --glass-2:        #f5f5f7;
-  --glass-border:   #d2d2d7;
+  /* surfaces */
+  --color-surface:  rgba(255, 255, 255, 0.028);
+  --color-surface2: rgba(255, 255, 255, 0.05);
+  --color-border:   rgba(240, 236, 228, 0.12);
+  --color-border2:  rgba(240, 236, 228, 0.08);
+  --glass:          rgba(255, 255, 255, 0.03);
+  --glass-2:        rgba(255, 255, 255, 0.05);
+  --glass-border:   rgba(240, 236, 228, 0.14);
 
-  /* ── Typography: SF Pro (real on Apple devices) ── */
-  --font-sans:   -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-  --font-serif:  -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
-  --font-mono:   "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+  /* ── Typography: editorial serif display + clean grotesque body ── */
+  --font-display: 'Fraunces', 'Times New Roman', serif;
+  --font-serif:   'Fraunces', Georgia, serif;
+  --font-sans:    -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
 
-  --text-hero:   clamp(3rem, 8vw, 6.5rem);
-  --text-h2:     clamp(2.2rem, 5vw, 3.8rem);
+  --text-hero:   clamp(3.4rem, 11vw, 11rem);
+  --text-h2:     clamp(2.4rem, 7vw, 6rem);
   --text-base:   1rem;
 
   /* ── Spacing ── */
-  --space-section: clamp(6rem, 12vw, 11rem);
-  --radius:        18px;
-  --radius-lg:     28px;
+  --space-section: clamp(8rem, 16vw, 16rem);
+  --radius:        4px;
+  --radius-lg:     8px;
 
-  /* ── Motion ── */
-  --dur:  400ms;
-  --ease: cubic-bezier(0.28, 0.11, 0.32, 1);  /* Apple-like ease */
+  /* ── Motion (slow, cinematic) ── */
+  --dur:  650ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* ── Effects (soft, light) ── */
-  --blur:       saturate(180%) blur(20px);
-  --glow:       none;
-  --shadow-card:  0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-lift:  0 18px 50px -12px rgba(0, 0, 0, 0.18);
+  --shadow-card:  0 30px 80px -30px rgba(0, 0, 0, 0.8);
+  --shadow-lift:  0 40px 100px -30px rgba(0, 0, 0, 0.9);
+  --glow:         none;
 }

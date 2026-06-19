@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 /**
  * Buttery, Apple-style inertial smooth scrolling.
@@ -15,6 +16,8 @@ export function useLenis() {
       smoothWheel: true,
       touchMultiplier: 1.6,
     })
+
+    lenis.on('scroll', ScrollTrigger.update)
 
     let raf = 0
     const loop = (time: number) => {
