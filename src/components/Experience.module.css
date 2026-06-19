@@ -131,3 +131,12 @@
   .item { grid-template-columns: 1fr; gap: 8px; }
   .period { font-size: 0.7rem; }
 }
+
+/* employment type badge */
+.etype {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--color-accent3);
+  letter-spacing: 0.02em;
+}
