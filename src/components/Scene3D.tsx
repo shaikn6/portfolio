@@ -1,6 +1,6 @@
 import { Suspense, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Float, MeshDistortMaterial, Environment } from '@react-three/drei'
+import { Float, MeshDistortMaterial, Environment, Lightformer } from '@react-three/drei'
 import type { Mesh } from 'three'
 
 function Crystal() {
@@ -52,7 +52,13 @@ export default function Scene3D() {
       <directionalLight position={[-5, -2, -5]} intensity={1.1} color="#8a6f3d" />
       <Suspense fallback={null}>
         <Crystal />
-        <Environment preset="night" />
+        {/* Procedural environment — built in-GPU from lightformers, no external HDRI fetch (CSP-safe) */}
+        <Environment resolution={256}>
+          <Lightformer intensity={2.4} position={[5, 5, 5]} scale={[10, 10, 1]} color="#fff0d8" />
+          <Lightformer intensity={1.2} position={[-5, -1, -4]} scale={[8, 8, 1]} color="#8a6f3d" />
+          <Lightformer intensity={1.6} position={[0, 4, -6]} scale={[12, 6, 1]} color="#ffffff" />
+          <Lightformer intensity={0.8} position={[2, -4, 2]} scale={[6, 6, 1]} color="#c29a5e" />
+        </Environment>
       </Suspense>
     </Canvas>
   )
