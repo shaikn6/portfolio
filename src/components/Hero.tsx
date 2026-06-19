@@ -60,6 +60,11 @@ export default function Hero() {
     hidden: { opacity: 0, y: 40 },
     show: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 1, ease: EASE, delay: 0.15 + i * 0.12 } }),
   }
+  // Name is the LCP element — paint it immediately (transform-only reveal, no opacity fade)
+  const nameReveal = {
+    hidden: { y: 30 },
+    show: (i: number) => ({ y: 0, transition: { duration: 0.9, ease: EASE, delay: i * 0.08 } }),
+  }
 
   return (
     <section id="hero" ref={ref} className={styles.hero}>
@@ -79,8 +84,8 @@ export default function Hero() {
         </motion.p>
 
         <h1 className={styles.name}>
-          <motion.span custom={1} variants={reveal} initial="hidden" animate="show" className={styles.line}>Nagizaaz</motion.span>
-          <motion.span custom={2} variants={reveal} initial="hidden" animate="show" className={styles.line}>Shaik</motion.span>
+          <motion.span custom={0} variants={nameReveal} initial="hidden" animate="show" className={styles.line}>Nagizaaz</motion.span>
+          <motion.span custom={1} variants={nameReveal} initial="hidden" animate="show" className={styles.line}>Shaik</motion.span>
         </h1>
 
         <motion.div custom={3} variants={reveal} initial="hidden" animate="show" className={styles.kinetic}>
