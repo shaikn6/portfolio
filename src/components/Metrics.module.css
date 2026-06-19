@@ -12,36 +12,33 @@
   border: 1px solid var(--color-border2);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 10px 40px -20px rgba(56, 189, 248, 0.3);
+  box-shadow: 0 10px 40px -20px rgba(0, 113, 227, 0.3);
 }
 
 .metric {
-  background: linear-gradient(180deg, rgba(13, 17, 23, 0.85), rgba(7, 8, 15, 0.95));
-  padding: 30px 24px;
+  background: #ffffff;
+  padding: 38px 24px;
   text-align: center;
   transition: background var(--dur);
 }
 
 .metric:hover {
-  background: linear-gradient(180deg, rgba(56, 189, 248, 0.06), rgba(7, 8, 15, 0.95));
+  background: var(--color-bg2);
 }
 
 .num {
-  font-family: var(--font-serif);
-  font-size: 2.4rem;
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.8rem;
+  color: var(--color-accent);
+  letter-spacing: -0.03em;
   line-height: 1;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .lbl {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
   color: var(--color-muted);
 }
 

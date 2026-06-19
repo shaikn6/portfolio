@@ -30,25 +30,20 @@
 }
 
 .name {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: clamp(3.6rem, 8.5vw, 7.6rem);
-  line-height: 0.88;
+  line-height: 0.92;
   margin-bottom: 22px;
-  letter-spacing: -0.02em;
-  color: #f5f3ff;
-  background: linear-gradient(118deg, #ffffff 0%, #d8d2ff 38%, var(--color-accent3) 70%, var(--color-accent4) 100%);
-  background-size: 280% 280%;
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: grad 14s ease infinite;
-  filter: drop-shadow(0 10px 40px rgba(139, 92, 246, 0.22));
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  color: var(--color-ink);
 }
 
 .kinetic {
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: clamp(1.5rem, 3.4vw, 2.6rem);
   line-height: 1.1;
   color: var(--color-text);
@@ -59,9 +54,7 @@
   grid-area: 1 / 1;
   white-space: nowrap;
   font-weight: 600;
-  background: linear-gradient(110deg, var(--color-accent3), var(--color-accent) 50%, var(--color-accent4));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-accent);
 }
 
 .desc {
@@ -76,34 +69,32 @@
 
 .btnPrimary {
   padding: 14px 28px;
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent2));
-  border-radius: 12px;
-  color: #0a0820;
+  background: var(--color-accent);
+  border-radius: 980px;
+  color: #fff;
   font-family: var(--font-sans);
   font-size: 0.86rem;
   font-weight: 600;
   text-decoration: none;
   letter-spacing: 0.01em;
-  box-shadow: 0 10px 34px -8px rgba(139, 92, 246, 0.6);
+  box-shadow: none;
   transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
-.btnPrimary:hover { transform: translateY(-3px); box-shadow: 0 16px 44px -8px rgba(139, 92, 246, 0.8); }
+.btnPrimary:hover { transform: translateY(-3px); background: var(--color-accent2); }
 
 .btnSecondary {
   padding: 14px 28px;
-  border-radius: 12px;
+  border-radius: 980px;
   color: var(--color-text);
   font-family: var(--font-sans);
   font-size: 0.86rem;
   font-weight: 500;
   text-decoration: none;
-  background: var(--glass-2);
-  border: 1px solid var(--color-border2);
-  backdrop-filter: var(--blur-soft);
-  -webkit-backdrop-filter: var(--blur-soft);
+  background: transparent;
+  border: 1px solid var(--color-border);
   transition: border-color var(--dur), background var(--dur), transform var(--dur);
 }
-.btnSecondary:hover { border-color: var(--color-accent); background: rgba(139, 92, 246, 0.12); transform: translateY(-3px); }
+.btnSecondary:hover { border-color: var(--color-accent); color: var(--color-accent); }
 
 .btnGhost {
   padding: 14px 18px;
@@ -129,11 +120,10 @@
   flex-shrink: 0;
   display: grid; place-items: center;
   border-radius: 14px;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: 1.4rem;
-  color: #0a0820;
-  background: linear-gradient(135deg, var(--color-accent3), var(--color-accent));
-  box-shadow: 0 6px 20px -6px rgba(139, 92, 246, 0.7);
+  color: #fff;
+  background: var(--color-accent);
 }
 .snapRole { font-weight: 600; font-size: 1.02rem; color: var(--color-text); }
 .snapCo { font-size: 0.82rem; color: var(--color-muted); margin-top: 2px; }
@@ -148,10 +138,9 @@
 .snapStats { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 16px; }
 .snapStats li { display: flex; flex-direction: column; gap: 3px; }
 .statV {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: 1.5rem;
-  background: linear-gradient(120deg, #fff, var(--color-accent3));
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  color: var(--color-ink);
 }
 .statL { font-size: 0.74rem; color: var(--color-muted); line-height: 1.3; }
 .snapFoot {
@@ -159,7 +148,7 @@
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.04em;
-  color: var(--color-green);
+  color: var(--color-accent);
 }
 
 /* ── Scroll cue ── */

@@ -1,4 +1,3 @@
-import ParticleBackground from './components/ParticleBackground'
 import Nav from './components/Nav'
 import SocialSidebar from './components/SocialSidebar'
 import Hero from './components/Hero'
@@ -23,7 +22,6 @@ export default function App() {
       <Analytics />
       <div id="scroll-bar" />
       <div className="bg-aurora" aria-hidden="true" />
-      <ParticleBackground />
       <div className="bg-grain" aria-hidden="true" />
       <div className="bg-grid" aria-hidden="true" />
 
