@@ -3,11 +3,6 @@ import styles from './Education.module.css'
 
 const EDUCATION = [
   {
-    degree: 'Doctor of Business Administration (DBA)',
-    school: 'Belhaven University · Jackson, MS',
-    meta: 'Aug 2026 – Present · Business Intelligence & Analytics',
-  },
-  {
     degree: 'M.S. Computer Science',
     school: 'University of Dayton · Dayton, OH',
     meta: 'Aug 2023 – May 2025 · GPA 3.93 / 4.0',
