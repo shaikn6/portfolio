@@ -39,6 +39,22 @@ export function useReveal() {
         })
       })
 
+      // converge — scattered elements fly into alignment on scroll-in
+      gsap.utils.toArray<HTMLElement>('[data-converge]').forEach((el) => {
+        const i = parseInt(el.dataset.converge || '0')
+        const dirX = (i % 2 === 0 ? -1 : 1) * (90 + i * 28)
+        const dirY = (i < 2 ? -1 : 1) * 50
+        gsap.fromTo(
+          el,
+          { x: dirX, y: dirY, opacity: 0, rotate: i % 2 === 0 ? -5 : 5 },
+          {
+            x: 0, y: 0, opacity: 1, rotate: 0,
+            ease: 'power3.out', duration: 1.1,
+            scrollTrigger: { trigger: el.parentElement, start: 'top 80%', once: true },
+          },
+        )
+      })
+
       // scroll-driven scale (image expansion)
       gsap.utils.toArray<HTMLElement>('[data-grow]').forEach((el) => {
         gsap.fromTo(

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import styles from './Nav.module.css'
 
 const LINKS = [
@@ -9,8 +10,16 @@ const LINKS = [
 ]
 
 export default function Nav() {
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <nav className={styles.nav}>
+    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <a className={styles.logo} href="#hero">nag·izaaz·shaik</a>
       <ul className={styles.links}>
         {LINKS.map(({ href, label }) => (

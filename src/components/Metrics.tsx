@@ -1,4 +1,3 @@
-import ScrollReveal from './ScrollReveal'
 import styles from './Metrics.module.css'
 
 const METRICS = [
@@ -13,12 +12,10 @@ export default function Metrics() {
     <div className={styles.outer}>
       <div className={styles.row}>
         {METRICS.map(({ num, lbl }, i) => (
-          <ScrollReveal key={lbl} delay={i * 0.07}>
-            <div className={styles.metric}>
-              <div className={styles.num}>{num}</div>
-              <div className={styles.lbl}>{lbl}</div>
-            </div>
-          </ScrollReveal>
+          <div className={styles.metric} key={lbl} data-converge={i}>
+            <div className={styles.num}>{num}</div>
+            <div className={styles.lbl}>{lbl}</div>
+          </div>
         ))}
       </div>
     </div>
