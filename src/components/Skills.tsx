@@ -3,28 +3,28 @@ import styles from './Skills.module.css'
 
 const SKILL_BLOCKS = [
   {
-    title: 'LLMs & AI Agents',
-    tags: ['LangChain', 'LangGraph', 'RAG', 'FAISS', 'Prompt Engineering', 'OWASP LLM Top 10', 'Hallucination Detection', 'Red-teaming'],
+    title: 'LLM & Agentic AI',
+    tags: ['RAG (Hybrid · Reranking · HyDE · CRAG)', 'LangGraph', 'CrewAI', 'MCP', 'Prompt Engineering', 'Semantic Caching', 'LLM Gateways', 'OWASP LLM Top 10', 'Red-Teaming'],
+  },
+  {
+    title: 'LLMOps & Eval',
+    tags: ['RAGAS', 'LLM-as-Judge', 'A/B Testing', 'Cost Analytics', 'Agent Observability', 'MLflow', 'NVIDIA NIM', 'vLLM / Ollama'],
   },
   {
     title: 'Machine Learning',
-    tags: ['PyTorch', 'HuggingFace', 'scikit-learn', 'XGBoost', 'SHAP / LIME', 'Opacus (DP-SGD)', 'Flower (FL)', 'Grad-CAM'],
+    tags: ['PyTorch', 'Transformers (from-scratch)', 'XGBoost', 'BERT', 'HuggingFace', 'scikit-learn', 'SHAP', 'SageMaker (Pipelines · Monitor)'],
   },
   {
-    title: 'MLOps & Infrastructure',
-    tags: ['MLflow', 'Airflow', 'SageMaker', 'Evidently AI', 'Docker', 'GitHub Actions', 'FastAPI', 'Terraform'],
+    title: 'Cloud & MLOps',
+    tags: ['AWS (SageMaker · EKS · Glue · Redshift)', 'GCP', 'Terraform', 'Airflow', 'Docker', 'Kubernetes', 'ArgoCD', 'CI/CD', 'FastAPI'],
   },
   {
-    title: 'Data Engineering',
-    tags: ['Apache Kafka', 'Apache Spark', 'dbt', 'Snowflake', 'Redis', 'PostgreSQL', 'Redshift', 'SQL Lineage'],
+    title: 'Data Governance & Security',
+    tags: ['NCUA / SOC 2-aware', 'ECOA / Fair-Lending', 'PII (Presidio)', 'AES-256', 'IAM least-privilege', 'CloudTrail audit', 'OPA / Conftest', 'Checkov', 'Gitleaks', 'SLSA'],
   },
   {
-    title: 'Cloud & Languages',
-    tags: ['AWS', 'GCP', 'Azure', 'Python', 'SQL / PL-SQL', 'Bash', 'Scala'],
-  },
-  {
-    title: 'DevSecOps & Governance',
-    tags: ['GitHub Actions', 'Trivy', 'OPA Gatekeeper', 'Cosign', 'SBOM', 'SLSA', 'GDPR', 'ECOA / Fair Lending', 'Differential Privacy'],
+    title: 'Data Engineering & Languages',
+    tags: ['Kafka', 'Spark / PySpark', 'dbt', 'Snowflake', 'Redshift', 'Oracle SQL / PL-SQL', 'Python', 'SQL', 'Bash'],
   },
 ]
 
