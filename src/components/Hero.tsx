@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import styles from './Hero.module.css'
 
 const ROLES = ['LLM systems', 'AI agents', 'ML platforms'] as const
@@ -45,8 +45,14 @@ const STATS = [
 ]
 
 export default function Hero() {
+  const ref = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92])
+  const y = useTransform(scrollYProgress, [0, 1], [0, 80])
+
   return (
-    <section id="hero" className={styles.hero}>
+    <motion.section id="hero" ref={ref} className={styles.hero} style={{ opacity, scale, y }}>
       <motion.div className={styles.textCol} variants={TEXT_VARIANTS.container} initial="hidden" animate="show">
         <motion.div variants={TEXT_VARIANTS.item} className={styles.eyebrow}>
           AI / LLM Engineer · Fintech
@@ -99,6 +105,6 @@ export default function Hero() {
         <span>Scroll</span>
         <div className={styles.scrollLine} />
       </div>
-    </section>
+    </motion.section>
   )
 }
