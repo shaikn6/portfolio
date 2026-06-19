@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/fraunces": "^5.2.9",
+    "@fontsource/jetbrains-mono": "^5.2.8",
     "@react-three/drei": "^9.109.2",
     "@react-three/fiber": "^8.17.10",
     "framer-motion": "^11.3.8",
