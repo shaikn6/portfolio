@@ -1,4 +1,4 @@
-import { Suspense, useRef } from 'react'
+import { Suspense, useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, MeshDistortMaterial, Environment, Lightformer } from '@react-three/drei'
 import type { Mesh } from 'three'
@@ -36,15 +36,26 @@ function Crystal() {
 }
 
 export default function Scene3D() {
+  // pause rendering when the hero is scrolled out of view (saves FPS/battery)
+  const [active, setActive] = useState(true)
+  useEffect(() => {
+    const hero = document.getElementById('hero')
+    if (!hero) return
+    const io = new IntersectionObserver(([e]) => setActive(e.isIntersecting), { threshold: 0.05 })
+    io.observe(hero)
+    return () => io.disconnect()
+  }, [])
+
   // skip the GPU work entirely for reduced-motion users
   if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     return null
   }
   return (
     <Canvas
+      frameloop={active ? 'always' : 'never'}
       camera={{ position: [0, 0, 6], fov: 42 }}
       dpr={[1, 1.8]}
-      gl={{ antialias: true, alpha: true }}
+      gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
       style={{ width: '100%', height: '100%' }}
     >
       <ambientLight intensity={0.4} />
