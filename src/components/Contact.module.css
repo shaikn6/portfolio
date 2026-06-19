@@ -19,7 +19,7 @@
   overflow: hidden;
   backdrop-filter: blur(20px) saturate(140%);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
-  box-shadow: 0 30px 80px -30px rgba(56, 189, 248, 0.25), 0 0 0 1px rgba(56, 189, 248, 0.06) inset;
+  box-shadow: 0 30px 80px -30px rgba(0, 113, 227, 0.25), 0 0 0 1px rgba(0, 113, 227, 0.06) inset;
 }
 
 .box::before {
@@ -40,7 +40,7 @@
   top: -150px;
   left: 50%;
   transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 113, 227, 0.15) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -62,7 +62,7 @@
   font-size: var(--text-h2);
   margin-bottom: 12px;
   letter-spacing: -0.01em;
-  background: linear-gradient(120deg, #f1f5f9 0%, var(--color-accent3) 50%, var(--color-accent) 100%);
+  background: linear-gradient(120deg, #1d1d1f 0%, var(--color-accent3) 50%, var(--color-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -94,7 +94,7 @@
   font-family: var(--font-mono);
   font-size: 0.76rem;
   letter-spacing: 0.04em;
-  background: rgba(255, 255, 255, 0.025);
+  background: #f5f5f7;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition: border-color var(--dur), color var(--dur), background var(--dur), transform var(--dur);
@@ -103,9 +103,9 @@
 .link:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
-  background: rgba(56, 189, 248, 0.10);
+  background: rgba(0, 113, 227, 0.10);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px -8px rgba(56, 189, 248, 0.45);
+  box-shadow: 0 8px 24px -8px rgba(0, 113, 227, 0.45);
 }
 
 /* Captcha */
@@ -143,7 +143,7 @@
 .captchaInput {
   width: 88px;
   padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.06);
+  background: #f5f5f7;
   border: 1px solid var(--color-border2);
   border-radius: 6px;
   color: var(--color-text);
