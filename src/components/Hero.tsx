@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, lazy, Suspense } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import styles from './Hero.module.css'
 import { useMagnetic } from '../hooks/useMagnetic'
+import SafeBoundary from './SafeBoundary'
 
 const Scene3D = lazy(() => import('./Scene3D'))
 
@@ -50,9 +51,11 @@ export default function Hero() {
   return (
     <section id="hero" ref={ref} className={styles.hero}>
       <div className={styles.scene} aria-hidden="true">
-        <Suspense fallback={null}>
-          <Scene3D />
-        </Suspense>
+        <SafeBoundary>
+          <Suspense fallback={null}>
+            <Scene3D />
+          </Suspense>
+        </SafeBoundary>
       </div>
 
       <motion.div className={styles.inner} style={{ y, opacity }}>
