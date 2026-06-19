@@ -22,8 +22,8 @@
   --glass-border:   rgba(240, 236, 228, 0.14);
 
   /* ── Typography: editorial serif display + clean grotesque body ── */
-  --font-display: 'Fraunces', 'Times New Roman', serif;
-  --font-serif:   'Fraunces', Georgia, serif;
+  --font-display: 'Fraunces Variable', 'Times New Roman', serif;
+  --font-serif:   'Fraunces Variable', Georgia, serif;
   --font-sans:    -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
   --font-mono:    'JetBrains Mono', ui-monospace, monospace;
 
