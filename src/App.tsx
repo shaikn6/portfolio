@@ -12,6 +12,7 @@ import Analytics from './components/Analytics'
 import Manifesto from './components/Manifesto'
 import Marquee from './components/Marquee'
 import CustomCursor from './components/CustomCursor'
+import ClickSpark from './components/ClickSpark'
 import { useScrollProgress } from './hooks/useScrollProgress'
 import { useLenis } from './hooks/useLenis'
 import { useReveal } from './hooks/useReveal'
@@ -25,6 +26,7 @@ export default function App() {
     <>
       <Analytics />
       <CustomCursor />
+      <ClickSpark />
       <div id="scroll-bar" />
       <div className="bg-aurora" aria-hidden="true" />
       <div className="bg-grain" aria-hidden="true" />

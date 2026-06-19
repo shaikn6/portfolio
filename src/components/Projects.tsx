@@ -145,7 +145,7 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
           {project.pills.map((p) => <span key={p} className={styles.pill}>{p}</span>)}
         </div>
         <div className={styles.footer}>
-          <span className={styles.live}>● Live repo</span>
+          <span className={styles.live}><span className={styles.liveDot} aria-hidden="true" />Live repo</span>
           <span>{project.stat}</span>
         </div>
       </a>
