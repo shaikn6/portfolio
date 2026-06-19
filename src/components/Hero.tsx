@@ -1,6 +1,9 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, lazy, Suspense } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import styles from './Hero.module.css'
+import { useMagnetic } from '../hooks/useMagnetic'
+
+const Scene3D = lazy(() => import('./Scene3D'))
 
 const ROLES = ['LLM systems', 'AI agents', 'ML platforms'] as const
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
@@ -35,6 +38,10 @@ export default function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 160])
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
+  const m1 = useMagnetic<HTMLAnchorElement>(0.4)
+  const m2 = useMagnetic<HTMLAnchorElement>(0.4)
+  const m3 = useMagnetic<HTMLAnchorElement>(0.4)
+
   const reveal = {
     hidden: { opacity: 0, y: 40 },
     show: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 1, ease: EASE, delay: 0.15 + i * 0.12 } }),
@@ -42,6 +49,12 @@ export default function Hero() {
 
   return (
     <section id="hero" ref={ref} className={styles.hero}>
+      <div className={styles.scene} aria-hidden="true">
+        <Suspense fallback={null}>
+          <Scene3D />
+        </Suspense>
+      </div>
+
       <motion.div className={styles.inner} style={{ y, opacity }}>
         <motion.p custom={0} variants={reveal} initial="hidden" animate="show" className={styles.eyebrow}>
           AI / LLM Engineer — Fintech
@@ -63,13 +76,13 @@ export default function Hero() {
         </motion.p>
 
         <motion.div custom={5} variants={reveal} initial="hidden" animate="show" className={styles.ctas}>
-          <a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.cta}>
+          <a ref={m1} href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.cta}>
             <span>Résumé</span><span className={styles.arrow}>→</span>
           </a>
-          <a href="#projects" className={styles.cta}>
+          <a ref={m2} href="#projects" className={styles.cta}>
             <span>Selected work</span><span className={styles.arrow}>→</span>
           </a>
-          <a href="https://github.com/shaikn6" target="_blank" rel="noopener noreferrer" className={styles.cta}>
+          <a ref={m3} href="https://github.com/shaikn6" target="_blank" rel="noopener noreferrer" className={styles.cta}>
             <span>GitHub</span><span className={styles.arrow}>↗</span>
           </a>
         </motion.div>
