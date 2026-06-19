@@ -47,12 +47,13 @@ export default function Hero() {
   // critical path so text FCP/LCP land fast and TBT stays low.
   const [show3D, setShow3D] = useState(false)
   useEffect(() => {
-    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }
-    const start = () => setShow3D(true)
-    const id = w.requestIdleCallback
-      ? w.requestIdleCallback(start, { timeout: 2500 })
-      : window.setTimeout(start, 1500)
-    return () => { if (w.requestIdleCallback) (window as Window & { cancelIdleCallback?: (h: number) => void }).cancelIdleCallback?.(id as number); else clearTimeout(id as number) }
+    const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback
+    if (typeof ric === 'function') {
+      const id = ric(() => setShow3D(true), { timeout: 2500 })
+      return () => (window as unknown as { cancelIdleCallback?: (h: number) => void }).cancelIdleCallback?.(id)
+    }
+    const id = window.setTimeout(() => setShow3D(true), 1500)
+    return () => clearTimeout(id)
   }, [])
 
   const reveal = {
