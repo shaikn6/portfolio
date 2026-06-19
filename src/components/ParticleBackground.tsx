@@ -34,7 +34,7 @@ function Particles({ count = 130 }: { count?: number }) {
     <points ref={mesh} geometry={geometry}>
       <pointsMaterial
         size={0.035}
-        color="#38bdf8"
+        color="#8b5cf6"
         transparent
         opacity={0.55}
         sizeAttenuation
@@ -89,9 +89,9 @@ export default function ParticleBackground() {
         dpr={[1, 1.5]}
       >
         <Particles count={130} />
-        <AuroraOrb position={[-4, 2, -3]} color="#2563eb" scale={5} speed={0.08} />
-        <AuroraOrb position={[4, -2, -4]} color="#7c3aed" scale={4.5} speed={0.06} />
-        <AuroraOrb position={[0, 1, -5]} color="#38bdf8" scale={3.5} speed={0.05} />
+        <AuroraOrb position={[-4, 2, -3]} color="#6366f1" scale={5} speed={0.08} />
+        <AuroraOrb position={[4, -2, -4]} color="#8b5cf6" scale={4.5} speed={0.06} />
+        <AuroraOrb position={[0, 1, -5]} color="#e879f9" scale={3.5} speed={0.05} />
       </Canvas>
     </div>
   )
