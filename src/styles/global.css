@@ -19,6 +19,53 @@ body {
   line-height: 1.6;
 }
 
+/* ── Aurora atmosphere: fixed gradient mesh behind everything ── */
+.bg-aurora {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(48vw 48vw at 18% 8%, rgba(99, 102, 241, 0.30), transparent 60%),
+    radial-gradient(42vw 42vw at 85% 22%, rgba(139, 92, 246, 0.26), transparent 62%),
+    radial-gradient(50vw 50vw at 60% 95%, rgba(232, 121, 249, 0.16), transparent 60%),
+    radial-gradient(40vw 40vw at 8% 80%, rgba(56, 189, 248, 0.12), transparent 60%),
+    var(--color-bg);
+  animation: auroraDrift 24s ease-in-out infinite alternate;
+}
+@keyframes auroraDrift {
+  0%   { transform: translate3d(0,0,0) scale(1);   filter: hue-rotate(0deg); }
+  100% { transform: translate3d(0,-2%,0) scale(1.06); filter: hue-rotate(18deg); }
+}
+
+/* ── Reusable frosted-glass surface ── */
+.glass {
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--color-border2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass);
+  position: relative;
+  isolation: isolate;
+}
+/* gradient hairline border via mask */
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--glass-border);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.9;
+}
+.glass-hover { transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+.glass-hover:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+
 /* Scroll progress bar — filled via JS */
 #scroll-bar {
   position: fixed;
@@ -49,8 +96,8 @@ body {
   z-index: 1;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(167, 139, 250, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167, 139, 250, 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
@@ -68,8 +115,8 @@ body {
 html { scroll-padding-top: 84px; }
 
 ::selection {
-  background: rgba(56, 189, 248, 0.28);
-  color: #f0f9ff;
+  background: rgba(139, 92, 246, 0.34);
+  color: #f5f3ff;
 }
 
 :focus-visible {
