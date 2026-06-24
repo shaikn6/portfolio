@@ -14,14 +14,14 @@
 }
 
 .wrap {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: var(--space-section) 48px;
 }
 
 .sectionTag {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.767rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-accent);
@@ -52,9 +52,9 @@
 
 .sectionSub {
   color: var(--color-muted);
-  max-width: 580px;
+  max-width: 660px;
   margin-bottom: 52px;
-  font-size: 0.96rem;
+  font-size: 1.13rem;
 }
 
 .grid {
@@ -81,7 +81,7 @@
 
 .blockTitle {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.802rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-accent);
@@ -95,7 +95,7 @@
 }
 
 .tag {
-  font-size: 0.8rem;
+  font-size: 0.944rem;
   padding: 4px 10px;
   background: var(--color-surface);
   border: 1px solid var(--color-border2);

@@ -1,7 +1,7 @@
 import styles from './Metrics.module.css'
 
 const METRICS = [
-  { num: '77',   lbl: 'Public Repos' },
+  { num: '75',   lbl: 'Public Repos' },
   { num: '5+',   lbl: 'Years Experience' },
   { num: '$400M', lbl: 'Member Data Secured' },
   { num: '5',    lbl: 'Cloud / ML Certifications' },
