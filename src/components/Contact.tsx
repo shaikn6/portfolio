@@ -88,6 +88,9 @@ export default function Contact() {
               <a href="https://github.com/shaikn6" target="_blank" rel="noopener noreferrer" className={styles.link}>
                 <span>⌥</span> GitHub
               </a>
+              <a href="https://huggingface.co/9mark9" target="_blank" rel="noopener noreferrer" className={styles.link}>
+                <span>🤗</span> Hugging Face
+              </a>
               <a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.link}>
                 <span>↓</span> Resume
               </a>
