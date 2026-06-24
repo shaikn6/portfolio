@@ -7,7 +7,7 @@
   overflow: hidden;
 }
 
-.inner { position: relative; z-index: 3; max-width: 1100px; }
+.inner { position: relative; z-index: 3; max-width: 1280px; }
 
 .scene {
   position: absolute;
@@ -24,7 +24,7 @@
 
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-accent);
@@ -76,7 +76,7 @@
   align-items: center;
   gap: 10px;
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 1.12rem;
   color: var(--color-ink);
   text-decoration: none;
   padding-bottom: 6px;
@@ -94,7 +94,7 @@
   z-index: 4;
 }
 .scrollCue span {
-  font-family: var(--font-mono); font-size: 0.6rem;
+  font-family: var(--font-mono); font-size: 0.708rem;
   letter-spacing: 0.26em; color: var(--color-faint); text-transform: uppercase;
 }
 .scrollLine {

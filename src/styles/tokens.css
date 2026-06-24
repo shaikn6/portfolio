@@ -28,11 +28,11 @@
   --font-mono:    'JetBrains Mono', ui-monospace, monospace;
 
   --text-hero:   clamp(3.4rem, 11vw, 11rem);
-  --text-h2:     clamp(2.4rem, 7vw, 6rem);
-  --text-base:   1rem;
+  --text-h2:     clamp(2.6rem, 6.5vw, 5.4rem);
+  --text-base:   1.0625rem;
 
   /* ── Spacing ── */
-  --space-section: clamp(8rem, 16vw, 16rem);
+  --space-section: clamp(5rem, 8vw, 8.5rem);
   --radius:        4px;
   --radius-lg:     8px;
 

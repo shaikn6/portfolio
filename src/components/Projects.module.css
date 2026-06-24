@@ -3,14 +3,14 @@
 }
 
 .wrap {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: var(--space-section) 48px;
 }
 
 .sectionTag {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.767rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-accent);
@@ -41,9 +41,9 @@
 
 .sectionSub {
   color: var(--color-muted);
-  max-width: 580px;
+  max-width: 660px;
   margin-bottom: 52px;
-  font-size: 0.96rem;
+  font-size: 1.13rem;
 }
 
 .grid {
@@ -123,7 +123,7 @@
 
 .domain {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.732rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 3px 8px;
@@ -155,7 +155,7 @@
 }
 
 .desc {
-  font-size: 0.86rem;
+  font-size: 1.01rem;
   color: var(--color-muted);
   line-height: 1.65;
   flex: 1;
@@ -170,7 +170,7 @@
 
 .pill {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.732rem;
   padding: 3px 8px;
   background: var(--color-surface);
   border: 1px solid var(--color-border2);
@@ -186,7 +186,7 @@
   padding-top: 12px;
   border-top: 1px solid var(--color-border2);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.767rem;
   color: var(--color-muted);
 }
 
