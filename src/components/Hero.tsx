@@ -90,8 +90,8 @@ export default function Hero() {
         </p>
 
         <div className={`${styles.ctas} ${styles.up}`} style={{ animationDelay: '0.58s' }}>
-          <a ref={m1} href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.cta}>
-            <span>Résumé</span><span className={styles.arrow}>→</span>
+          <a ref={m1} href="mailto:nagizaazs@gmail.com?subject=R%C3%A9sum%C3%A9%20request" className={styles.cta}>
+            <span>Résumé on request</span><span className={styles.arrow}>→</span>
           </a>
           <a ref={m2} href="#projects" className={styles.cta}>
             <span>Selected work</span><span className={styles.arrow}>→</span>
