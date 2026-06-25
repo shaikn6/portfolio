@@ -42,3 +42,5 @@ Vanilla HTML/CSS/JS — no build step, instant load. Deployed via GitHub Pages.
 [![Live](https://img.shields.io/badge/Live-shaikn6.github.io%2Fportfolio-0078d4?style=flat&logo=github)](https://shaikn6.github.io/portfolio)
 [![Repos](https://img.shields.io/badge/Public%20Repos-10-brightgreen?style=flat)](https://github.com/shaikn6)
 [![Security](https://img.shields.io/badge/Security%20Audit-58%20issues%20resolved-green?style=flat)](https://github.com/shaikn6/portfolio)
+
+<!-- resume served on request only -->
