@@ -91,8 +91,8 @@ export default function Contact() {
               <a href="https://huggingface.co/9mark9" target="_blank" rel="noopener noreferrer" className={styles.link}>
                 <span>🤗</span> Hugging Face
               </a>
-              <a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                <span>↓</span> Resume
+              <a href="mailto:nagizaazs@gmail.com?subject=R%C3%A9sum%C3%A9%20request" className={styles.link}>
+                <span>✉</span> Résumé on request
               </a>
             </div>
 
