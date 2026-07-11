@@ -15,12 +15,12 @@ interface Project {
 const PROJECTS: Project[] = [
   // ── LLM Engineering · AgentOps ──
   {
-    href: 'https://github.com/shaikn6/agent-autopsy',
+    href: 'https://github.com/shaikn6/on-device-llm-optimizer',
     domain: 'AI Engineering', domainClass: styles.dAgents,
-    name: 'Agent Autopsy',
-    desc: 'Observability and debugging framework for production LLM agents. Captures full chain-of-thought traces, tool call sequences, and token budgets across multi-agent LangGraph workflows. Surfaces latency hotspots and hallucination patterns via a Streamlit dashboard with structured JSON export.',
-    pills: ['LangGraph', 'LangChain', 'Streamlit', 'OpenTelemetry', 'FastAPI', 'Redis'],
-    stat: 'Full trace capture',
+    name: 'On-Device LLM Optimizer',
+    desc: 'Knowledge-distills Phi-3 Mini (3.8B) down to a 236M student model on Apple MLX, then INT4-quantizes and exports to CoreML — built to get real LLM inference running on-device without a server round-trip.',
+    pills: ['MLX', 'CoreML', 'Knowledge Distillation', 'INT4 Quantization', 'PyTorch'],
+    stat: '3.8B → 236M, on-device',
   },
   {
     href: 'https://github.com/shaikn6/llm-gateway',
@@ -31,12 +31,12 @@ const PROJECTS: Project[] = [
     stat: 'Multi-provider routing',
   },
   {
-    href: 'https://github.com/shaikn6/llmops-eval-platform',
-    domain: 'LLMOps', domainClass: styles.dAgents,
-    name: 'LLMOps Eval Platform',
-    desc: 'Production LLM evaluation platform — LLM-as-judge scoring, RAGAS RAG metrics, safety checks, prompt versioning, A/B testing, and per-experiment cost tracking. Built for evaluating fintech AI systems before they ship.',
-    pills: ['RAGAS', 'LLM-as-Judge', 'FastAPI', 'A/B Testing', 'Prompt Versioning'],
-    stat: 'Judge + RAG metrics',
+    href: 'https://github.com/shaikn6/finance-llmops-platform',
+    domain: 'LLMOps · Fintech', domainClass: styles.dAgents,
+    name: 'Finance LLMOps Platform',
+    desc: 'LLMOps platform purpose-built for financial services — LLM evaluation harnesses, prompt versioning with rollback, and model governance workflows for auditability. Built for teams shipping generative AI in a regulated environment.',
+    pills: ['FastAPI', 'Prompt Versioning', 'Model Governance', 'Financial Services', 'LLM Eval'],
+    stat: 'Governance + eval',
   },
   {
     href: 'https://github.com/shaikn6/nvidia-nim-rag-techniques',
@@ -47,20 +47,20 @@ const PROJECTS: Project[] = [
     stat: '5 RAG techniques',
   },
   {
-    href: 'https://github.com/shaikn6/adaptive-cognitive-rag',
-    domain: 'AI Engineering', domainClass: styles.dAgents,
-    name: 'Adaptive Cognitive RAG',
-    desc: 'RAG system that measures user cognitive state in real time from behavioral signals (response latency, clarification patterns) and adapts explanation depth accordingly. Builds a persistent per-session knowledge graph tracking mastery gaps — the Feynman Technique as a system.',
-    pills: ['RAG', 'Knowledge Graph', 'LangChain', 'Adaptive UX', 'FastAPI'],
-    stat: 'Cognitive-adaptive',
+    href: 'https://github.com/shaikn6/mlops-feature-platform',
+    domain: 'MLOps · Fintech', domainClass: styles.dMl,
+    name: 'MLOps Feature Platform',
+    desc: 'Enterprise feature platform for financial ML — Feast feature store, MLflow model registry, Airflow-orchestrated training pipelines, and Evidently AI drift monitoring, wired together as a single reproducible stack.',
+    pills: ['Feast', 'MLflow', 'Airflow', 'Evidently AI', 'Python'],
+    stat: 'Feature store + registry',
   },
   {
-    href: 'https://github.com/shaikn6/autonomous-coding-agent',
-    domain: 'AI Engineering', domainClass: styles.dAgents,
-    name: 'Autonomous Coding Agent',
-    desc: 'LangGraph ReAct agent that autonomously plans, writes, executes, and iterates code against a test harness. Tool belt includes AST-level code diffing, sandboxed subprocess execution, GitHub PR creation, and a self-critique loop that halts on coverage regression.',
-    pills: ['LangGraph', 'OpenAI', 'AST', 'GitHub API', 'Docker', 'pytest'],
-    stat: 'Self-correcting loop',
+    href: 'https://github.com/shaikn6/sql-to-dag-compiler',
+    domain: 'Data Engineering', domainClass: styles.dCloud,
+    name: 'SQL-to-DAG Compiler',
+    desc: 'Compiles Oracle SQL/PLSQL and dbt models directly into Airflow 2.x DAGs, with lineage export to Mermaid/DOT/JSON and an edge-case handler for legacy stored-procedure quirks most migration tools choke on.',
+    pills: ['Airflow', 'dbt', 'PL/SQL', 'Data Lineage', 'Python'],
+    stat: 'SQL → DAG, auto-lineage',
   },
   {
     href: 'https://github.com/shaikn6/mcp-diagram-agent',
@@ -97,12 +97,12 @@ const PROJECTS: Project[] = [
     stat: '250+ attack vectors',
   },
   {
-    href: 'https://github.com/shaikn6/ops-autopilot',
+    href: 'https://github.com/shaikn6/agentic-pipeline-healer',
     domain: 'AI · SRE', domainClass: styles.dCloud,
-    name: 'Ops Autopilot',
-    desc: 'Autonomous SRE agent that diagnoses incidents and opens PRs while you sleep. On a Prometheus/Kubernetes alert — OOMKilled, CrashLoopBackOff, failed deploy — it performs LLM root-cause analysis, creates a GitHub fix PR, posts a Slack summary, and writes a runbook entry.',
-    pills: ['LangGraph', 'Prometheus', 'Kubernetes', 'GitHub API', 'Slack API'],
-    stat: 'Auto root-cause + PR',
+    name: 'Agentic Pipeline Healer',
+    desc: 'LangGraph agent that watches Airflow DAGs in production, diagnoses failed tasks from logs and stack traces, and auto-applies fixes — schema drift, timeout tuning, dependency resets — without paging a human first.',
+    pills: ['LangGraph', 'Airflow', 'AIOps', 'FastAPI', 'Observability'],
+    stat: 'Auto-diagnose + fix',
   },
   {
     href: 'https://github.com/shaikn6/fintech-devsecops-pipeline',
@@ -161,7 +161,7 @@ export default function Projects() {
         <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>Things I've actually built.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className={styles.sectionSub}>
-            12 selected projects from 75 public repos across LLM Engineering, AI Agents, MLOps, and DevSecOps. Real code, real tests, CI green on every repo.
+            12 selected projects from 16 public repos across LLM Engineering, AI Agents, MLOps, and DevSecOps. Real code, real tests, CI green on every repo.
           </p>
         </ScrollReveal>
 
