@@ -70,6 +70,36 @@
   margin-bottom: 48px;
 }
 
+.openBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 7px 14px 7px 12px;
+  margin-bottom: 40px;
+}
+.openDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 6px 1px rgba(74, 222, 128, 0.7);
+  animation: heroLivePulse 2s ease-in-out infinite;
+}
+@keyframes heroLivePulse {
+  0%   { box-shadow: 0 0 6px 1px rgba(74, 222, 128, 0.7), 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  70%  { box-shadow: 0 0 9px 2px rgba(74, 222, 128, 0.9), 0 0 0 7px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 6px 1px rgba(74, 222, 128, 0.7), 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .openDot { animation: none; }
+}
+
 .ctas { display: flex; gap: 38px; flex-wrap: wrap; }
 .cta {
   display: inline-flex;

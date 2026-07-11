@@ -89,7 +89,12 @@ export default function Hero() {
           code; I build systems that pass the audit.
         </p>
 
-        <div className={`${styles.ctas} ${styles.up}`} style={{ animationDelay: '0.58s' }}>
+        <p className={`${styles.openBadge} ${styles.up}`} style={{ animationDelay: '0.52s' }}>
+          <span className={styles.openDot} aria-hidden="true" />
+          Open to full-time roles &amp; AI research internships — DBA (Applied AI) in progress
+        </p>
+
+        <div className={`${styles.ctas} ${styles.up}`} style={{ animationDelay: '0.6s' }}>
           <a ref={m1} href="mailto:nagizaazs@gmail.com?subject=R%C3%A9sum%C3%A9%20request" className={styles.cta}>
             <span>Résumé on request</span><span className={styles.arrow}>→</span>
           </a>
