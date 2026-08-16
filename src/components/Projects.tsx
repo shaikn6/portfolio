@@ -114,26 +114,40 @@ const PROJECTS: Project[] = [
   },
 ]
 
-function ProjectCard({ project, delay }: { project: Project; delay: number }) {
+const MAX_TILT = 7
+
+function ProjectCard({ project, delay, featured }: { project: Project; delay: number; featured?: boolean }) {
   const cardRef = useRef<HTMLAnchorElement>(null)
 
   const handlePointerMove = useCallback((e: React.PointerEvent<HTMLAnchorElement>) => {
     const el = cardRef.current
     if (!el) return
     const r = el.getBoundingClientRect()
-    el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%')
-    el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%')
+    const px = (e.clientX - r.left) / r.width
+    const py = (e.clientY - r.top) / r.height
+    el.style.setProperty('--mx', (px * 100) + '%')
+    el.style.setProperty('--my', (py * 100) + '%')
+    el.style.setProperty('--rx', (-(py - 0.5) * MAX_TILT) + 'deg')
+    el.style.setProperty('--ry', ((px - 0.5) * MAX_TILT) + 'deg')
+  }, [])
+
+  const handlePointerLeave = useCallback(() => {
+    const el = cardRef.current
+    if (!el) return
+    el.style.setProperty('--rx', '0deg')
+    el.style.setProperty('--ry', '0deg')
   }, [])
 
   return (
-    <ScrollReveal delay={delay}>
+    <ScrollReveal delay={delay} className={featured ? styles.featuredWrap : undefined}>
       <a
         ref={cardRef}
-        className={styles.card}
+        className={`${styles.card} ${featured ? styles.featured : ''}`}
         href={project.href}
         target="_blank"
         rel="noopener noreferrer"
         onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
       >
         <div className={styles.cardHeader}>
           <span className={`${styles.domain} ${project.domainClass}`}>{project.domain}</span>
@@ -167,7 +181,7 @@ export default function Projects() {
 
         <div className={styles.grid}>
           {PROJECTS.map((p, i) => (
-            <ProjectCard key={p.href} project={p} delay={i * 0.06} />
+            <ProjectCard key={p.href} project={p} delay={i * 0.06} featured={i === 0} />
           ))}
         </div>
       </div>
