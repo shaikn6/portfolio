@@ -1,5 +1,16 @@
+import { motion } from 'framer-motion'
 import ScrollReveal from './ScrollReveal'
 import styles from './Experience.module.css'
+
+const bulletList = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
+}
+
+const bulletItem = {
+  hidden: { opacity: 0, x: -10 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+}
 
 const EXPERIENCE = [
   {
@@ -75,9 +86,11 @@ export default function Experience() {
         <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>Where I've shipped.</h2></ScrollReveal>
 
         <div className={styles.timeline}>
+          <div className={styles.timelineLine} aria-hidden="true" />
           {EXPERIENCE.map((exp, i) => (
-            <ScrollReveal key={exp.company} delay={i * 0.07}>
-              <div className={styles.item}>
+            <ScrollReveal key={`${exp.company}-${exp.period}`} delay={i * 0.07}>
+              <div className={`${styles.item} ${!exp.current ? styles.past : ''}`}>
+                <span className={`${styles.dot} ${exp.current ? styles.dotCurrent : ''}`} aria-hidden="true" />
                 <div className={styles.period}>
                   {exp.period}
                   {exp.current && (
@@ -90,9 +103,15 @@ export default function Experience() {
                 <div>
                   <div className={styles.role}>{exp.role} <span className={styles.etype}>· {exp.etype}</span></div>
                   <div className={styles.company}>{exp.company}</div>
-                  <ul className={styles.bullets}>
-                    {exp.bullets.map((b) => <li key={b}>{b}</li>)}
-                  </ul>
+                  <motion.ul
+                    className={styles.bullets}
+                    variants={bulletList}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: '0px 0px -80px 0px' }}
+                  >
+                    {exp.bullets.map((b) => <motion.li key={b} variants={bulletItem}>{b}</motion.li>)}
+                  </motion.ul>
                 </div>
               </div>
             </ScrollReveal>

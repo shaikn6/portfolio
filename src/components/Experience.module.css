@@ -54,6 +54,16 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  position: relative;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 180px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--color-border), var(--color-border), transparent);
 }
 
 .item {
@@ -62,10 +72,38 @@
   gap: 0 40px;
   padding: 32px 0;
   border-bottom: 1px solid var(--color-border2);
+  position: relative;
+  transition: opacity var(--dur);
 }
 
 .item:last-child {
   border-bottom: none;
+}
+
+.item.past {
+  opacity: 0.86;
+}
+
+.item.past:hover {
+  opacity: 1;
+}
+
+.dot {
+  position: absolute;
+  left: 180px;
+  top: 41px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-bg2);
+  border: 1px solid var(--color-accent3);
+  transform: translateX(-50%);
+}
+
+.dotCurrent {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(200, 176, 138, 0.16);
 }
 
 .period {
@@ -130,6 +168,7 @@
   .wrap { padding: 64px 20px; }
   .item { grid-template-columns: 1fr; gap: 8px; }
   .period { font-size: 0.826rem; }
+  .timelineLine, .dot { display: none; }
 }
 
 /* employment type badge */
