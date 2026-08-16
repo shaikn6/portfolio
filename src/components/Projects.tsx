@@ -118,20 +118,31 @@ const MAX_TILT = 7
 
 function ProjectCard({ project, delay, featured }: { project: Project; delay: number; featured?: boolean }) {
   const cardRef = useRef<HTMLAnchorElement>(null)
+  const rafRef = useRef<number | null>(null)
 
   const handlePointerMove = useCallback((e: React.PointerEvent<HTMLAnchorElement>) => {
     const el = cardRef.current
     if (!el) return
-    const r = el.getBoundingClientRect()
-    const px = (e.clientX - r.left) / r.width
-    const py = (e.clientY - r.top) / r.height
-    el.style.setProperty('--mx', (px * 100) + '%')
-    el.style.setProperty('--my', (py * 100) + '%')
-    el.style.setProperty('--rx', (-(py - 0.5) * MAX_TILT) + 'deg')
-    el.style.setProperty('--ry', ((px - 0.5) * MAX_TILT) + 'deg')
+    const clientX = e.clientX
+    const clientY = e.clientY
+    if (rafRef.current !== null) return
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null
+      const r = el.getBoundingClientRect()
+      const px = (clientX - r.left) / r.width
+      const py = (clientY - r.top) / r.height
+      el.style.setProperty('--mx', (px * 100) + '%')
+      el.style.setProperty('--my', (py * 100) + '%')
+      el.style.setProperty('--rx', (-(py - 0.5) * MAX_TILT) + 'deg')
+      el.style.setProperty('--ry', ((px - 0.5) * MAX_TILT) + 'deg')
+    })
   }, [])
 
   const handlePointerLeave = useCallback(() => {
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current)
+      rafRef.current = null
+    }
     const el = cardRef.current
     if (!el) return
     el.style.setProperty('--rx', '0deg')
