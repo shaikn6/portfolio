@@ -71,7 +71,7 @@ export default function Hero() {
 
       <div className={styles.inner} ref={innerRef}>
         <p className={`${styles.eyebrow} ${styles.up}`} style={{ animationDelay: '0.05s' }}>
-          AI / LLM Engineer — Fintech
+          AI / LLM Engineer — GenAI Systems
         </p>
 
         <h1 className={styles.name}>
@@ -84,9 +84,9 @@ export default function Hero() {
         </div>
 
         <p className={`${styles.desc} ${styles.up}`} style={{ animationDelay: '0.46s' }}>
-          Production AI for financial services — credit-risk models, multi-agent
-          pipelines, and the secure ML platforms that ship them. I don't just write
-          code; I build systems that pass the audit.
+          Production GenAI systems — RAG pipelines, multi-agent orchestration, and
+          the secure LLMOps platforms that ship them, with deep roots in fintech.
+          I don't just write code; I build systems that pass the audit.
         </p>
 
         <p className={`${styles.openBadge} ${styles.up}`} style={{ animationDelay: '0.52s' }}>
@@ -95,8 +95,8 @@ export default function Hero() {
         </p>
 
         <div className={`${styles.ctas} ${styles.up}`} style={{ animationDelay: '0.6s' }}>
-          <a ref={m1} href="mailto:nagizaazs@gmail.com?subject=R%C3%A9sum%C3%A9%20request" className={styles.cta}>
-            <span>Résumé on request</span><span className={styles.arrow}>→</span>
+          <a ref={m1} href="/Nagizaaz_Shaik_Resume.pdf" download className={styles.cta}>
+            <span>Download résumé</span><span className={styles.arrow}>→</span>
           </a>
           <a ref={m2} href="#projects" className={styles.cta}>
             <span>Selected work</span><span className={styles.arrow}>→</span>
