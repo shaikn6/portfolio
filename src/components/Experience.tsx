@@ -15,7 +15,7 @@ const bulletItem = {
 const EXPERIENCE = [
   {
     period: 'Jul 2025 – Jun 2026',
-    current: true,
+    current: false,
     etype: 'Contract',
     role: 'AI/ML Platform Architect',
     company: 'Wright-Patt Credit Union · Fairborn, OH',
