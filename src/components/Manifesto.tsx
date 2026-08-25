@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion
 import styles from './Manifesto.module.css'
 
 const LINE =
-  'I turn financial-services problems into shipped AI systems — credit-risk models, multi-agent pipelines, and secure ML platforms that pass the audit.'
+  'I turn regulated-industry problems into shipped AI systems — credit-risk models, clinical decision support, multi-agent pipelines, and secure ML platforms that pass the audit.'
 
 const WORDS = LINE.split(' ')
 

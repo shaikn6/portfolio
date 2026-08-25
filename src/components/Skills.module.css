@@ -142,36 +142,65 @@
 }
 
 .blockTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
   font-family: var(--font-mono);
   font-size: 0.802rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-accent);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border2);
+}
+
+.blockIndex {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-faint);
+  letter-spacing: 0;
 }
 
 .tags {
   display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
+  flex-direction: column;
 }
 
 .tag {
-  font-size: 0.944rem;
-  padding: 4px 10px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border2);
-  border-radius: 6px;
-  color: var(--color-text);
-  white-space: nowrap;
-  transition: border-color var(--dur), color var(--dur), background var(--dur), transform var(--dur);
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  padding: 7px 0 7px 16px;
+  color: var(--color-muted);
+  border-bottom: 1px solid rgba(240, 236, 228, 0.055);
+  transition: color var(--dur), padding-left var(--dur), border-color var(--dur);
+}
+
+.tag:last-child {
+  border-bottom: none;
+}
+
+.tag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 5px;
+  height: 1px;
+  background: var(--color-faint);
+  transition: width var(--dur), background var(--dur);
 }
 
 .tag:hover {
-  border-color: rgba(200, 176, 138, 0.4);
-  color: var(--color-accent);
-  background: rgba(200, 176, 138, 0.08);
-  transform: translateY(-1px);
+  color: var(--color-accent2);
+  padding-left: 20px;
+  border-color: rgba(200, 176, 138, 0.18);
+}
+
+.tag:hover::before {
+  width: 9px;
+  background: var(--color-accent);
 }
 
 @media (max-width: 768px) {
