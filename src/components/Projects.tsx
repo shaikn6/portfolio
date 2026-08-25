@@ -63,6 +63,39 @@ const PROJECTS: Project[] = [
     pills: ['PyTorch', 'Transformers', 'NLP', 'From Scratch', 'Fintech'],
     stat: '~2M params',
   },
+  // ── Healthcare · Clinical AI ──
+  {
+    href: 'https://github.com/shaikn6/medical-imaging-ai',
+    domain: 'Healthcare AI', domainClass: styles.dClinical,
+    name: 'Medical Imaging AI',
+    desc: 'Chest X-ray pathology classifier with Grad-CAM and ScoreCAM explainability built from scratch — plus a U-Net segmentation head and a real DICOM ingestion pipeline with PHI scrubbing. Built so a radiologist can see why the model flagged an image, not just that it did.',
+    pills: ['PyTorch', 'Grad-CAM', 'DICOM', 'EfficientNet-B4', 'Streamlit'],
+    stat: 'Grad-CAM from scratch',
+  },
+  {
+    href: 'https://github.com/shaikn6/healthcare-rag',
+    domain: 'Healthcare AI', domainClass: styles.dClinical,
+    name: 'Healthcare RAG',
+    desc: 'HIPAA-aware clinical RAG pipeline — PHI detection and redaction before anything hits the vector store, disclaimer-injected answers, and an n8n-orchestrated ingestion flow. Retrieval-grounded clinical Q&A that treats PHI handling as a first-class design constraint, not an afterthought.',
+    pills: ['RAG', 'Claude', 'PHI Redaction', 'FastAPI', 'n8n'],
+    stat: 'PHI-redacted retrieval',
+  },
+  {
+    href: 'https://github.com/shaikn6/icu-mortality-predictor',
+    domain: 'Healthcare AI', domainClass: styles.dClinical,
+    name: 'ICU Mortality Predictor',
+    desc: '30-day ICU mortality prediction from the first 24 hours of MIMIC-III clinical data — XGBoost with Optuna-tuned hyperparameters, SHAP explainability, and HMAC-signed model artifacts. Includes a synthetic-data fallback so the full pipeline runs without a MIMIC data-use agreement.',
+    pills: ['XGBoost', 'MIMIC-III', 'SHAP', 'Optuna', 'FastAPI'],
+    stat: '0.85 AUC, synthetic-safe',
+  },
+  {
+    href: 'https://github.com/shaikn6/clinical-survival-analysis',
+    domain: 'Healthcare AI', domainClass: styles.dClinical,
+    name: 'Clinical Survival Analysis',
+    desc: 'Six survival models — Kaplan-Meier, Cox PH, Random Survival Forest, XGBoost, DeepSurv, and DeepHit — with competing-risks CIF via Aalen-Johansen, wrapped in a FastAPI + Streamlit dashboard for side-by-side comparison.',
+    pills: ['Survival Analysis', 'PyTorch', 'Cox PH', 'Streamlit'],
+    stat: '6 models, competing risks',
+  },
   // ── Safety · SRE · DevSecOps ──
   {
     href: 'https://github.com/shaikn6/llm-safety-auditor',
@@ -154,7 +187,7 @@ export default function Projects() {
         <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>Things I've actually built.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className={styles.sectionSub}>
-            12 selected projects from 16 public repos across LLM Engineering, AI Agents, MLOps, and DevSecOps. Real code, real tests, CI green on every repo.
+            12 selected projects from 15 public repos across LLM Engineering, Healthcare AI, MLOps, and DevSecOps. Real code, real tests, CI green on every repo.
           </p>
         </ScrollReveal>
 
