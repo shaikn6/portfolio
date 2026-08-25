@@ -19,8 +19,12 @@ const SKILL_BLOCKS = [
     tags: ['AWS (SageMaker · EKS · Glue · Redshift)', 'GCP', 'Terraform', 'Airflow', 'Docker', 'Kubernetes', 'ArgoCD', 'CI/CD', 'FastAPI'],
   },
   {
+    title: 'Healthcare AI & Compliance',
+    tags: ['HIPAA-aware PHI Handling', 'PHI Redaction (Presidio)', 'DICOM / pydicom', 'Grad-CAM / ScoreCAM', 'Clinical NLP', 'MIMIC-III', 'Survival Analysis'],
+  },
+  {
     title: 'Data Governance & Security',
-    tags: ['NCUA / SOC 2-aware', 'ECOA / Fair-Lending', 'PII (Presidio)', 'AES-256', 'IAM least-privilege', 'CloudTrail audit', 'OPA / Conftest', 'Checkov', 'Gitleaks', 'SLSA'],
+    tags: ['NCUA / SOC 2-aware', 'ECOA / Fair-Lending', 'AES-256', 'IAM least-privilege', 'CloudTrail audit', 'OPA / Conftest', 'Checkov', 'Gitleaks', 'SLSA'],
   },
   {
     title: 'Data Engineering & Languages',
@@ -46,7 +50,10 @@ export default function Skills() {
           {SKILL_BLOCKS.map((block, i) => (
             <ScrollReveal key={block.title} delay={i * 0.07}>
               <div className={styles.block}>
-                <div className={styles.blockTitle}>{block.title}</div>
+                <div className={styles.blockTitle}>
+                  <span className={styles.blockIndex}>{String(i + 1).padStart(2, '0')}</span>
+                  {block.title}
+                </div>
                 <div className={styles.tags}>
                   {block.tags.map((tag) => (
                     <span key={tag} className={styles.tag}>{tag}</span>
