@@ -12,8 +12,8 @@ interface Project {
   stat: string
 }
 
+// Ordered by impact — most substantial / distinctive first.
 const PROJECTS: Project[] = [
-  // ── Fintech ML · flagship ──
   {
     href: 'https://github.com/shaikn6/finance-agent-crew',
     domain: 'AI · Fintech', domainClass: styles.dAgents,
@@ -28,7 +28,15 @@ const PROJECTS: Project[] = [
     name: 'LLM Safety Auditor',
     desc: 'Reproducible red-teaming harness: 250+ adversarial vectors (50 seed templates × 6 mutation strategies), a 4-layer safety detector, OWASP LLM Top 10 scoring, and compliance-grade PDF reports. Runs key-free against a seeded mock LLM or a live provider. Live demo on Hugging Face Spaces.',
     pills: ['Python', 'OWASP LLM Top 10', 'Red-Teaming', 'FastAPI', 'Streamlit', 'ReportLab'],
-    stat: '404 tests · 97% coverage',
+    stat: '404 tests · live HF demo',
+  },
+  {
+    href: 'https://github.com/shaikn6/llm-gateway',
+    domain: 'AI Engineering', domainClass: styles.dAgents,
+    name: 'LLM Gateway',
+    desc: 'OpenAI-compatible API proxy for multi-provider LLM routing — semantic caching, token-budget enforcement, latency-aware routing, and per-key cost analytics across Claude, OpenAI, and local Ollama backends behind a single FastAPI interface with Prometheus metrics.',
+    pills: ['FastAPI', 'Claude', 'OpenAI', 'Ollama', 'Prometheus', 'Redis'],
+    stat: '323 tests · Docker',
   },
   {
     href: 'https://github.com/shaikn6/nano-finbert',
@@ -38,14 +46,21 @@ const PROJECTS: Project[] = [
     pills: ['PyTorch', 'from-scratch Transformer', 'BPE', 'NLP', 'Fintech'],
     stat: '1.88M params · 95.3% acc',
   },
-  // ── LLM Engineering · Infra ──
   {
-    href: 'https://github.com/shaikn6/llm-gateway',
+    href: 'https://github.com/shaikn6/mcp-diagram-agent',
     domain: 'AI Engineering', domainClass: styles.dAgents,
-    name: 'LLM Gateway',
-    desc: 'OpenAI-compatible API proxy for multi-provider LLM routing — semantic caching, token-budget enforcement, latency-aware routing, and per-key cost analytics across Claude, OpenAI, and local Ollama backends behind a single FastAPI interface with Prometheus metrics.',
-    pills: ['FastAPI', 'Claude', 'OpenAI', 'Ollama', 'Prometheus', 'Redis'],
-    stat: 'Multi-provider routing',
+    name: 'MCP Diagram Agent',
+    desc: 'Model Context Protocol server that turns a plain-text system description into a production-ready Excalidraw architecture diagram via Claude. Fully typed MCP tool surface with a 95% coverage gate and strict mypy + ruff CI.',
+    pills: ['MCP', 'Claude', 'Excalidraw', 'FastAPI', 'mypy'],
+    stat: '95% coverage gate',
+  },
+  {
+    href: 'https://github.com/shaikn6/nvidia-nim-rag-techniques',
+    domain: 'AI Engineering', domainClass: styles.dAgents,
+    name: 'NVIDIA NIM RAG Techniques',
+    desc: 'Five production RAG optimization techniques powered by NVIDIA NIM — hybrid search with RRF, cross-encoder reranking, query rewriting (HyDE / multi-query / step-back), context compression, and corrective RAG via LangGraph.',
+    pills: ['NVIDIA NIM', 'LangGraph', 'RRF', 'Cross-Encoder', 'HyDE'],
+    stat: '99% coverage · 5 techniques',
   },
   {
     href: 'https://github.com/shaikn6/on-device-llm-optimizer',
@@ -56,37 +71,20 @@ const PROJECTS: Project[] = [
     stat: '3.8B → 236M, on-device',
   },
   {
-    href: 'https://github.com/shaikn6/nvidia-nim-rag-techniques',
-    domain: 'AI Engineering', domainClass: styles.dAgents,
-    name: 'NVIDIA NIM RAG Techniques',
-    desc: 'Five production RAG optimization techniques powered by NVIDIA NIM — hybrid search with RRF, cross-encoder reranking, query rewriting (HyDE / multi-query / step-back), context compression, and corrective RAG via LangGraph.',
-    pills: ['NVIDIA NIM', 'LangGraph', 'RRF', 'Cross-Encoder', 'HyDE'],
-    stat: '5 RAG techniques',
-  },
-  {
-    href: 'https://github.com/shaikn6/mcp-diagram-agent',
-    domain: 'AI Engineering', domainClass: styles.dAgents,
-    name: 'MCP Diagram Agent',
-    desc: 'Model Context Protocol server that turns a plain-text system description into a production-ready Excalidraw architecture diagram via Claude. Fully typed MCP tool surface with 97%+ test coverage and a strict mypy + ruff CI gate.',
-    pills: ['MCP', 'Claude', 'Excalidraw', 'FastAPI', 'mypy'],
-    stat: '97%+ coverage',
-  },
-  // ── Fintech infra · DevSecOps ──
-  {
-    href: 'https://github.com/shaikn6/ledger-service',
-    domain: 'Fintech · Backend', domainClass: styles.dCloud,
-    name: 'Ledger Service',
-    desc: 'Double-entry accounting ledger microservice — idempotent money movement over Postgres, ordered row locking to prevent deadlocks, and append-only postings for a tamper-evident audit trail. Go 1.26.',
-    pills: ['Go', 'Postgres', 'Double-Entry', 'Idempotency'],
-    stat: 'Idempotent money movement',
-  },
-  {
     href: 'https://github.com/shaikn6/fintech-devsecops-pipeline',
     domain: 'DevSecOps · Fintech', domainClass: styles.dCloud,
     name: 'Fintech DevSecOps Pipeline',
     desc: 'DevSecOps platform for fintech workloads — Terraform on AWS EKS, Helm + ArgoCD GitOps, Checkov IaC scanning, OPA/Rego admission policies, RBAC, and NetworkPolicies enforcing least-privilege by default.',
     pills: ['Terraform', 'AWS EKS', 'ArgoCD', 'OPA', 'Checkov'],
     stat: 'Policy-gated GitOps',
+  },
+  {
+    href: 'https://github.com/shaikn6/ledger-service',
+    domain: 'Fintech · Backend', domainClass: styles.dCloud,
+    name: 'Ledger Service',
+    desc: 'Double-entry accounting ledger microservice — idempotent money movement over Postgres, deterministic row locking that cannot deadlock, and append-only postings for a tamper-evident audit trail. OpenAPI 3.1 contract. Go 1.26.',
+    pills: ['Go', 'Postgres', 'Double-Entry', 'Idempotency', 'OpenAPI'],
+    stat: 'Concurrency-safe money movement',
   },
 ]
 
