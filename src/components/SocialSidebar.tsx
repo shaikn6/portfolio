@@ -20,7 +20,7 @@ const HF = (
 
 const SOCIALS = [
   { href: 'https://github.com/shaikn6', label: 'GitHub', icon: GH },
-  { href: 'https://linkedin.com/in/nagizaazshaik', label: 'LinkedIn', icon: LI },
+  { href: 'https://www.linkedin.com/in/nagizaaz-shaik', label: 'LinkedIn', icon: LI },
   { href: 'https://huggingface.co/9mark9', label: 'Hugging Face', icon: HF },
 ]
 

@@ -1,4 +1,4 @@
-Contact: mailto:nagizaazs@gmail.com
+Contact: https://www.linkedin.com/in/nagizaaz-shaik
 Expires: 2027-06-19T00:00:00.000Z
 Preferred-Languages: en
 Canonical: https://nagizaaz.vercel.app/.well-known/security.txt
