@@ -3,9 +3,9 @@ import styles from './Education.module.css'
 
 const EDUCATION = [
   {
-    degree: 'DBA, Applied Artificial Intelligence',
+    degree: 'DBA, Applied AI Specialization',
     school: 'Belhaven University · Jackson, MS',
-    meta: 'Aug 2026 – Present · In Progress',
+    meta: 'Aug 2026 – Present · Focus: applied AI systems, model evaluation & AI governance for regulated industries',
   },
   {
     degree: 'M.S. Computer Science',

@@ -13,22 +13,47 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
-  // ── LLM Engineering · AgentOps ──
+  // ── Fintech ML · flagship ──
   {
-    href: 'https://github.com/shaikn6/on-device-llm-optimizer',
-    domain: 'AI Engineering', domainClass: styles.dAgents,
-    name: 'On-Device LLM Optimizer',
-    desc: 'Knowledge-distills Phi-3 Mini (3.8B) down to a 236M student model on Apple MLX, then INT4-quantizes and exports to CoreML — built to get real LLM inference running on-device without a server round-trip.',
-    pills: ['MLX', 'CoreML', 'Knowledge Distillation', 'INT4 Quantization', 'PyTorch'],
-    stat: '3.8B → 236M, on-device',
+    href: 'https://github.com/shaikn6/finance-agent-crew',
+    domain: 'AI · Fintech', domainClass: styles.dAgents,
+    name: 'Finance Agent Crew',
+    desc: 'Turns a stock ticker into a sourced equity-research brief: an LLM-free gatherer fans out concurrently over SEC EDGAR (XBRL), Alpha Vantage, and news; three analyst agents — fundamental, sentiment, risk — run in parallel; a writer synthesizes a BUY / HOLD / SELL call with bull and bear cases. Non-fatal error handling, CI, Docker.',
+    pills: ['Python', 'asyncio', 'Claude', 'SEC EDGAR', 'Alpha Vantage', 'FastAPI'],
+    stat: '3 analyst agents, parallel',
   },
+  {
+    href: 'https://github.com/shaikn6/llm-safety-auditor',
+    domain: 'AI Safety', domainClass: styles.dSafety,
+    name: 'LLM Safety Auditor',
+    desc: 'Reproducible red-teaming harness: 250+ adversarial vectors (50 seed templates × 6 mutation strategies), a 4-layer safety detector, OWASP LLM Top 10 scoring, and compliance-grade PDF reports. Runs key-free against a seeded mock LLM or a live provider. Live demo on Hugging Face Spaces.',
+    pills: ['Python', 'OWASP LLM Top 10', 'Red-Teaming', 'FastAPI', 'Streamlit', 'ReportLab'],
+    stat: '404 tests · 97% coverage',
+  },
+  {
+    href: 'https://github.com/shaikn6/nano-finbert',
+    domain: 'ML · Fintech', domainClass: styles.dMl,
+    name: 'nano-finbert',
+    desc: 'A 1.88M-parameter transformer encoder built entirely from scratch on financial text — custom BPE tokenizer, hand-written multi-head attention, own training loop, no pretrained weights, no HuggingFace dependency (after Karpathy’s nanoGPT, every component annotated). Companion fine-tuned model published to Hugging Face at 95.3% held-out accuracy (macro-F1 0.94).',
+    pills: ['PyTorch', 'from-scratch Transformer', 'BPE', 'NLP', 'Fintech'],
+    stat: '1.88M params · 95.3% acc',
+  },
+  // ── LLM Engineering · Infra ──
   {
     href: 'https://github.com/shaikn6/llm-gateway',
     domain: 'AI Engineering', domainClass: styles.dAgents,
     name: 'LLM Gateway',
-    desc: 'Unified API proxy for multi-provider LLM routing — semantic fallback, token-budget enforcement, latency-aware load balancing, and per-key cost accounting. Supports OpenAI, Anthropic, and local Ollama backends behind a single FastAPI interface with Prometheus metrics.',
-    pills: ['FastAPI', 'OpenAI', 'Anthropic', 'Ollama', 'Prometheus', 'Redis'],
+    desc: 'OpenAI-compatible API proxy for multi-provider LLM routing — semantic caching, token-budget enforcement, latency-aware routing, and per-key cost analytics across Claude, OpenAI, and local Ollama backends behind a single FastAPI interface with Prometheus metrics.',
+    pills: ['FastAPI', 'Claude', 'OpenAI', 'Ollama', 'Prometheus', 'Redis'],
     stat: 'Multi-provider routing',
+  },
+  {
+    href: 'https://github.com/shaikn6/on-device-llm-optimizer',
+    domain: 'AI Engineering', domainClass: styles.dAgents,
+    name: 'On-Device LLM Optimizer',
+    desc: 'Knowledge-distills Phi-3 Mini (3.8B) down to a 236M student model on Apple MLX, then INT4-quantizes and exports to CoreML — real LLM inference running on-device without a server round-trip.',
+    pills: ['MLX', 'CoreML', 'Knowledge Distillation', 'INT4 Quantization', 'PyTorch'],
+    stat: '3.8B → 236M, on-device',
   },
   {
     href: 'https://github.com/shaikn6/nvidia-nim-rag-techniques',
@@ -46,72 +71,22 @@ const PROJECTS: Project[] = [
     pills: ['MCP', 'Claude', 'Excalidraw', 'FastAPI', 'mypy'],
     stat: '97%+ coverage',
   },
-  // ── ML · Fintech ──
+  // ── Fintech infra · DevSecOps ──
   {
-    href: 'https://github.com/shaikn6/finance-agent-crew',
-    domain: 'AI · Fintech', domainClass: styles.dAgents,
-    name: 'Finance Agent Crew',
-    desc: 'Multi-agent CrewAI system for financial research — parallel analyst, risk assessor, and report-writer agents collaborating on SEC filing analysis, earnings call summaries, and portfolio risk scoring. Outputs structured markdown reports with citation chains.',
-    pills: ['CrewAI', 'LangChain', 'OpenAI', 'SEC EDGAR API', 'FAISS', 'FastAPI'],
-    stat: '3-agent pipeline',
-  },
-  {
-    href: 'https://github.com/shaikn6/nano-finbert',
-    domain: 'ML · Fintech', domainClass: styles.dMl,
-    name: 'nano-finbert',
-    desc: 'A tiny transformer encoder (~2M params) trained from scratch on financial text — no pretrained weights, no HuggingFace dependency. Inspired by nanoGPT, every component is annotated. Feed it a financial headline, get back a structured market signal: sentiment, entities, sectors, event type, impact score.',
-    pills: ['PyTorch', 'Transformers', 'NLP', 'From Scratch', 'Fintech'],
-    stat: '~2M params',
-  },
-  // ── Healthcare · Clinical AI ──
-  {
-    href: 'https://github.com/shaikn6/medical-imaging-ai',
-    domain: 'Healthcare AI', domainClass: styles.dClinical,
-    name: 'Medical Imaging AI',
-    desc: 'Chest X-ray pathology classifier with Grad-CAM and ScoreCAM explainability built from scratch — plus a U-Net segmentation head and a real DICOM ingestion pipeline with PHI scrubbing. Built so a radiologist can see why the model flagged an image, not just that it did.',
-    pills: ['PyTorch', 'Grad-CAM', 'DICOM', 'EfficientNet-B4', 'Streamlit'],
-    stat: 'Grad-CAM from scratch',
-  },
-  {
-    href: 'https://github.com/shaikn6/healthcare-rag',
-    domain: 'Healthcare AI', domainClass: styles.dClinical,
-    name: 'Healthcare RAG',
-    desc: 'HIPAA-aware clinical RAG pipeline — PHI detection and redaction before anything hits the vector store, disclaimer-injected answers, and an n8n-orchestrated ingestion flow. Retrieval-grounded clinical Q&A that treats PHI handling as a first-class design constraint, not an afterthought.',
-    pills: ['RAG', 'Claude', 'PHI Redaction', 'FastAPI', 'n8n'],
-    stat: 'PHI-redacted retrieval',
-  },
-  {
-    href: 'https://github.com/shaikn6/icu-mortality-predictor',
-    domain: 'Healthcare AI', domainClass: styles.dClinical,
-    name: 'ICU Mortality Predictor',
-    desc: '30-day ICU mortality prediction from the first 24 hours of MIMIC-III clinical data — XGBoost with Optuna-tuned hyperparameters, SHAP explainability, and HMAC-signed model artifacts. Includes a synthetic-data fallback so the full pipeline runs without a MIMIC data-use agreement.',
-    pills: ['XGBoost', 'MIMIC-III', 'SHAP', 'Optuna', 'FastAPI'],
-    stat: '0.85 AUC, synthetic-safe',
-  },
-  {
-    href: 'https://github.com/shaikn6/clinical-survival-analysis',
-    domain: 'Healthcare AI', domainClass: styles.dClinical,
-    name: 'Clinical Survival Analysis',
-    desc: 'Six survival models — Kaplan-Meier, Cox PH, Random Survival Forest, XGBoost, DeepSurv, and DeepHit — with competing-risks CIF via Aalen-Johansen, wrapped in a FastAPI + Streamlit dashboard for side-by-side comparison.',
-    pills: ['Survival Analysis', 'PyTorch', 'Cox PH', 'Streamlit'],
-    stat: '6 models, competing risks',
-  },
-  // ── Safety · SRE · DevSecOps ──
-  {
-    href: 'https://github.com/shaikn6/llm-safety-auditor',
-    domain: 'AI Safety', domainClass: styles.dSafety,
-    name: 'LLM Safety Auditor',
-    desc: 'Automated red-teaming and safety evaluation framework for production LLMs. Executes 250+ adversarial attack vectors across six mutation strategies. Scores against the full OWASP LLM Top 10 taxonomy and generates structured PDF audit reports suitable for compliance review.',
-    pills: ['HuggingFace', 'OWASP LLM Top 10', 'Red-Teaming', 'FastAPI', 'ReportLab'],
-    stat: '250+ attack vectors',
+    href: 'https://github.com/shaikn6/ledger-service',
+    domain: 'Fintech · Backend', domainClass: styles.dCloud,
+    name: 'Ledger Service',
+    desc: 'Double-entry accounting ledger microservice — idempotent money movement over Postgres, ordered row locking to prevent deadlocks, and append-only postings for a tamper-evident audit trail. Go 1.26.',
+    pills: ['Go', 'Postgres', 'Double-Entry', 'Idempotency'],
+    stat: 'Idempotent money movement',
   },
   {
     href: 'https://github.com/shaikn6/fintech-devsecops-pipeline',
     domain: 'DevSecOps · Fintech', domainClass: styles.dCloud,
     name: 'Fintech DevSecOps Pipeline',
-    desc: 'Production DevSecOps platform for fintech — Terraform on AWS EKS, Helm + ArgoCD GitOps, Checkov IaC scanning, OPA/Rego policies, Gitleaks secret scanning, SLSA provenance, and container signing, mapped to PCI-DSS and SOC 2 controls.',
-    pills: ['Terraform', 'AWS EKS', 'ArgoCD', 'OPA', 'Checkov', 'SLSA'],
-    stat: 'PCI-DSS / SOC 2',
+    desc: 'DevSecOps platform for fintech workloads — Terraform on AWS EKS, Helm + ArgoCD GitOps, Checkov IaC scanning, OPA/Rego admission policies, RBAC, and NetworkPolicies enforcing least-privilege by default.',
+    pills: ['Terraform', 'AWS EKS', 'ArgoCD', 'OPA', 'Checkov'],
+    stat: 'Policy-gated GitOps',
   },
 ]
 
@@ -187,7 +162,7 @@ export default function Projects() {
         <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>Things I've actually built.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className={styles.sectionSub}>
-            12 selected projects from 15 public repos across LLM Engineering, Healthcare AI, MLOps, and DevSecOps. Real code, real tests, CI green on every repo.
+            Selected work across fintech ML, LLM engineering, and secure infrastructure. Real code, real tests, CI green on every repo.
           </p>
         </ScrollReveal>
 
