@@ -31,24 +31,17 @@ function generatePuzzle(): Puzzle {
   return { question: `What is ${a} ${op} ${b}?`, answer }
 }
 
-// Assembled at runtime — keeps contact details out of static source strings
-// so scrapers crawling the bundle never see a complete address. Only revealed
-// in the DOM after the human-verification puzzle is solved.
-function getEmail(): string {
-  return ['nagizaazs', '@', 'gmail', '.com'].join('')
-}
-
-function getPhoneTel(): string {
-  return ['+1', 'redacted'].join('')
-}
+const PROFILES = [
+  { icon: 'in', label: 'LinkedIn', href: 'https://www.linkedin.com/in/nagizaaz-shaik' },
+  { icon: '⌥', label: 'GitHub', href: 'https://github.com/shaikn6' },
+  { icon: '🤗', label: 'Hugging Face', href: 'https://huggingface.co/9mark9' },
+]
 
 export default function Contact() {
   const [puzzle, setPuzzle] = useState<Puzzle>(() => generatePuzzle())
   const [input, setInput] = useState('')
   const [error, setError] = useState('')
   const [unlocked, setUnlocked] = useState(false)
-  const [email, setEmail] = useState('')
-  const [phoneTel, setPhoneTel] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -58,8 +51,6 @@ export default function Contact() {
   const verify = () => {
     if (parseInt(input, 10) === puzzle.answer) {
       setUnlocked(true)
-      setEmail(getEmail())
-      setPhoneTel(getPhoneTel())
       setError('')
     } else {
       setError('Incorrect — try again.')
@@ -81,25 +72,10 @@ export default function Contact() {
             <h2 className={styles.heading}>Let's build something.</h2>
             <p className={styles.sub}>ML models · AI agents · cloud infrastructure.</p>
 
-            <div className={styles.links}>
-              <a href="https://linkedin.com/in/nagizaazshaik" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                <span>in</span> LinkedIn
-              </a>
-              <a href="https://github.com/shaikn6" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                <span>⌥</span> GitHub
-              </a>
-              <a href="https://huggingface.co/9mark9" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                <span>🤗</span> Hugging Face
-              </a>
-              <a href="mailto:nagizaazs@gmail.com?subject=R%C3%A9sum%C3%A9%20request" className={styles.link}>
-                <span>✉</span> Résumé on request
-              </a>
-            </div>
-
             {!unlocked ? (
               <div className={styles.captchaWrap}>
                 <div className={styles.captchaBox}>
-                  <p className={styles.captchaLabel}>Verify you're human to unlock email</p>
+                  <p className={styles.captchaLabel}>Verify you're human to see my links</p>
                   <p className={styles.captchaQ}>{puzzle.question}</p>
                   <div className={styles.captchaRow}>
                     <input
@@ -119,12 +95,11 @@ export default function Contact() {
               </div>
             ) : (
               <div className={styles.links}>
-                <a href={`tel:${phoneTel}`} className={styles.link} aria-label="Call">
-                  <span>☎</span> Call
-                </a>
-                <a href={`mailto:${email}`} className={styles.link} aria-label="Email">
-                  <span>@</span> Email
-                </a>
+                {PROFILES.map(({ icon, label, href }) => (
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" className={styles.link}>
+                    <span>{icon}</span> {label}
+                  </a>
+                ))}
               </div>
             )}
           </div>
