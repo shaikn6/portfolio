@@ -19,12 +19,8 @@ const SKILL_BLOCKS = [
     tags: ['AWS (SageMaker · EKS · Glue · Redshift)', 'GCP', 'Terraform', 'Airflow', 'Docker', 'Kubernetes', 'ArgoCD', 'CI/CD', 'FastAPI'],
   },
   {
-    title: 'Healthcare AI & Compliance',
-    tags: ['HIPAA-aware PHI Handling', 'PHI Redaction (Presidio)', 'DICOM / pydicom', 'Grad-CAM / ScoreCAM', 'Clinical NLP', 'MIMIC-III', 'Survival Analysis'],
-  },
-  {
     title: 'Data Governance & Security',
-    tags: ['NCUA / SOC 2-aware', 'ECOA / Fair-Lending', 'AES-256', 'IAM least-privilege', 'CloudTrail audit', 'OPA / Conftest', 'Checkov', 'Gitleaks', 'SLSA'],
+    tags: ['NCUA / SOC 2-aware', 'ECOA / Fair-Lending Testing', 'PII Handling (Presidio)', 'AES-256 (rest / transit)', 'IAM least-privilege', 'OPA / Conftest', 'Checkov', 'Gitleaks'],
   },
   {
     title: 'Data Engineering & Languages',

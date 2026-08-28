@@ -1,46 +1,43 @@
 # Nagizaaz Shaik — Portfolio
 
-**Live site:** [shaikn6.github.io/portfolio](https://shaikn6.github.io/portfolio)
+**Live site:** [nagizaaz.vercel.app](https://nagizaaz.vercel.app/)
 
-Domain-targeted portfolios with tabbed navigation. Opens on **All Projects** — switch to Finance or Healthcare via the tab bar.
-
----
-
-## Top 10 Showcase Projects
-
-All 10 repositories are public. Full security audit completed — 16 CRITICALs and 42 HIGHs resolved.
-
-| # | Project | Domain | Highlights |
-|---|---------|--------|-----------|
-| 1 | [`chexpert-pathology-classifier`](https://github.com/shaikn6/chexpert-pathology-classifier) | Clinical AI | DenseNet121 + EfficientNet-B4 · CheXpert benchmark · MC Dropout uncertainty · DICOM · Grad-CAM · ScoreCAM |
-| 2 | [`clinical-survival-analysis`](https://github.com/shaikn6/clinical-survival-analysis) | Clinical AI | 6 models: KM · Cox PH · RSF · XGBoost · DeepSurv · DeepHit · competing risks · Aalen-Johansen CIF |
-| 3 | [`agentic-pipeline-healer`](https://github.com/shaikn6/agentic-pipeline-healer) | MLOps / Agents | LangGraph · multi-DAG orchestrator · AST-level fixes · Slack Block Kit · SQLite audit log |
-| 4 | [`llm-safety-auditor`](https://github.com/shaikn6/llm-safety-auditor) | LLM Security | 250+ adversarial attacks · 6 mutation strategies · OWASP LLM Top 10 · PDF audit report |
-| 5 | [`sql-to-dag-compiler`](https://github.com/shaikn6/sql-to-dag-compiler) | Data Engineering | Oracle SQL/PLSQL + dbt → Airflow 2.x DAGs · Mermaid/DOT lineage · edge-case handler |
-| 6 | [`flight-ops-intelligence`](https://github.com/shaikn6/flight-ops-intelligence) | ML Systems | XGBoost delay predictor · Open-Meteo live weather · FastAPI · Folium route risk map |
-| 7 | [`medical-imaging-ai`](https://github.com/shaikn6/medical-imaging-ai) | Clinical AI | CNN · Grad-CAM · ScoreCAM · EfficientNet-B4 · DICOM pipeline · PHI scrubbing |
-| 8 | [`federated-credit-risk`](https://github.com/shaikn6/federated-credit-risk) | Finance AI | Flower FedAvg · 3-institution · zero raw data sharing · model poisoning guard · ECOA compliance |
-| 9 | [`kafka-stream-feature-store`](https://github.com/shaikn6/kafka-stream-feature-store) | Data Engineering | Kafka → Redis · sub-60s freshness · JSON serialization · FastAPI serving layer |
-| 10 | [`clinical-note-llmops`](https://github.com/shaikn6/clinical-note-llmops) | Clinical NLP | HIPAA · Presidio PII scrubbing · BioBERT NER · ICD-10 extraction · FHIR R4 output |
-
----
-
-## Design Variants
-
-| Domain | Tab | Design |
-|--------|-----|--------|
-| All Projects | Default | Cosmic Star Field |
-| Finance | Finance tab | Bloomberg Terminal Dark |
-| Healthcare | Healthcare tab | Clinical Precision Light |
-
----
+Single-page portfolio for an AI / LLM engineer working in regulated fintech —
+production GenAI systems, RAG pipelines, multi-agent orchestration, and the
+secure LLMOps platforms that ship them.
 
 ## Stack
 
-Vanilla HTML/CSS/JS — no build step, instant load. Deployed via GitHub Pages.
+- **React 19 + TypeScript + Vite**
+- **Framer Motion** + Lenis smooth scroll, `three.js` hero scene (deferred to idle)
+- CSS Modules, design tokens, dark canvas with critical inline CSS for fast LCP
+- Deployed on **Vercel** — auto-deploys from `main`
 
-[![Live](https://img.shields.io/badge/Live-shaikn6.github.io%2Fportfolio-0078d4?style=flat&logo=github)](https://shaikn6.github.io/portfolio)
-[![Repos](https://img.shields.io/badge/Public%20Repos-10-brightgreen?style=flat)](https://github.com/shaikn6)
-[![Security](https://img.shields.io/badge/Security%20Audit-58%20issues%20resolved-green?style=flat)](https://github.com/shaikn6/portfolio)
+## Develop
 
-<!-- resume served on request only -->
+```bash
+npm install
+npm run dev      # local dev server
+npm run build    # type-check + production build to dist/
+npm run preview  # serve the production build
+```
+
+## Content
+
+All site copy lives in the component files under `src/components/` — `Hero`,
+`Experience`, `Projects`, `Skills`, `Education`, `Contact`. Edit those directly;
+there is no CMS.
+
+## Featured projects
+
+| Project | Focus |
+|---------|-------|
+| [`finance-agent-crew`](https://github.com/shaikn6/finance-agent-crew) | Async multi-agent equity research over SEC EDGAR + market data |
+| [`llm-safety-auditor`](https://github.com/shaikn6/llm-safety-auditor) | Red-teaming harness — 250+ vectors, OWASP LLM Top 10, PDF reports |
+| [`nano-finbert`](https://github.com/shaikn6/nano-finbert) | 1.88M-param transformer built from scratch on financial text |
+| [`llm-gateway`](https://github.com/shaikn6/llm-gateway) | OpenAI-compatible multi-provider LLM proxy with caching + cost analytics |
+| [`ledger-service`](https://github.com/shaikn6/ledger-service) | Double-entry accounting ledger — idempotent money movement over Postgres |
+
+## License
+
+MIT — see [LICENSE](LICENSE).

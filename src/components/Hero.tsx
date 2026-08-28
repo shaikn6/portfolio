@@ -85,9 +85,10 @@ export default function Hero() {
 
         <p className={`${styles.desc} ${styles.up}`} style={{ animationDelay: '0.46s' }}>
           Production GenAI systems — RAG pipelines, multi-agent orchestration, and
-          the secure LLMOps platforms that ship them, for regulated industries where
-          correctness isn't optional. Track record in fintech and healthcare.
-          I don't just write code; I build systems that pass the audit.
+          the secure LLMOps platforms that ship them, for regulated financial
+          environments where correctness isn't optional. Full-time and contract
+          across fintech and financial services. I don't just write code; I build
+          systems that pass the audit.
         </p>
 
         <p className={`${styles.openBadge} ${styles.up}`} style={{ animationDelay: '0.52s' }}>

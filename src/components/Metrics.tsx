@@ -2,7 +2,7 @@ import styles from './Metrics.module.css'
 
 const METRICS = [
   {
-    num: '15', lbl: 'Public Repos',
+    num: '10+', lbl: 'Public AI / Fintech Repos',
     icon: (
       <path d="M9 6 4 12l5 6M15 6l5 6-5 6" strokeLinecap="round" strokeLinejoin="round" />
     ),
@@ -17,7 +17,7 @@ const METRICS = [
     ),
   },
   {
-    num: '$400M', lbl: 'Member Data Secured',
+    num: '0', lbl: 'NCUA Audit Findings (2 audits)',
     icon: (
       <path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6L12 3Z M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
     ),
