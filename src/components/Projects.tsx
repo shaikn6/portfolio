@@ -82,9 +82,9 @@ const PROJECTS: Project[] = [
     href: 'https://github.com/shaikn6/on-device-llm-optimizer',
     domain: 'AI Engineering', domainClass: styles.dAgents,
     name: 'On-Device LLM Optimizer',
-    desc: 'Knowledge-distills Phi-3 Mini (3.8B) down to a 236M student model on Apple MLX, then INT4-quantizes and exports to CoreML — real LLM inference running on-device without a server round-trip.',
+    desc: 'A complete pipeline for shrinking an LLM to run on a phone or laptop: knowledge distillation from Phi-3 Mini (3.8B) into a 236M student model on Apple MLX, INT4 quantization, and CoreML export. The architecture and each stage are test-verified; the repo ships the pipeline, not trained checkpoints, and labels its benchmark table as targets.',
     pills: ['MLX', 'CoreML', 'Knowledge Distillation', 'INT4 Quantization', 'PyTorch'],
-    stat: '3.8B → 236M, on-device',
+    stat: '3.8B → 236M pipeline',
   },
   {
     href: 'https://github.com/shaikn6/georisk-agent',
