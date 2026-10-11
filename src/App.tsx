@@ -15,6 +15,7 @@ const Marquee = lazy(() => import('./components/Marquee'))
 const Experience = lazy(() => import('./components/Experience'))
 const Metrics = lazy(() => import('./components/Metrics'))
 const Projects = lazy(() => import('./components/Projects'))
+const Research = lazy(() => import('./components/Research'))
 const Skills = lazy(() => import('./components/Skills'))
 const Education = lazy(() => import('./components/Education'))
 const Contact = lazy(() => import('./components/Contact'))
@@ -46,6 +47,7 @@ export default function App() {
           <Experience />
           <Metrics />
           <Projects />
+          <Research />
           <Skills />
           <Education />
           <Contact />
