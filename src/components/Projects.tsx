@@ -47,6 +47,22 @@ const PROJECTS: Project[] = [
     stat: '1.88M params · from scratch',
   },
   {
+    href: 'https://github.com/shaikn6/fin-lora',
+    domain: 'ML · Fintech', domainClass: styles.dMl,
+    name: 'fin-lora',
+    desc: 'Which model should classify financial sentiment, and when is an LLM worth its cost? LoRA-tunes Qwen2.5-0.5B and benchmarks it against TF-IDF and zero-shot FinBERT on tweets, human-labeled headlines, and news. A confidence cascade sends only the uncertain items to the LLM, cutting average latency 63% for 0.4 points of accuracy. A follow-up study measures how often harmless edits or planted labels flip each model across five markets. Adapters published on Hugging Face.',
+    pills: ['PyTorch', 'LoRA', 'Qwen2.5', 'FinBERT', 'Hugging Face'],
+    stat: '63% lower latency via cascade',
+  },
+  {
+    href: 'https://github.com/shaikn6/credit-arena',
+    domain: 'ML · Fintech', domainClass: styles.dMl,
+    name: 'credit-arena',
+    desc: 'Six model families scored on the UCI credit-card default data (30,000 accounts) and compared on discrimination, calibration, business cost, and fair-lending behaviour. Paired bootstrap tests decide what counts as better: gradient boosting beats logistic regression by +0.0275 AUC (95% CI 0.0187 to 0.0369), while its lead over the random forest, ensemble, and segment specialists is not statistically separable. Sex is excluded from the features and used only in a post-hoc audit.',
+    pills: ['scikit-learn', 'Gradient Boosting', 'Calibration', 'Bootstrap CI', 'Fair Lending'],
+    stat: '+0.0275 AUC, CI-tested',
+  },
+  {
     href: 'https://github.com/shaikn6/mcp-diagram-agent',
     domain: 'AI Engineering', domainClass: styles.dAgents,
     name: 'MCP Diagram Agent',
@@ -69,6 +85,14 @@ const PROJECTS: Project[] = [
     desc: 'Knowledge-distills Phi-3 Mini (3.8B) down to a 236M student model on Apple MLX, then INT4-quantizes and exports to CoreML — real LLM inference running on-device without a server round-trip.',
     pills: ['MLX', 'CoreML', 'Knowledge Distillation', 'INT4 Quantization', 'PyTorch'],
     stat: '3.8B → 236M, on-device',
+  },
+  {
+    href: 'https://github.com/shaikn6/georisk-agent',
+    domain: 'GeoAI', domainClass: styles.dClinical,
+    name: 'georisk-agent',
+    desc: 'Physical-risk screening for a US site from satellite data: pulls a recent Sentinel-2 scene, the Copernicus elevation model, and the high-voltage grid map, then returns calibrated flood and wildfire probabilities with their track record and drivers. Validated on held-out regions against FEMA flood zones and USGS fire perimeters (flood AUC 0.866; 0.856 when trained without Ohio and tested there). Imagery sources fail over behind circuit breakers. Live demo at georisk-agent.vercel.app.',
+    pills: ['Sentinel-2', 'FastAPI', 'Calibration', 'FEMA / USGS', 'GeoAI'],
+    stat: 'Flood AUC 0.866 · live demo',
   },
   {
     href: 'https://github.com/shaikn6/fintech-devsecops-pipeline',
