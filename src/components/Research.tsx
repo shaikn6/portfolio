@@ -112,6 +112,7 @@ const PAPERS: Paper[] = [
 ]
 
 const MERGED: Contribution[] = [
+  { project: 'WingedGuardian/GENesis-AGI', change: 'Made upload cancel refuse paths and symlinks that lead outside the upload directory', href: 'https://github.com/WingedGuardian/GENesis-AGI/pull/2960' },
   { project: 'jackc/pgx', change: 'Corrected the documented pool_max_conns default', href: 'https://github.com/jackc/pgx/pull/2638' },
   { project: 'mlflow/mlflow', change: 'Fixed the trace import in the lightweight tracing SDK guide', href: 'https://github.com/mlflow/mlflow/pull/26613' },
   { project: 'langroid/langroid', change: 'Fixed the QdrantDBConfig import in an example', href: 'https://github.com/langroid/langroid/pull/1209' },
