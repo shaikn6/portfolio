@@ -10,7 +10,9 @@ export default function Analytics() {
     // visitor across sessions. Keeps analytics consent-free under GDPR/CCPA.
     let stored = sessionStorage.getItem('_vsid')
     if (!stored) {
-      stored = Math.random().toString(36).slice(2) + Date.now().toString(36)
+      stored = Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) =>
+        b.toString(16).padStart(2, '0'),
+      ).join('')
       sessionStorage.setItem('_vsid', stored)
     }
     const sid = stored
