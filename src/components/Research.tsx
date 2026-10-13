@@ -115,6 +115,7 @@ const MERGED: Contribution[] = [
   { project: 'crewAIInc/crewAI', change: 'Fixed Anthropic streaming so a returned tool call reports the call as completed (a bug I found and reported)', href: 'https://github.com/crewAIInc/crewAI/pull/8061' },
   { project: 'WingedGuardian/GENesis-AGI', change: 'Made upload cancel refuse paths and symlinks that lead outside the upload directory', href: 'https://github.com/WingedGuardian/GENesis-AGI/pull/2960' },
   { project: 'crewAIInc/crewAI', change: 'Fixed the RagTool and XMLSearchTool README imports', href: 'https://github.com/crewAIInc/crewAI/pull/8033' },
+  { project: 'temporalio/sdk-python', change: 'Fixed the ClientConfig import in the README', href: 'https://github.com/temporalio/sdk-python/pull/1955' },
   { project: 'jackc/pgx', change: 'Corrected the documented pool_max_conns default', href: 'https://github.com/jackc/pgx/pull/2638' },
   { project: 'mlflow/mlflow', change: 'Fixed the trace import in the lightweight tracing SDK guide', href: 'https://github.com/mlflow/mlflow/pull/26613' },
   { project: 'langroid/langroid', change: 'Fixed the QdrantDBConfig import in an example', href: 'https://github.com/langroid/langroid/pull/1209' },
