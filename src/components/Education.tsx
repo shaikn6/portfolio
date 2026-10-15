@@ -3,7 +3,7 @@ import styles from './Education.module.css'
 
 const EDUCATION = [
   {
-    degree: 'DBA, Applied AI Specialization',
+    degree: 'Doctor of Business Administration (DBA), Applied AI',
     school: 'Belhaven University · Jackson, MS',
     meta: 'Aug 2026 – Present · Research: AI-agent security and LLM robustness',
   },
@@ -13,9 +13,9 @@ const EDUCATION = [
     meta: 'Aug 2023 – May 2025 · GPA 3.93 / 4.0',
   },
   {
-    degree: 'B.Tech Computer Science Engineering',
+    degree: 'B.Tech. Computer Science and Engineering',
     school: 'CMR Engineering College · Hyderabad, India',
-    meta: 'Aug 2016 – May 2020 · GPA 8.9 / 10.0',
+    meta: 'Aug 2016 – May 2020 · GPA 8.9 / 10',
   },
 ]
 

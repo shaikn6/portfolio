@@ -42,7 +42,7 @@ const PROJECTS: Project[] = [
     demo: { label: 'Live demo', href: 'https://huggingface.co/spaces/9mark9/llm-safety-auditor' },
     domain: 'LLM Safety', domainClass: styles.dSafety,
     name: 'LLM Safety Auditor',
-    desc: 'Reproducible red-teaming harness: 250+ adversarial vectors (50 seed templates × 6 mutation strategies), a 6-layer safety detector, OWASP LLM Top 10 scoring, and compliance-grade PDF reports. Runs key-free against a seeded mock LLM or a live provider.',
+    desc: 'Reproducible red-teaming harness: 250+ adversarial attack vectors, a 6-layer safety detector, OWASP LLM Top 10 scoring, and PDF audit reports. Runs key-free against a seeded mock LLM; adapters for Anthropic and OpenAI-compatible endpoints are included.',
     pills: ['Python', 'OWASP LLM Top 10', 'Red-Teaming', 'FastAPI', 'Streamlit'],
     stat: '479 tests · live HF demo',
   },

@@ -21,7 +21,7 @@ const EXPERIENCE = [
     company: 'Belhaven University · Jackson, MS',
     bullets: [
       'Traced a sandbox bypass in an AI-agent code interpreter into 25 open-source projects that copied the code (23 still unpatched); reporter credit on GHSA-m5v3-6ccr-cfgx (working paper “When Vendoring Defeats the Patch”).',
-      'Showed that a planted label flips up to 92% of a LoRA-tuned financial model’s predictions across five markets, and that a standard confidence gate misses about half (working paper “Fragile in Different Ways”).',
+      'Showed that a planted label pushes a LoRA-tuned financial model to the attacker’s label on up to 92% of items across five markets, and that a standard confidence gate misses about half of one attack’s flips (working paper “Fragile in Different Ways”).',
     ],
   },
   {
@@ -64,7 +64,7 @@ const EXPERIENCE = [
     period: 'Jan 2019 – Oct 2019',
     current: false,
     etype: 'Internship',
-    role: 'Data / Python Intern',
+    role: 'Python Intern',
     company: 'Uber · Hyderabad, India',
     bullets: [
       'Automated a 4-hour weekly ETL job with Python and pandas, with rolling-baseline anomaly detection; earned a return-internship offer.',
