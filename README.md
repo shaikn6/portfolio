@@ -2,9 +2,9 @@
 
 **Live site:** [nagizaaz.vercel.app](https://nagizaaz.vercel.app/)
 
-Single-page portfolio for an AI / LLM engineer working in regulated fintech —
-production GenAI systems, RAG pipelines, multi-agent orchestration, and the
-secure LLMOps platforms that ship them.
+Single-page portfolio for an LLM, generative-AI and agentic AI engineer —
+LLM gateways, RAG, multi-agent systems, agent memory, fine-tuning and
+red-teaming.
 
 ## Stack
 
@@ -32,11 +32,11 @@ there is no CMS.
 
 | Project | Focus |
 |---------|-------|
-| [`finance-agent-crew`](https://github.com/shaikn6/finance-agent-crew) | Async multi-agent equity research over SEC EDGAR + market data |
+| [`llm-gateway`](https://github.com/shaikn6/llm-gateway) | OpenAI-compatible multi-provider LLM gateway with caching, rate limits, A/B routing and cost tracking |
+| [`lethe`](https://github.com/shaikn6/lethe) | Memory server for AI agents that learns from feedback which memories to return |
 | [`llm-safety-auditor`](https://github.com/shaikn6/llm-safety-auditor) | Red-teaming harness — 250+ vectors, OWASP LLM Top 10, PDF reports |
-| [`nano-finbert`](https://github.com/shaikn6/nano-finbert) | 1.88M-param transformer built from scratch on financial text |
-| [`llm-gateway`](https://github.com/shaikn6/llm-gateway) | OpenAI-compatible multi-provider LLM proxy with caching + cost analytics |
-| [`ledger-service`](https://github.com/shaikn6/ledger-service) | Double-entry accounting ledger — idempotent money movement over Postgres |
+| [`fin-lora`](https://github.com/shaikn6/fin-lora) | LoRA-tuned Qwen2.5 with a confidence cascade and a robustness study |
+| [`finance-agent-crew`](https://github.com/shaikn6/finance-agent-crew) | Async multi-agent research over SEC EDGAR, market data and news |
 
 ## License
 

@@ -32,7 +32,7 @@ function generatePuzzle(): Puzzle {
 }
 
 const PROFILES = [
-  { icon: 'in', label: 'LinkedIn', href: 'https://www.linkedin.com/in/nagizaaz-shaik' },
+  { icon: 'in', label: 'LinkedIn', href: 'https://www.linkedin.com/in/nagizaazshaik' },
   { icon: '⌥', label: 'GitHub', href: 'https://github.com/shaikn6' },
   { icon: '🤗', label: 'Hugging Face', href: 'https://huggingface.co/9mark9' },
 ]
@@ -70,7 +70,7 @@ export default function Contact() {
           <div className={styles.box}>
             <div className={styles.sectionTag}>Contact</div>
             <h2 className={styles.heading}>Let's build something.</h2>
-            <p className={styles.sub}>ML models · AI agents · cloud infrastructure.</p>
+            <p className={styles.sub}>LLM systems · AI agents · RAG.</p>
 
             {!unlocked ? (
               <div className={styles.captchaWrap}>

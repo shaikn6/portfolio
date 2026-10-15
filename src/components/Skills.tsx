@@ -3,28 +3,28 @@ import styles from './Skills.module.css'
 
 const SKILL_BLOCKS = [
   {
-    title: 'Fintech & Risk',
-    tags: ['Double-Entry Ledgers', 'Idempotent Money Movement', 'Credit-Risk Modelling', 'Calibration & Bootstrap CIs', 'Fair-Lending Testing (ECOA)', 'Walk-Forward Backtesting', 'Optimal Execution (TWAP · Almgren-Chriss)', 'Financial Sentiment', 'NCUA / SOC 2-aware'],
+    title: 'LLMs & Fine-Tuning',
+    tags: ['Claude', 'OpenAI', 'Qwen2.5', 'Hugging Face', 'LoRA / PEFT', 'Knowledge Distillation', 'INT4 Quantization', 'Apple MLX', 'vLLM', 'Ollama'],
   },
   {
-    title: 'LLM & Agentic AI',
-    tags: ['RAG (Hybrid · Reranking · HyDE · CRAG)', 'LangGraph', 'CrewAI', 'MCP', 'LLM Gateways', 'Response Caching', 'LoRA / PEFT', 'RAGAS · LLM-as-Judge', 'Cost Analytics', 'NVIDIA NIM', 'vLLM / Ollama'],
+    title: 'Agentic AI',
+    tags: ['LangGraph', 'CrewAI', 'Multi-Agent Systems', 'MCP', 'Tool Calling', 'Agent Memory', 'Pydantic Structured Outputs', 'Async Pipelines'],
   },
   {
-    title: 'Machine Learning',
-    tags: ['PyTorch', 'Transformers (from-scratch)', 'Knowledge Distillation', 'XGBoost', 'BERT', 'HuggingFace', 'scikit-learn', 'SHAP', 'SageMaker (Pipelines · Monitor)', 'MLflow'],
+    title: 'RAG & Retrieval',
+    tags: ['LangChain', 'Embeddings', 'Pinecone', 'FAISS', 'BM25 Hybrid Search', 'Reranking', 'HyDE', 'Corrective RAG', 'Semantic Caching', 'NVIDIA NIM'],
   },
   {
-    title: 'Cloud & MLOps',
-    tags: ['AWS (SageMaker · EKS · Glue · Redshift)', 'GCP', 'Terraform', 'Docker', 'Kubernetes', 'ArgoCD', 'GitHub Actions', 'Airflow', 'n8n', 'FastAPI'],
+    title: 'Evaluation & Safety',
+    tags: ['RAGAS', 'LLM-as-Judge', 'A/B Testing', 'Robustness Testing', 'OWASP LLM Top 10', 'Red-Teaming', 'Prompt Injection', 'Sandbox-Bypass Research', 'Coordinated Disclosure', 'Presidio PII'],
   },
   {
-    title: 'AI Security & Governance',
-    tags: ['OWASP LLM Top 10', 'Red-Teaming', 'Model Robustness Testing', 'Sandbox-Escape Research', 'Coordinated Disclosure', 'PII Handling (Presidio)', 'IAM least-privilege', 'OPA / Conftest', 'Checkov', 'Gitleaks'],
+    title: 'LLMOps & Cloud',
+    tags: ['FastAPI', 'Redis', 'Docker', 'Kubernetes', 'ArgoCD', 'GitHub Actions', 'MLflow', 'AWS SageMaker / EKS', 'GCP Vertex AI', 'Terraform'],
   },
   {
-    title: 'Data Engineering & Languages',
-    tags: ['Python', 'Go', 'SQL', 'PostgreSQL', 'Kafka', 'Spark / PySpark', 'dbt', 'Snowflake', 'Redshift', 'Oracle SQL / PL-SQL', 'Bash'],
+    title: 'ML & Languages',
+    tags: ['PyTorch', 'BERT', 'XGBoost', 'scikit-learn', 'Reinforcement Learning (PPO)', 'Python', 'Go', 'SQL', 'JavaScript'],
   },
 ]
 
@@ -37,9 +37,9 @@ export default function Skills() {
       </div>
       <div className={styles.wrap}>
         <ScrollReveal><div className={styles.sectionTag}>Skills</div></ScrollReveal>
-        <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>Fintech depth, full ML lifecycle.</h2></ScrollReveal>
+        <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>LLM systems, end to end.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
-          <p className={styles.sectionSub}>Domain knowledge of money movement, credit and markets, on top of the full path from raw data to a deployed, monitored and secured model.</p>
+          <p className={styles.sectionSub}>From choosing and fine-tuning the model to retrieval, agents, evaluation, safety and the platform that serves them.</p>
         </ScrollReveal>
 
         <div className={styles.grid}>

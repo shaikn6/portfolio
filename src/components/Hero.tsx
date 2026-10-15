@@ -4,7 +4,7 @@ import { useMagnetic } from '../hooks/useMagnetic'
 import SafeBoundary from './SafeBoundary'
 
 const Scene3D = lazy(() => import('./Scene3D'))
-const ROLES = ['LLM systems', 'AI agents', 'ML platforms'] as const
+const ROLES = ['LLM systems', 'AI agents', 'RAG pipelines'] as const
 
 function RotatingRole() {
   const [index, setIndex] = useState(0)
@@ -71,7 +71,7 @@ export default function Hero() {
 
       <div className={styles.inner} ref={innerRef}>
         <p className={`${styles.eyebrow} ${styles.up}`} style={{ animationDelay: '0.05s' }}>
-          AI / LLM Engineer — GenAI Systems
+          LLM · Generative AI · Agentic AI Engineer
         </p>
 
         <h1 className={styles.name}>
@@ -84,16 +84,16 @@ export default function Hero() {
         </div>
 
         <p className={`${styles.desc} ${styles.up}`} style={{ animationDelay: '0.46s' }}>
-          Production GenAI systems — RAG pipelines, multi-agent orchestration, and
-          the secure LLMOps platforms that ship them, for regulated financial
-          environments where correctness isn't optional. Full-time and contract
-          across fintech and financial services. I don't just write code; I build
-          systems that pass the audit.
+          LLM, generative-AI and agentic systems — LLM gateways with evaluation
+          guardrails, RAG over regulatory documents, multi-agent orchestration,
+          agent memory that learns from feedback, and red-teaming. Five years across
+          data and ML engineering, two of them shipping production LLM systems in
+          regulated finance.
         </p>
 
         <p className={`${styles.openBadge} ${styles.up}`} style={{ animationDelay: '0.52s' }}>
           <span className={styles.openDot} aria-hidden="true" />
-          Open to full-time roles &amp; AI research internships — DBA (Applied AI) in progress
+          Open to LLM, GenAI &amp; agentic AI engineering roles — DBA (Applied AI) in progress
         </p>
 
         <div className={`${styles.ctas} ${styles.up}`} style={{ animationDelay: '0.6s' }}>
