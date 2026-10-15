@@ -2,7 +2,7 @@ import { useRef, useCallback, useState } from 'react'
 import ScrollReveal from './ScrollReveal'
 import styles from './Projects.module.css'
 
-type Group = 'fintech' | 'llm' | 'ml' | 'infra'
+type Group = 'llm' | 'agents' | 'safety'
 
 interface Project {
   href: string
@@ -16,146 +16,98 @@ interface Project {
   stat: string
 }
 
-// Fintech first, then LLM systems, ML research and infrastructure.
+// LLM systems, agents, then evaluation and safety. Every figure comes from the linked repository.
 const PROJECTS: Project[] = [
-  {
-    href: 'https://github.com/shaikn6/ledger-service',
-    group: 'fintech',
-    domain: 'Fintech · Backend', domainClass: styles.dCloud,
-    name: 'Ledger Service',
-    desc: 'Double-entry accounting ledger microservice — idempotent money movement over Postgres, deterministic row locking that cannot deadlock, and append-only postings for a tamper-evident audit trail. OpenAPI 3.1 contract. Go 1.27.',
-    pills: ['Go', 'Postgres', 'Double-Entry', 'Idempotency', 'OpenAPI'],
-    stat: 'Concurrency-safe money movement',
-  },
   {
     href: 'https://github.com/shaikn6/llm-gateway',
     group: 'llm',
-    domain: 'AI Engineering', domainClass: styles.dAgents,
+    domain: 'LLMOps', domainClass: styles.dCloud,
     name: 'LLM Gateway',
     desc: 'One OpenAI-style chat endpoint over Claude, OpenAI, and local Ollama backends — per-tenant response caching, rate limiting, deterministic A/B routing, per-key cost tracking, and audit logging behind a single FastAPI service. Provider calls are checked against the real SDK method signatures in CI.',
     pills: ['FastAPI', 'Claude', 'OpenAI', 'Ollama', 'Redis'],
     stat: '415 tests · 99% coverage',
   },
   {
-    href: 'https://github.com/shaikn6/fin-lora',
-    group: 'fintech',
-    demo: { label: 'Hugging Face model', href: 'https://huggingface.co/9mark9/fin-lora-news-qwen2.5-0.5b' },
-    domain: 'ML · Fintech', domainClass: styles.dMl,
-    name: 'fin-lora',
-    desc: 'Which model should classify financial sentiment, and when is an LLM worth its cost? LoRA-tunes Qwen2.5-0.5B and benchmarks it against TF-IDF and zero-shot FinBERT on tweets, human-labeled headlines, and news. A confidence cascade sends only the uncertain items to the LLM, cutting average latency 63% for 0.4 points of accuracy. A follow-up study measures how often harmless edits or planted labels flip each model across five markets. Adapters published on Hugging Face.',
-    pills: ['PyTorch', 'LoRA', 'Qwen2.5', 'FinBERT', 'Hugging Face'],
-    stat: '63% lower latency',
-  },
-  {
-    href: 'https://github.com/shaikn6/credit-arena',
-    group: 'fintech',
-    domain: 'ML · Fintech', domainClass: styles.dMl,
-    name: 'credit-arena',
-    desc: 'Six model families scored on the UCI credit-card default data (30,000 accounts) and compared on discrimination, calibration, business cost, and fair-lending behaviour. Paired bootstrap tests decide what counts as better: gradient boosting beats logistic regression by +0.0275 AUC (95% CI 0.0187 to 0.0369), while its lead over the random forest, ensemble, and segment specialists is not statistically separable. Sex is excluded from the features and used only in a post-hoc audit.',
-    pills: ['scikit-learn', 'Gradient Boosting', 'Calibration', 'Bootstrap CI', 'Fair Lending'],
-    stat: '+0.0275 AUC, CI-tested',
-  },
-  {
-    href: 'https://github.com/shaikn6/finance-agent-crew',
-    group: 'fintech',
-    domain: 'AI · Fintech', domainClass: styles.dAgents,
-    name: 'Finance Agent Crew',
-    desc: 'Turns a stock ticker into a sourced equity-research brief: an LLM-free gatherer fans out concurrently over SEC EDGAR (XBRL), Alpha Vantage, and news; three analyst agents — fundamental, sentiment, risk — run in parallel; a writer synthesizes a BUY / HOLD / SELL call with bull and bear cases. Non-fatal error handling, CI, Docker.',
-    pills: ['Python', 'asyncio', 'Claude', 'SEC EDGAR', 'Alpha Vantage', 'FastAPI'],
-    stat: '3 analyst agents, parallel',
-  },
-  {
-    href: 'https://github.com/shaikn6/fintech-devsecops-pipeline',
-    group: 'infra',
-    domain: 'DevSecOps · Fintech', domainClass: styles.dCloud,
-    name: 'Fintech DevSecOps Pipeline',
-    desc: 'DevSecOps platform for fintech workloads — Terraform on AWS EKS, Helm + ArgoCD GitOps, Checkov IaC scanning, OPA/Rego admission policies, RBAC, and NetworkPolicies enforcing least-privilege by default.',
-    pills: ['Terraform', 'AWS EKS', 'ArgoCD', 'OPA', 'Checkov'],
-    stat: 'Policy-gated GitOps',
+    href: 'https://github.com/shaikn6/lethe',
+    group: 'agents',
+    domain: 'Agent Memory', domainClass: styles.dAgents,
+    name: 'lethe',
+    desc: 'A memory server for AI agents that learns which memories to return. After each recall the agent reports whether the memories helped, and a small reinforcement-learning policy shifts the ranking. On held-out LoCoMo conversations, evidence in the top 5 rises from 0.545 (best hand-set rule) to 0.618; on LongMemEval it ties the best rule. One Go binary with a crash-safe journal and Python, LangChain and MCP adapters.',
+    pills: ['Go', 'Reinforcement Learning', 'LangChain', 'MCP', 'Python'],
+    stat: '0.545 → 0.618 top-5 evidence',
   },
   {
     href: 'https://github.com/shaikn6/llm-safety-auditor',
-    group: 'infra',
+    group: 'safety',
     demo: { label: 'Live demo', href: 'https://huggingface.co/spaces/9mark9/llm-safety-auditor' },
-    domain: 'AI Safety', domainClass: styles.dSafety,
+    domain: 'LLM Safety', domainClass: styles.dSafety,
     name: 'LLM Safety Auditor',
-    desc: 'Reproducible red-teaming harness: 250+ adversarial vectors (50 seed templates × 6 mutation strategies), a 6-layer safety detector, OWASP LLM Top 10 scoring, and compliance-grade PDF reports. Runs key-free against a seeded mock LLM or a live provider. Live demo on Hugging Face Spaces.',
-    pills: ['Python', 'OWASP LLM Top 10', 'Red-Teaming', 'FastAPI', 'Streamlit', 'ReportLab'],
+    desc: 'Reproducible red-teaming harness: 250+ adversarial vectors (50 seed templates × 6 mutation strategies), a 6-layer safety detector, OWASP LLM Top 10 scoring, and compliance-grade PDF reports. Runs key-free against a seeded mock LLM or a live provider.',
+    pills: ['Python', 'OWASP LLM Top 10', 'Red-Teaming', 'FastAPI', 'Streamlit'],
     stat: '479 tests · live HF demo',
   },
   {
-    href: 'https://github.com/shaikn6/exec-rl',
-    group: 'fintech',
-    domain: 'ML · Fintech', domainClass: styles.dMl,
-    name: 'exec-rl',
-    desc: 'Optimal trade execution on a simulated market with price impact and a predictive signal: a from-scratch PPO agent against TWAP, Almgren-Chriss, and the exact optimum computed by a Riccati recursion. The honest result: a two-parameter rule tuned on training paths beats every PPO seed wherever there is a signal.',
-    pills: ['PyTorch', 'PPO', 'Almgren-Chriss', 'Dynamic Programming', 'Simulation'],
-    stat: 'RL vs the exact optimum',
+    href: 'https://github.com/shaikn6/fin-lora',
+    group: 'llm',
+    demo: { label: 'Hugging Face model', href: 'https://huggingface.co/9mark9/fin-lora-news-qwen2.5-0.5b' },
+    domain: 'Fine-Tuning', domainClass: styles.dMl,
+    name: 'fin-lora',
+    desc: 'LoRA-tunes Qwen2.5-0.5B for financial sentiment and benchmarks it against TF-IDF and zero-shot FinBERT: 84.7% on 2,000 news snippets vs 73.6% for FinBERT. A confidence cascade sends only uncertain items to the LLM, cutting average latency 63% for 0.4 points of accuracy. A follow-up study measures how easily planted labels flip each model across five markets.',
+    pills: ['PyTorch', 'LoRA / PEFT', 'Qwen2.5', 'FinBERT', 'Hugging Face'],
+    stat: '84.7% vs 73.6% FinBERT',
   },
   {
-    href: 'https://github.com/shaikn6/trade-arena',
-    group: 'fintech',
-    domain: 'ML · Fintech', domainClass: styles.dMl,
-    name: 'trade-arena',
-    desc: 'Walk-forward backtest of trading rules and ML models on 10 stocks, ETFs and crypto, net of transaction costs, with a shuffled-label control. Nothing beat buy-and-hold on average, and the write-up says so: the models matched it before costs and their turnover made them worse after.',
-    pills: ['scikit-learn', 'Walk-Forward', 'Transaction Costs', 'Shuffled-Label Control'],
-    stat: 'Nothing beat buy-and-hold',
-  },
-  {
-    href: 'https://github.com/shaikn6/nano-finbert',
-    group: 'ml',
-    demo: { label: 'Companion model', href: 'https://huggingface.co/9mark9/finbert-minilm-sentiment' },
-    domain: 'ML · Fintech', domainClass: styles.dMl,
-    name: 'nano-finbert',
-    desc: 'A 1.88M-parameter transformer encoder built entirely from scratch on financial text — custom BPE tokenizer, hand-written multi-head attention, own training loop, no pretrained weights, no HuggingFace dependency (after Karpathy’s nanoGPT, every component annotated). Companion fine-tuned model published to Hugging Face at 95.3% held-out accuracy (macro-F1 0.94).',
-    pills: ['PyTorch', 'from-scratch Transformer', 'BPE', 'NLP', 'Fintech'],
-    stat: '1.88M params · from scratch',
-  },
-  {
-    href: 'https://github.com/shaikn6/georisk-agent',
-    group: 'ml',
-    demo: { label: 'Live demo', href: 'https://georisk-agent.vercel.app' },
-    domain: 'GeoAI', domainClass: styles.dClinical,
-    name: 'georisk-agent',
-    desc: 'Physical-risk screening for a US site from satellite data: pulls a recent Sentinel-2 scene, the Copernicus elevation model, and the high-voltage grid map, then returns calibrated flood and wildfire probabilities with their track record and drivers. Validated on held-out regions against FEMA flood zones and USGS fire perimeters (flood AUC 0.866; 0.856 when trained without Ohio and tested there). Imagery sources fail over behind circuit breakers. Live demo at georisk-agent.vercel.app.',
-    pills: ['Sentinel-2', 'FastAPI', 'Calibration', 'FEMA / USGS', 'GeoAI'],
-    stat: 'Flood AUC 0.866',
+    href: 'https://github.com/shaikn6/finance-agent-crew',
+    group: 'agents',
+    domain: 'Multi-Agent', domainClass: styles.dAgents,
+    name: 'Finance Agent Crew',
+    desc: 'Turns a stock ticker into a sourced research brief: an LLM-free gatherer fans out concurrently over SEC EDGAR, market data and news; fundamental, sentiment and risk agents run in parallel; a writer agent synthesizes a BUY / HOLD / SELL call with bull and bear cases. Typed Pydantic outputs throughout.',
+    pills: ['Python', 'asyncio', 'Claude', 'Pydantic', 'FastAPI'],
+    stat: '333 tests · 99% coverage',
   },
   {
     href: 'https://github.com/shaikn6/mcp-diagram-agent',
-    group: 'llm',
-    domain: 'AI Engineering', domainClass: styles.dAgents,
+    group: 'agents',
+    domain: 'MCP', domainClass: styles.dAgents,
     name: 'MCP Diagram Agent',
-    desc: 'Model Context Protocol server that turns a plain-text system description into a production-ready Excalidraw architecture diagram via Claude. Fully typed MCP tool surface with a 95% coverage gate and strict mypy + ruff CI.',
+    desc: 'Model Context Protocol server that turns a plain-text system description into an Excalidraw architecture diagram via Claude. Fully typed MCP tool surface with a 95% coverage gate and strict mypy + ruff CI.',
     pills: ['MCP', 'Claude', 'Excalidraw', 'FastAPI', 'mypy'],
     stat: '95% coverage gate',
   },
   {
     href: 'https://github.com/shaikn6/nvidia-nim-rag-techniques',
     group: 'llm',
-    domain: 'AI Engineering', domainClass: styles.dAgents,
+    domain: 'RAG', domainClass: styles.dMl,
     name: 'NVIDIA NIM RAG Techniques',
-    desc: 'Five production RAG optimization techniques powered by NVIDIA NIM — hybrid search with RRF, cross-encoder reranking, query rewriting (HyDE / multi-query / step-back), context compression, and corrective RAG via LangGraph.',
+    desc: 'Five RAG optimization techniques on NVIDIA NIM — hybrid search with RRF, cross-encoder reranking, query rewriting (HyDE / multi-query / step-back), context compression, and corrective RAG via LangGraph.',
     pills: ['NVIDIA NIM', 'LangGraph', 'RRF', 'Cross-Encoder', 'HyDE'],
-    stat: '99% coverage · 5 techniques',
+    stat: '5 techniques',
   },
   {
     href: 'https://github.com/shaikn6/on-device-llm-optimizer',
-    group: 'ml',
-    domain: 'AI Engineering', domainClass: styles.dAgents,
+    group: 'llm',
+    domain: 'Efficient LLMs', domainClass: styles.dMl,
     name: 'On-Device LLM Optimizer',
-    desc: 'A complete pipeline for shrinking an LLM to run on a phone or laptop: knowledge distillation from Phi-3 Mini (3.8B) into a 236M student model on Apple MLX, INT4 quantization, and CoreML export. The architecture and each stage are test-verified; the repo ships the pipeline, not trained checkpoints, and labels its benchmark table as targets.',
+    desc: 'A pipeline for shrinking an LLM to run on a laptop or phone: knowledge distillation from Phi-3 Mini (3.8B) into a 236M student on Apple MLX, INT4 quantization, and CoreML export. The repo ships the pipeline, not trained checkpoints, and labels its benchmark table as targets.',
     pills: ['MLX', 'CoreML', 'Knowledge Distillation', 'INT4 Quantization', 'PyTorch'],
     stat: '3.8B → 236M pipeline',
+  },
+  {
+    href: 'https://github.com/shaikn6/guard-gap-detector',
+    group: 'safety',
+    domain: 'Agent Security', domainClass: styles.dSafety,
+    name: 'guard-gap-detector',
+    desc: 'Read-only static detector for a sandbox-guard gap in the AST-walking restricted Python interpreters that AI agents use to run code. Ships a synthetic test corpus, no third-party code and no exploit. Artifact for the working paper “When Vendoring Defeats the Patch”.',
+    pills: ['Python', 'AST', 'Static Analysis', 'AI Agents'],
+    stat: 'Paper artifact',
   },
 ]
 
 const FILTERS: { id: 'all' | Group; label: string }[] = [
   { id: 'all', label: 'All' },
-  { id: 'fintech', label: 'Fintech' },
-  { id: 'llm', label: 'LLM & Agents' },
-  { id: 'ml', label: 'ML Research' },
-  { id: 'infra', label: 'Security & Infra' },
+  { id: 'llm', label: 'LLM Systems' },
+  { id: 'agents', label: 'Agents' },
+  { id: 'safety', label: 'Safety & Evaluation' },
 ]
 
 const MAX_TILT = 7
@@ -240,8 +192,8 @@ export default function Projects() {
         <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>Things I've actually built.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className={styles.sectionSub}>
-            Fintech systems first: ledgers, credit risk, execution and sentiment, then the LLM platforms and
-            infrastructure around them. Real code, real tests, CI green on every repo.
+            LLM systems and agents first, then the evaluation and safety work that keeps them honest.
+            Real code and real tests; every number comes from the linked repository.
           </p>
         </ScrollReveal>
 

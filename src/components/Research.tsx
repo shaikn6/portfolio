@@ -29,6 +29,13 @@ type TabId = 'findings' | 'papers' | 'oss'
 // Every figure below is taken from the linked repository's README or results files.
 const FINDINGS: Finding[] = [
   {
+    figure: '0.618',
+    area: 'Agent memory',
+    claim: 'of the evidence lands in the top 5 memories when the ranking is learned from feedback, against 0.545 for the best hand-set rule, on LoCoMo conversations the learner never saw. On LongMemEval it ties the best rule.',
+    source: 'lethe',
+    href: 'https://github.com/shaikn6/lethe',
+  },
+  {
     figure: '68–92%',
     area: 'LLM robustness',
     claim: 'of items: a planted annotation pushes a fine-tuned 0.5B sentiment model to "Bullish" in every one of five markets tested. A larger model resists that phrasing and falls to a different one.',
@@ -36,43 +43,15 @@ const FINDINGS: Finding[] = [
     href: 'https://github.com/shaikn6/fin-lora',
   },
   {
-    figure: '+0.0275',
-    area: 'Credit risk',
-    claim: 'AUC for gradient boosting over logistic regression on 30,000 credit-card accounts (95% CI 0.0187 to 0.0369). Its lead over the forest, the ensemble and segment specialists is not statistically separable.',
-    source: 'credit-arena',
-    href: 'https://github.com/shaikn6/credit-arena',
-  },
-  {
-    figure: '0 of 5',
-    area: 'Markets',
-    claim: 'strategies beat buy-and-hold on average after costs in a walk-forward backtest on 10 assets, and none was significantly better on any single one. A shuffled-label control shows the test can tell signal from noise.',
-    source: 'trade-arena',
-    href: 'https://github.com/shaikn6/trade-arena',
-  },
-  {
-    figure: '2 params',
-    area: 'Execution',
-    claim: 'are enough: in simulated optimal execution, a two-parameter signal rule tuned on training paths beats every PPO seed wherever there is a signal to use.',
-    source: 'exec-rl',
-    href: 'https://github.com/shaikn6/exec-rl',
-  },
-  {
-    figure: '~2,750/s',
-    area: 'Payments backend',
-    claim: 'transfers sustained by the double-entry ledger on a laptop, with zero errors and zero balance drift across about 175,000 transfers.',
-    source: 'ledger-service',
-    href: 'https://github.com/shaikn6/ledger-service',
-  },
-  {
-    figure: '55 → 65%',
-    area: 'Model capacity',
-    claim: 'is as far as distillation and pretraining take a 1.88M-parameter from-scratch transformer on a fixed test split. A much better teacher moved it by about one point.',
-    source: 'nano-finbert',
-    href: 'https://github.com/shaikn6/nano-finbert',
+    figure: '−63%',
+    area: 'LLM cost',
+    claim: 'average latency when a confidence cascade sends only uncertain items to the fine-tuned LLM, for 0.4 points of accuracy.',
+    source: 'fin-lora cascade',
+    href: 'https://github.com/shaikn6/fin-lora',
   },
   {
     figure: 'GHSA',
-    area: 'AI security',
+    area: 'AI-agent security',
     claim: 'reporter credit for a sandbox bypass in an AI-agent code executor. Further reports are under coordinated disclosure.',
     source: 'advisory',
     href: 'https://github.com/femto/minion/security/advisories/GHSA-m5v3-6ccr-cfgx',
@@ -93,21 +72,9 @@ const PAPERS: Paper[] = [
     artifact: { label: 'Code and results', href: 'https://github.com/shaikn6/fin-lora' },
   },
   {
-    title: 'When Is a Complex Credit Model Worth It?',
-    question: 'Across repeated splits of two public credit datasets, when does a more complex model earn its place, and what does it cost in fair-lending behaviour?',
-    status: 'Draft',
-    artifact: { label: 'Code and results', href: 'https://github.com/shaikn6/credit-arena' },
-  },
-  {
     title: 'The Weakest Link',
     question: 'Word-level attacks on a confidence-gated cascade for financial sentiment: does the cheap model that decides when to call the expensive one become the attack surface?',
     status: 'Draft',
-  },
-  {
-    title: 'How Much Does RL Add to Optimal Execution?',
-    question: 'Against the exact optimum of a linear-quadratic execution problem, how much of a learned policy’s gain can a tuned simple rule recover?',
-    status: 'Draft',
-    artifact: { label: 'Code and results', href: 'https://github.com/shaikn6/exec-rl' },
   },
 ]
 
@@ -125,6 +92,8 @@ const MERGED: Contribution[] = [
   { project: 'stac-utils/pystac', change: 'Updated docs for the STAC v1.1.0 default', href: 'https://github.com/stac-utils/pystac/pull/1803' },
   { project: 'stac-utils/pystac-client', change: 'Corrected the limit parameter default', href: 'https://github.com/stac-utils/pystac-client/pull/931' },
   { project: 'nazrulworld/fhir.resources', change: 'Removed an orphaned link target from the README', href: 'https://github.com/nazrulworld/fhir.resources/pull/211' },
+  { project: 'suguobin2021/backtest-integrity-guard', change: 'Reported malformed freeze manifests without a traceback', href: 'https://github.com/suguobin2021/backtest-integrity-guard/pull/33' },
+  { project: 'jiegui2025/hwspec', change: 'Named AMD family 17h model 47h (Cyan Skillfish)', href: 'https://github.com/jiegui2025/hwspec/pull/75' },
 ]
 
 const TABS: { id: TabId; label: string; count: number }[] = [
@@ -232,7 +201,7 @@ export default function Research() {
         <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>What the experiments showed.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className={styles.sectionSub}>
-            Measured results from fintech and AI-security studies, the papers they feed, and what has been merged upstream.
+            Measured results from LLM, agent-memory and AI-security studies, the papers they feed, and what has been merged upstream.
             Each figure links to the code that produced it.
           </p>
         </ScrollReveal>

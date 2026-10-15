@@ -5,7 +5,7 @@ const EDUCATION = [
   {
     degree: 'DBA, Applied AI Specialization',
     school: 'Belhaven University · Jackson, MS',
-    meta: 'Aug 2026 – Present · Focus: applied AI systems, model evaluation & AI governance for regulated industries',
+    meta: 'Aug 2026 – Present · Research: AI-agent security and LLM robustness',
   },
   {
     degree: 'M.S. Computer Science',
@@ -21,10 +21,8 @@ const EDUCATION = [
 
 const CERTS = [
   { badge: 'AWS', cls: styles.cAws, name: 'AWS Certified Machine Learning – Specialty' },
-  { badge: 'AWS', cls: styles.cAws, name: 'AWS Certified Cloud Practitioner' },
+  { badge: 'AWS', cls: styles.cAws, name: 'AWS Certified Data Engineer – Associate' },
   { badge: 'GCP', cls: styles.cGcp, name: 'GCP Professional Data Engineer' },
-  { badge: '❄',  cls: styles.cSnow, name: 'Snowflake SnowPro Advanced: Data Engineer' },
-  { badge: 'dbt', cls: styles.cDbt, name: 'dbt Analytics Engineering Certification' },
 ]
 
 export default function Education() {

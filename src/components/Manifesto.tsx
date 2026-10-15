@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion
 import styles from './Manifesto.module.css'
 
 const LINE =
-  'I turn regulated financial problems into shipped AI systems — credit-risk models, RAG over regulatory corpora, multi-agent research pipelines, and the secure ML platforms that ship them past the audit.'
+  'I build LLM and agentic systems that hold up in production — gateways with evaluation guardrails, RAG over regulatory documents, agents with memory that learns, and red-teaming that finds the failure first.'
 
 const WORDS = LINE.split(' ')
 

@@ -170,7 +170,6 @@
 
 .dAgents   { background: rgba(200, 176, 138, 0.1);  color: var(--color-accent); }
 .dSafety   { background: rgba(251, 113, 133, 0.1); color: #fb7185; }
-.dClinical { background: rgba(52, 211, 153, 0.1);  color: #34d399; }
 .dMl       { background: rgba(200, 176, 138, 0.12); color: var(--color-accent); }
 .dCloud    { background: rgba(251, 191, 36, 0.1);  color: #fbbf24; }
 

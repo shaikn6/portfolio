@@ -2,7 +2,7 @@ import styles from './Metrics.module.css'
 
 const METRICS = [
   {
-    num: '19', lbl: 'Public Repositories',
+    num: '22', lbl: 'Public Repositories',
     icon: (
       <path d="M9 6 4 12l5 6M15 6l5 6-5 6" strokeLinecap="round" strokeLinejoin="round" />
     ),
@@ -23,7 +23,7 @@ const METRICS = [
     ),
   },
   {
-    num: '13', lbl: 'Merged Upstream Pull Requests',
+    num: '15', lbl: 'Merged Upstream Pull Requests',
     icon: (
       <>
         <circle cx="12" cy="9" r="5" />
