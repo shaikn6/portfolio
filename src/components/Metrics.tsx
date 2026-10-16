@@ -23,7 +23,7 @@ const METRICS = [
     ),
   },
   {
-    num: '15', lbl: 'Merged Upstream Pull Requests',
+    num: '16', lbl: 'Merged Upstream Pull Requests',
     icon: (
       <>
         <circle cx="12" cy="9" r="5" />

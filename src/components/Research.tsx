@@ -81,6 +81,7 @@ const PAPERS: Paper[] = [
 const MERGED: Contribution[] = [
   { project: 'crewAIInc/crewAI', change: 'Fixed Anthropic streaming so a returned tool call reports the call as completed (a bug I found and reported)', href: 'https://github.com/crewAIInc/crewAI/pull/8061' },
   { project: 'WingedGuardian/GENesis-AGI', change: 'Made upload cancel refuse paths and symlinks that lead outside the upload directory', href: 'https://github.com/WingedGuardian/GENesis-AGI/pull/2960' },
+  { project: 'PrefectHQ/prefect', change: 'Fixed the WorkPoolUpdate import in the ECS guide', href: 'https://github.com/PrefectHQ/prefect/pull/23367' },
   { project: 'crewAIInc/crewAI', change: 'Fixed the RagTool and XMLSearchTool README imports', href: 'https://github.com/crewAIInc/crewAI/pull/8033' },
   { project: 'temporalio/sdk-python', change: 'Fixed the ClientConfig import in the README', href: 'https://github.com/temporalio/sdk-python/pull/1955' },
   { project: 'ray-project/ray', change: 'Fixed broken import samples in the RLlib and Tune scheduler guides', href: 'https://github.com/ray-project/ray/pull/66918' },
