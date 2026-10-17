@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion
 import styles from './Manifesto.module.css'
 
 const LINE =
-  'I build LLM and agentic systems that hold up in production — gateways with evaluation guardrails, RAG over regulatory documents, agents with memory that learns, and red-teaming that finds the failure first.'
+  'I build generative AI systems that hold up in production: RAG over regulatory documents, governed LLM gateways, agents with memory that learns, and security research that finds the failure first.'
 
 const WORDS = LINE.split(' ')
 

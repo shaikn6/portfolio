@@ -4,7 +4,7 @@ import { useMagnetic } from '../hooks/useMagnetic'
 import SafeBoundary from './SafeBoundary'
 
 const Scene3D = lazy(() => import('./Scene3D'))
-const ROLES = ['LLM systems', 'AI agents', 'RAG pipelines'] as const
+const ROLES = ['RAG pipelines', 'AI agents', 'LLM gateways'] as const
 
 function RotatingRole() {
   const [index, setIndex] = useState(0)
@@ -71,7 +71,7 @@ export default function Hero() {
 
       <div className={styles.inner} ref={innerRef}>
         <p className={`${styles.eyebrow} ${styles.up}`} style={{ animationDelay: '0.05s' }}>
-          LLM · Generative AI · Agentic AI Engineer
+          Generative AI · Agentic AI · RAG · AWS · Fintech
         </p>
 
         <h1 className={styles.name}>
@@ -84,16 +84,15 @@ export default function Hero() {
         </div>
 
         <p className={`${styles.desc} ${styles.up}`} style={{ animationDelay: '0.46s' }}>
-          LLM, generative-AI and agentic systems — LLM gateways with evaluation
-          guardrails, RAG over regulatory documents, multi-agent orchestration,
-          agent memory that learns from feedback, and red-teaming. Five years across
-          data and ML engineering, two of them shipping production LLM systems in
-          regulated finance.
+          I build generative AI systems for fintech: RAG over regulatory documents,
+          an LLM gateway with evaluation guardrails, agentic workflows, and the AWS
+          ML platforms underneath them. Five years in data and ML engineering, the
+          last two in production at regulated credit unions.
         </p>
 
         <p className={`${styles.openBadge} ${styles.up}`} style={{ animationDelay: '0.52s' }}>
           <span className={styles.openDot} aria-hidden="true" />
-          Open to LLM, GenAI &amp; agentic AI engineering roles — DBA (Applied AI) in progress
+          Open to GenAI &amp; agentic AI engineering roles, internship or full-time — DBA (Applied AI) in progress
         </p>
 
         <div className={`${styles.ctas} ${styles.up}`} style={{ animationDelay: '0.6s' }}>

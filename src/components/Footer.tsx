@@ -11,7 +11,7 @@ export default function Footer() {
       position: 'relative',
       zIndex: 2,
     }}>
-      © 2026 Nagizaaz Shaik · LLM Systems · Generative AI · Agentic AI
+      © 2026 Nagizaaz Shaik · Generative AI · Agentic AI · RAG · AWS · Fintech
     </footer>
   )
 }

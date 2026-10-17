@@ -21,6 +21,7 @@ const EXPERIENCE = [
     company: 'Belhaven University · Jackson, MS',
     bullets: [
       'Traced a sandbox bypass in an AI-agent code interpreter into 25 open-source projects that copied the code (23 still unpatched); reporter credit on GHSA-m5v3-6ccr-cfgx (working paper “When Vendoring Defeats the Patch”).',
+      'Released guard-gap-detector, a read-only static checker with a synthetic corpus, so the finding is reproducible without exposing unpatched projects.',
       'Showed that a planted label pushes a LoRA-tuned financial model to the attacker’s label on up to 92% of items across five markets, and that a standard confidence gate misses about half of one attack’s flips (working paper “Fragile in Different Ways”).',
     ],
   },
@@ -31,10 +32,10 @@ const EXPERIENCE = [
     role: 'ML Platform Engineer',
     company: 'Wright-Patt Credit Union ($9B assets) · Fairborn, OH',
     bullets: [
-      'Built an internal LLM gateway over Claude, OpenAI, and Ollama with evaluation guardrails, cost controls, and RAGAS grounding checks, giving the 12–15-person IT team one approved path to ship generative-AI features.',
-      'Built the credit union’s first AWS ML platform as its founding ML platform engineer (SageMaker endpoints, MLflow registry with gated promotion and automated rollback, VPC isolation), cutting deployment failures 85% in 60 days.',
-      'Designed security for all ML workloads (AES-256 at rest and in transit, least-privilege IAM, audit logging) and passed two consecutive NCUA audits with zero findings; codified infrastructure in Terraform with ArgoCD GitOps.',
-      'Mentored two engineers into ML and platform ownership; both now ship production components independently.',
+      'Built the credit union’s internal GenAI gateway (Claude, OpenAI, Ollama) with evaluation guardrails, cost controls, and RAGAS grounding checks: one governed path for the 12–15-person IT team to ship GenAI features.',
+      'Founded the AWS ML platform: SageMaker endpoints and Pipelines, MLflow registry with gated promotion and automated rollback, per-environment VPC isolation; deployment failures down 85% in 60 days.',
+      'Owned ML data security (AES-256 at rest and in transit, least-privilege IAM, audit logging); passed two consecutive NCUA audits with zero findings. Codified the infrastructure in Terraform with GitOps on ArgoCD.',
+      'Mentored two engineers into ML and platform ownership through weekly architecture and code reviews.',
     ],
   },
   {
@@ -44,9 +45,11 @@ const EXPERIENCE = [
     role: 'Machine Learning Engineer',
     company: 'Day Air Credit Union ($830M assets) · Kettering, OH',
     bullets: [
-      'Built RAG document QA over 500+ internal policy and NCUA regulatory documents (LangChain, vector search, Claude), cutting compliance research from about two hours to under 20 minutes per query.',
-      'Fine-tuned a BERT intent classifier (14 classes) and served it with FastAPI at sub-200 ms p99, routing 10,000+ tickets weekly.',
-      'Shipped an XGBoost credit-risk model on SageMaker scoring 500+ loan applications a day, with weekly Airflow retraining gated on AUC, precision, and calibration, and drift monitoring that caught two drift events before they reached credit decisions.',
+      'Built a RAG pipeline over 500+ internal policy and NCUA documents (LangChain, vector search, Claude); compliance research went from about two hours to under 20 minutes per question.',
+      'Fine-tuned a 14-class BERT intent classifier to fix member-support misrouting, served on FastAPI at sub-200 ms p99.',
+      'Built the first-pass consumer-loan underwriting model (XGBoost on SageMaker) as the first dedicated ML engineer, keeping approval rates within risk thresholds.',
+      'Replaced a manual multi-hour retraining cycle with a weekly Airflow pipeline: rolling-window retraining, holdout evaluation, and AUC / precision / calibration promotion gates.',
+      'Set up SageMaker Model Monitor drift detection with custom baselines; it caught two data-drift events before they reached credit decisions.',
     ],
   },
   {
@@ -56,7 +59,7 @@ const EXPERIENCE = [
     role: 'Senior Data Engineer',
     company: 'Cognizant (Financial Services client) · Hyderabad, India',
     bullets: [
-      'Led an Oracle → Redshift migration, rebuilding 20+ stored procedures as Airflow DAGs and cutting query runtime 60%.',
+      'Led the Oracle 11g to Amazon Redshift migration for five business units, rebuilding 20+ stored procedures as Airflow DAGs; query runtime down 60%.',
       'Built 15 production ETL/ELT pipelines with multi-stage validation that surfaced a silent upstream corruption affecting three months of financial reports; promoted from Associate to Senior in two years.',
     ],
   },
