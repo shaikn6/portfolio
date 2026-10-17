@@ -2,9 +2,8 @@
 
 **Live site:** [nagizaaz.vercel.app](https://nagizaaz.vercel.app/)
 
-Single-page portfolio for an LLM, generative-AI and agentic AI engineer —
-LLM gateways, RAG, multi-agent systems, agent memory, fine-tuning and
-red-teaming.
+Single-page portfolio for a generative AI engineer working in fintech —
+RAG pipelines, LLM gateways, agentic workflows and AWS ML platforms.
 
 ## Stack
 

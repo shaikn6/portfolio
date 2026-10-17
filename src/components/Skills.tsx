@@ -3,28 +3,32 @@ import styles from './Skills.module.css'
 
 const SKILL_BLOCKS = [
   {
-    title: 'LLMs & Fine-Tuning',
-    tags: ['Claude', 'OpenAI', 'Qwen2.5', 'Hugging Face', 'LoRA / PEFT', 'Knowledge Distillation', 'INT4 Quantization', 'Apple MLX', 'vLLM', 'Ollama'],
+    title: 'Generative AI',
+    tags: ['Claude', 'OpenAI', 'Hugging Face', 'Qwen2.5', 'LoRA / PEFT', 'Prompt Engineering', 'Structured Outputs', 'LLM Gateways', 'vLLM', 'Ollama'],
   },
   {
     title: 'Agentic AI',
-    tags: ['LangGraph', 'CrewAI', 'Multi-Agent Systems', 'MCP', 'Tool Calling', 'Agent Memory', 'Pydantic Structured Outputs', 'Async Pipelines'],
+    tags: ['LangGraph', 'CrewAI', 'MCP', 'Tool Calling', 'Multi-Agent Orchestration', 'Agent Memory', 'Guardrails', 'Async Pipelines'],
   },
   {
-    title: 'RAG & Retrieval',
-    tags: ['LangChain', 'Embeddings', 'Pinecone', 'FAISS', 'BM25 Hybrid Search', 'Reranking', 'HyDE', 'Corrective RAG', 'Semantic Caching', 'NVIDIA NIM'],
+    title: 'RAG Pipelines',
+    tags: ['LangChain', 'Embeddings', 'Pinecone', 'FAISS', 'OpenSearch', 'BM25 Hybrid Search', 'Reranking', 'HyDE', 'Corrective RAG', 'Semantic Caching'],
+  },
+  {
+    title: 'AWS',
+    tags: ['Bedrock', 'SageMaker', 'Lambda', 'S3', 'Glue', 'Redshift', 'EKS', 'IAM', 'CloudWatch', 'VPC'],
   },
   {
     title: 'Evaluation & Safety',
-    tags: ['RAGAS', 'LLM-as-Judge', 'A/B Testing', 'Robustness Testing', 'OWASP LLM Top 10', 'Red-Teaming', 'Prompt Injection', 'Sandbox-Bypass Research', 'Coordinated Disclosure', 'Presidio PII'],
+    tags: ['RAGAS', 'LLM-as-Judge', 'Held-Out Tests', 'OWASP LLM Top 10', 'Red-Teaming', 'Prompt Injection', 'PII Redaction', 'Sandbox-Bypass Research', 'Coordinated Disclosure'],
   },
   {
-    title: 'LLMOps & Cloud',
-    tags: ['FastAPI', 'Redis', 'Docker', 'Kubernetes', 'ArgoCD', 'GitHub Actions', 'MLflow', 'AWS SageMaker / EKS', 'GCP Vertex AI', 'Terraform'],
+    title: 'MLOps & Data',
+    tags: ['Databricks', 'MLflow', 'Airflow', 'Kafka', 'FastAPI', 'Docker', 'Kubernetes', 'Terraform', 'ArgoCD', 'GitHub Actions', 'n8n'],
   },
   {
-    title: 'ML & Languages',
-    tags: ['PyTorch', 'BERT', 'XGBoost', 'scikit-learn', 'Reinforcement Learning (PPO)', 'Python', 'Go', 'SQL', 'JavaScript'],
+    title: 'Fintech & Languages',
+    tags: ['Credit-Risk Modeling', 'ECOA Fair Lending', 'NCUA Compliance', 'SHAP', 'Python', 'Go', 'SQL'],
   },
 ]
 
@@ -37,7 +41,7 @@ export default function Skills() {
       </div>
       <div className={styles.wrap}>
         <ScrollReveal><div className={styles.sectionTag}>Skills</div></ScrollReveal>
-        <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>LLM systems, end to end.</h2></ScrollReveal>
+        <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>GenAI on AWS, end to end.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className={styles.sectionSub}>From choosing and fine-tuning the model to retrieval, agents, evaluation, safety and the platform that serves them.</p>
         </ScrollReveal>

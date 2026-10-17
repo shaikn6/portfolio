@@ -5,7 +5,7 @@ const EDUCATION = [
   {
     degree: 'Doctor of Business Administration (DBA), Applied AI',
     school: 'Belhaven University · Jackson, MS',
-    meta: 'Aug 2026 – Present · Research: AI-agent security and LLM robustness',
+    meta: 'Aug 2026 – Present · GPA 4.0 / 4.0 · Research: AI-agent security and LLM robustness',
   },
   {
     degree: 'M.S. Computer Science',

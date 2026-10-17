@@ -1,6 +1,6 @@
 import styles from './Marquee.module.css'
 
-const ITEMS = ['LLM Engineering', 'Generative AI', 'AI Agents', 'RAG', 'Agent Memory', 'LLMOps', 'LLM Evaluation', 'Red-Teaming', 'Fine-Tuning']
+const ITEMS = ['Generative AI', 'Agentic AI', 'RAG Pipelines', 'AWS', 'LLM Gateways', 'Fintech', 'LLM Evaluation', 'AI-Agent Security', 'Fine-Tuning']
 
 export default function Marquee() {
   const row = [...ITEMS, ...ITEMS]
