@@ -85,6 +85,7 @@ const MERGED: Contribution[] = [
   { project: 'crewAIInc/crewAI', change: 'Fixed the RagTool and XMLSearchTool README imports', href: 'https://github.com/crewAIInc/crewAI/pull/8033' },
   { project: 'temporalio/sdk-python', change: 'Fixed the ClientConfig import in the README', href: 'https://github.com/temporalio/sdk-python/pull/1955' },
   { project: 'ray-project/ray', change: 'Fixed broken import samples in the RLlib and Tune scheduler guides', href: 'https://github.com/ray-project/ray/pull/66918' },
+  { project: 'litestar-org/litestar', change: 'Fixed the MemoryChannelsBackend import in the channels guide', href: 'https://github.com/litestar-org/litestar/pull/5126' },
   { project: 'jackc/pgx', change: 'Corrected the documented pool_max_conns default', href: 'https://github.com/jackc/pgx/pull/2638' },
   { project: 'mlflow/mlflow', change: 'Fixed the trace import in the lightweight tracing SDK guide', href: 'https://github.com/mlflow/mlflow/pull/26613' },
   { project: 'langroid/langroid', change: 'Fixed the QdrantDBConfig import in an example', href: 'https://github.com/langroid/langroid/pull/1209' },
