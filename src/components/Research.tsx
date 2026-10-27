@@ -90,6 +90,7 @@ const MERGED: Contribution[] = [
   { project: 'stanfordnlp/dspy', change: 'Fixed stale import paths in the deployment and GEPA guides', href: 'https://github.com/stanfordnlp/dspy/pull/10608' },
   { project: 'jackc/pgx', change: 'Corrected the documented pool_max_conns default', href: 'https://github.com/jackc/pgx/pull/2638' },
   { project: 'mlflow/mlflow', change: 'Fixed the trace import in the lightweight tracing SDK guide', href: 'https://github.com/mlflow/mlflow/pull/26613' },
+  { project: 'mlflow/mlflow', change: 'Used SpanType.RETRIEVER in the tracing FAQ', href: 'https://github.com/mlflow/mlflow/pull/26634' },
   { project: 'langroid/langroid', change: 'Fixed the QdrantDBConfig import in an example', href: 'https://github.com/langroid/langroid/pull/1209' },
   { project: 'pyproj4/pyproj', change: 'Documented the None return for late-binding transformers', href: 'https://github.com/pyproj4/pyproj/pull/1637' },
   { project: 'nipy/nibabel', change: 'Clarified what BrainModelAxis.iter_structures yields', href: 'https://github.com/nipy/nibabel/pull/1550' },
