@@ -34,7 +34,7 @@ const PROJECTS: Project[] = [
     name: 'LLM Gateway',
     desc: 'One OpenAI-style chat endpoint over Claude, OpenAI, and local Ollama backends — per-tenant response caching, rate limiting, deterministic A/B routing, per-key cost tracking, and audit logging behind a single FastAPI service. Provider calls are checked against the real SDK method signatures in CI.',
     pills: ['FastAPI', 'Claude', 'OpenAI', 'Ollama', 'Redis'],
-    stat: '424 tests · 99% coverage',
+    stat: '428 tests · 99% coverage',
   },
   {
     href: 'https://github.com/shaikn6/fin-lora',
