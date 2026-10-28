@@ -51,9 +51,9 @@ const PROJECTS: Project[] = [
     group: 'agents',
     domain: 'Agent Memory', domainClass: styles.dAgents,
     name: 'lethe',
-    desc: 'A memory server for AI agents that learns which memories to return. After each recall the agent reports whether the memories helped, and a small reinforcement-learning policy shifts the ranking. The first learner lost to a hand-set rule (0.611 vs 0.641 evidence in the top 10) because new memories were never tried; forced exploration fixed it: 0.707 on held-out LoCoMo conversations, at 7,119 requests/s. One Go binary with a crash-safe journal and Python, LangChain and MCP adapters.',
+    desc: 'A memory server for AI agents that learns which memories to return. After each recall the agent reports whether the memories helped, and a small reinforcement-learning policy shifts the ranking. The first learner lost to a hand-set rule (0.611 vs 0.641 evidence in the top 10) because new memories were never tried; forced exploration fixed it: 0.707 on held-out LoCoMo conversations, at about 8,700 requests/s. One Go binary with a crash-safe journal and Python, LangChain and MCP adapters.',
     pills: ['Go', 'Reinforcement Learning', 'LangChain', 'MCP', 'Python'],
-    stat: '0.707 held-out evidence · 7,119 req/s',
+    stat: '0.707 held-out evidence · ~8,700 req/s',
   },
   {
     href: 'https://github.com/shaikn6/llm-safety-auditor',
