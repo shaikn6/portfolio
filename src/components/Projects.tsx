@@ -34,7 +34,7 @@ const PROJECTS: Project[] = [
     name: 'LLM Gateway',
     desc: 'One OpenAI-style chat endpoint over Claude, OpenAI, and local Ollama backends — per-tenant response caching, rate limiting, deterministic A/B routing, per-key cost tracking, and audit logging behind a single FastAPI service. Provider calls are checked against the real SDK method signatures in CI.',
     pills: ['FastAPI', 'Claude', 'OpenAI', 'Ollama', 'Redis'],
-    stat: '415 tests · 99% coverage',
+    stat: '424 tests · 99% coverage',
   },
   {
     href: 'https://github.com/shaikn6/fin-lora',
@@ -61,9 +61,9 @@ const PROJECTS: Project[] = [
     demo: { label: 'Live demo', href: 'https://huggingface.co/spaces/9mark9/llm-safety-auditor' },
     domain: 'LLM Safety', domainClass: styles.dSafety,
     name: 'LLM Safety Auditor',
-    desc: 'Reproducible red-teaming harness: 250+ adversarial attack vectors, a 6-layer safety detector, OWASP LLM Top 10 scoring, and PDF audit reports. Runs key-free against a seeded mock LLM; adapters for Anthropic and OpenAI-compatible endpoints are included.',
+    desc: 'Reproducible red-teaming harness: 50 curated adversarial attacks (350 with mutations), a 6-layer safety detector, OWASP LLM Top 10 scoring, and PDF audit reports. Runs key-free against a seeded mock LLM; adapters for Anthropic and OpenAI-compatible endpoints are included.',
     pills: ['Python', 'OWASP LLM Top 10', 'Red-Teaming', 'FastAPI', 'Streamlit'],
-    stat: '479 tests · live HF demo',
+    stat: '495 tests · live HF demo',
   },
   {
     href: 'https://github.com/shaikn6/guard-gap-detector',
