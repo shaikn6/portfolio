@@ -1,9 +1,13 @@
-# Nagizaaz Shaik — Portfolio
+# portfolio
 
-**Live site:** [nagizaaz.vercel.app](https://nagizaaz.vercel.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](package.json)
+[![Live site](https://img.shields.io/badge/Live%20site-nagizaaz.vercel.app-FF9E0F)](https://nagizaaz.vercel.app)
 
-Single-page portfolio for a generative AI engineer working in fintech —
-RAG pipelines, LLM gateways, agentic workflows and AWS ML platforms.
+**Source of [nagizaaz.vercel.app](https://nagizaaz.vercel.app): a single-page portfolio for generative AI engineering in fintech, built with React, TypeScript and Vite and deployed on Vercel.**
+
+It covers RAG pipelines, LLM gateways, agentic workflows and AWS ML platforms,
+with links to the code behind each project.
 
 ## Stack
 
@@ -12,7 +16,7 @@ RAG pipelines, LLM gateways, agentic workflows and AWS ML platforms.
 - CSS Modules, design tokens, dark canvas with critical inline CSS for fast LCP
 - Deployed on **Vercel** — auto-deploys from `main`
 
-## Develop
+## Quickstart
 
 ```bash
 npm ci           # reproducible install from package-lock.json
