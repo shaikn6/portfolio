@@ -20,7 +20,7 @@ const EXPERIENCE = [
     role: 'Doctoral Researcher, Applied AI',
     company: 'Belhaven University · Jackson, MS',
     bullets: [
-      'Traced a sandbox bypass in an AI-agent code interpreter into 25 open-source projects that copied the code (23 still unpatched); reporter credit on GHSA-m5v3-6ccr-cfgx (working paper “When Vendoring Defeats the Patch”).',
+      'Traced a sandbox bypass in an AI-agent code interpreter into open-source AI-agent projects that copied the code (details under coordinated disclosure); reporter credit on GHSA-m5v3-6ccr-cfgx (working paper “When Vendoring Defeats the Patch”).',
       'Released guard-gap-detector, a read-only static checker with a synthetic corpus, so the finding is reproducible without exposing unpatched projects.',
       'Showed that a planted label pushes a LoRA-tuned financial model to the attacker’s label on up to 92% of items across five markets, and that a standard confidence gate misses about half of one attack’s flips (working paper “Fragile in Different Ways”).',
     ],
