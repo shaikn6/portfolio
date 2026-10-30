@@ -63,7 +63,7 @@ const PROJECTS: Project[] = [
     name: 'LLM Safety Auditor',
     desc: 'Reproducible red-teaming harness: 50 curated adversarial attacks (350 with mutations), a 6-layer safety detector, OWASP LLM Top 10 scoring, and PDF audit reports. Runs key-free against a seeded mock LLM; adapters for Anthropic and OpenAI-compatible endpoints are included.',
     pills: ['Python', 'OWASP LLM Top 10', 'Red-Teaming', 'FastAPI', 'Streamlit'],
-    stat: '495 tests · live HF demo',
+    stat: '635 tests · live HF demo',
   },
   {
     href: 'https://github.com/shaikn6/guard-gap-detector',
