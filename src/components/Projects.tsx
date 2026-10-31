@@ -2,7 +2,7 @@ import { useRef, useCallback, useState } from 'react'
 import ScrollReveal from './ScrollReveal'
 import styles from './Projects.module.css'
 
-type Group = 'llm' | 'agents' | 'safety'
+type Group = 'llm' | 'agents' | 'safety' | 'ml'
 
 interface Project {
   href: string
@@ -16,23 +16,24 @@ interface Project {
   stat: string
 }
 
-// LLM systems, agents, then evaluation and safety. Every figure comes from the linked repository.
+// Featured order. Each card leads with its result; every figure comes from the linked repository.
 const PROJECTS: Project[] = [
   {
-    href: 'https://github.com/shaikn6/finance-agent-crew',
+    href: 'https://github.com/shaikn6/lethe',
     group: 'agents',
-    domain: 'Multi-Agent', domainClass: styles.dAgents,
-    name: 'Finance Agent Crew',
-    desc: 'Turns a stock ticker into a sourced research brief: an LLM-free gatherer fans out concurrently over SEC EDGAR, market data and news; fundamental, sentiment and risk agents run in parallel; a writer agent synthesizes a BUY / HOLD / SELL call with bull and bear cases. Typed Pydantic outputs throughout.',
-    pills: ['Python', 'asyncio', 'Claude', 'Pydantic', 'FastAPI'],
-    stat: '333 tests · 99% coverage',
+    demo: { label: 'Live demo', href: 'https://huggingface.co/spaces/9mark9/lethe-agent-memory' },
+    domain: 'Agent Memory', domainClass: styles.dAgents,
+    name: 'lethe',
+    desc: 'Puts 0.707 of the evidence in the top 10 on held-out LoCoMo conversations, against 0.641 for the best hand-set rule; on LongMemEval it only ties that rule. A memory server for AI agents: after each recall the agent reports whether the memories helped, and a small reinforcement-learning policy shifts the ranking. The first learner lost (0.611) because new memories were never tried; forced exploration fixed it. One Go binary with a crash-safe journal and Python, LangChain and MCP adapters.',
+    pills: ['Go', 'Reinforcement Learning', 'LangChain', 'MCP', 'Python'],
+    stat: '0.707 vs 0.641 held-out · ~8,700 req/s',
   },
   {
     href: 'https://github.com/shaikn6/llm-gateway',
     group: 'llm',
     domain: 'LLMOps', domainClass: styles.dCloud,
     name: 'LLM Gateway',
-    desc: 'One OpenAI-style chat endpoint over Claude, OpenAI, and local Ollama backends — per-tenant response caching, rate limiting, deterministic A/B routing, per-key cost tracking, and audit logging behind a single FastAPI service. Provider calls are checked against the real SDK method signatures in CI.',
+    desc: 'One OpenAI-style chat endpoint over Claude, OpenAI and local Ollama, with 428 tests at 99% line coverage. Per-tenant response caching, rate limiting, deterministic A/B routing, per-key cost tracking and audit logging in one FastAPI service; provider calls are checked against the real SDK method signatures in CI.',
     pills: ['FastAPI', 'Claude', 'OpenAI', 'Ollama', 'Redis'],
     stat: '428 tests · 99% coverage',
   },
@@ -42,18 +43,9 @@ const PROJECTS: Project[] = [
     demo: { label: 'Hugging Face model', href: 'https://huggingface.co/9mark9/fin-lora-news-qwen2.5-0.5b' },
     domain: 'Fine-Tuning', domainClass: styles.dMl,
     name: 'fin-lora',
-    desc: 'LoRA-tunes Qwen2.5-0.5B for financial sentiment and benchmarks it against TF-IDF and zero-shot FinBERT: 84.7% on 2,000 news snippets vs 73.6% for FinBERT. A confidence cascade sends only uncertain items to the LLM, cutting average latency 63% for 0.4 points of accuracy. A follow-up study measures how easily planted labels flip each model across five markets.',
+    desc: '84.7% on 2,000 LLM-labelled news snippets against 73.6% for zero-shot FinBERT, and 76.8% against 71.2% on 267 human-labelled headlines. LoRA-tuned Qwen2.5-0.5B for financial sentiment, benchmarked against TF-IDF and FinBERT. A confidence cascade sends only uncertain items to the LLM, cutting average latency 63% for 0.4 points of accuracy; a follow-up study measures how easily planted labels flip each model across five markets.',
     pills: ['PyTorch', 'LoRA / PEFT', 'Qwen2.5', 'FinBERT', 'Hugging Face'],
     stat: '84.7% vs 73.6% FinBERT',
-  },
-  {
-    href: 'https://github.com/shaikn6/lethe',
-    group: 'agents',
-    domain: 'Agent Memory', domainClass: styles.dAgents,
-    name: 'lethe',
-    desc: 'A memory server for AI agents that learns which memories to return. After each recall the agent reports whether the memories helped, and a small reinforcement-learning policy shifts the ranking. The first learner lost to a hand-set rule (0.611 vs 0.641 evidence in the top 10) because new memories were never tried; forced exploration fixed it: 0.707 on held-out LoCoMo conversations, at about 8,700 requests/s. One Go binary with a crash-safe journal and Python, LangChain and MCP adapters.',
-    pills: ['Go', 'Reinforcement Learning', 'LangChain', 'MCP', 'Python'],
-    stat: '0.707 held-out evidence · ~8,700 req/s',
   },
   {
     href: 'https://github.com/shaikn6/llm-safety-auditor',
@@ -61,45 +53,63 @@ const PROJECTS: Project[] = [
     demo: { label: 'Live demo', href: 'https://huggingface.co/spaces/9mark9/llm-safety-auditor' },
     domain: 'LLM Safety', domainClass: styles.dSafety,
     name: 'LLM Safety Auditor',
-    desc: 'Reproducible red-teaming harness: 50 curated adversarial attacks (350 with mutations), a 6-layer safety detector, OWASP LLM Top 10 scoring, and PDF audit reports. Runs key-free against a seeded mock LLM; adapters for Anthropic and OpenAI-compatible endpoints are included.',
+    desc: 'Scores an LLM against the OWASP LLM Top 10, with 635 tests behind it: 50 curated adversarial attacks (350 with mutations), a 6-layer safety detector and PDF audit reports. Runs key-free against a seeded mock LLM; detector recall is measured on that mock, and the README shows where it is weaker on real text. Adapters for Anthropic and OpenAI-compatible endpoints are included.',
     pills: ['Python', 'OWASP LLM Top 10', 'Red-Teaming', 'FastAPI', 'Streamlit'],
     stat: '635 tests · live HF demo',
   },
   {
-    href: 'https://github.com/shaikn6/guard-gap-detector',
+    href: 'https://github.com/shaikn6/readme-truth',
     group: 'safety',
-    domain: 'Agent Security', domainClass: styles.dSafety,
-    name: 'guard-gap-detector',
-    desc: 'Read-only static detector for a sandbox-guard gap in the AST-walking restricted Python interpreters that AI agents use to run code. Ships a synthetic test corpus, no third-party code and no exploit. Artifact for the working paper “When Vendoring Defeats the Patch”.',
-    pills: ['Python', 'AST', 'Static Analysis', 'AI Agents'],
-    stat: 'Paper artifact',
+    domain: 'Engineering Tools', domainClass: styles.dCloud,
+    name: 'readme-truth',
+    desc: 'Catches READMEs that no longer match the code: a hand audit of 22 repositories found 15 had drifted. It turns a README into verifiable claims (test counts, versions, paths, commands, links, licence) and checks each one against the repository. Deterministic, offline and standard-library only; runs as a CLI or a GitHub Action.',
+    pills: ['Python', 'GitHub Actions', 'CLI', 'Static Analysis'],
+    stat: '52 tests',
+  },
+  {
+    href: 'https://github.com/shaikn6/finance-agent-crew',
+    group: 'agents',
+    domain: 'Multi-Agent', domainClass: styles.dAgents,
+    name: 'Finance Agent Crew',
+    desc: 'Turns a stock ticker into a sourced research brief, with 333 tests and an offline mode that needs no API keys. An LLM-free gatherer fans out concurrently over SEC EDGAR, market data and news; fundamental, sentiment and risk agents run in parallel; a writer agent synthesizes a BUY / HOLD / SELL call with bull and bear cases. Typed Pydantic outputs throughout.',
+    pills: ['Python', 'asyncio', 'Claude', 'Pydantic', 'FastAPI'],
+    stat: '333 tests · 99% coverage',
   },
   {
     href: 'https://github.com/shaikn6/nvidia-nim-rag-techniques',
     group: 'llm',
     domain: 'RAG', domainClass: styles.dMl,
     name: 'NVIDIA NIM RAG Techniques',
-    desc: 'Five RAG optimization techniques on NVIDIA NIM — hybrid search with RRF, cross-encoder reranking, query rewriting (HyDE / multi-query / step-back), context compression, and corrective RAG via LangGraph.',
+    desc: 'Cross-encoder reranking lifted recall@1 from 0.857 to 0.964 over naive dense retrieval on a small 28-query labelled set, too small to rank the techniques. Five RAG techniques on NVIDIA NIM: hybrid search with RRF, cross-encoder reranking, query rewriting (HyDE / multi-query / step-back), context compression and corrective RAG via LangGraph.',
     pills: ['NVIDIA NIM', 'LangGraph', 'RRF', 'Cross-Encoder', 'HyDE'],
-    stat: '5 techniques',
+    stat: 'recall@1 0.857 → 0.964',
   },
   {
-    href: 'https://github.com/shaikn6/mcp-diagram-agent',
-    group: 'agents',
-    domain: 'MCP', domainClass: styles.dAgents,
-    name: 'MCP Diagram Agent',
-    desc: 'Model Context Protocol server that turns a plain-text system description into an Excalidraw architecture diagram via Claude. Fully typed MCP tool surface with a 95% coverage gate and strict mypy + ruff CI.',
-    pills: ['MCP', 'Claude', 'Excalidraw', 'FastAPI', 'mypy'],
-    stat: '95% coverage gate',
+    href: 'https://github.com/shaikn6/sigdet',
+    group: 'ml',
+    domain: 'Computer Vision', domainClass: styles.dMl,
+    name: 'sigdet',
+    desc: '0.939 ± 0.005 test mAP50-95 over 3 seeds for YOLO11n on a leakage-aware split; the larger YOLO11s scored 0.859 ± 0.041, so the smaller model was better and more stable. Document signature detection with hash-checked splits (26 test images) and a robustness study under scan corruptions.',
+    pills: ['PyTorch', 'YOLO11', 'Computer Vision', 'Multi-Seed Evaluation'],
+    stat: '0.939 ± 0.005 mAP50-95',
   },
   {
-    href: 'https://github.com/shaikn6/on-device-llm-optimizer',
-    group: 'llm',
-    domain: 'Efficient LLMs', domainClass: styles.dMl,
-    name: 'On-Device LLM Optimizer',
-    desc: 'A pipeline for shrinking an LLM to run on a laptop or phone: knowledge distillation from Phi-3 Mini (3.8B) into a 236M student on Apple MLX, INT4 quantization, and CoreML export. The repo ships the pipeline, not trained checkpoints, and labels its benchmark table as targets.',
-    pills: ['MLX', 'CoreML', 'Knowledge Distillation', 'INT4 Quantization', 'PyTorch'],
-    stat: '3.8B → 236M pipeline',
+    href: 'https://github.com/shaikn6/exec-rl',
+    group: 'ml',
+    domain: 'Reinforcement Learning', domainClass: styles.dMl,
+    name: 'exec-rl',
+    desc: '0.22 bps mean implementation shortfall against 18.8 bps for TWAP and Almgren-Chriss on 20,000 held-out simulated paths, 3 seeds, when an alpha signal is present; without the signal PPO is no better than TWAP. A from-scratch PPO agent that sells a 100,000-share position over 20 steps. Simulation only.',
+    pills: ['PyTorch', 'PPO', 'Reinforcement Learning', 'Simulation'],
+    stat: '0.22 vs 18.8 bps (simulated)',
+  },
+  {
+    href: 'https://github.com/shaikn6/guard-gap-detector',
+    group: 'safety',
+    domain: 'Agent Security', domainClass: styles.dSafety,
+    name: 'guard-gap-detector',
+    desc: 'Separates all 3 vulnerable fixtures from all 5 clean ones on its synthetic corpus. A read-only static detector for a sandbox-guard gap in the AST-walking restricted Python interpreters that AI agents use to run code; no third-party code and no exploit. Artifact for the working paper “When Vendoring Defeats the Patch”.',
+    pills: ['Python', 'AST', 'Static Analysis', 'AI Agents'],
+    stat: 'Paper artifact',
   },
 ]
 
@@ -107,7 +117,8 @@ const FILTERS: { id: 'all' | Group; label: string }[] = [
   { id: 'all', label: 'All' },
   { id: 'llm', label: 'LLM Systems' },
   { id: 'agents', label: 'Agents' },
-  { id: 'safety', label: 'Safety & Evaluation' },
+  { id: 'safety', label: 'Safety, Evaluation & Tools' },
+  { id: 'ml', label: 'Vision & RL' },
 ]
 
 const MAX_TILT = 7
@@ -192,8 +203,8 @@ export default function Projects() {
         <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>Things I've actually built.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className={styles.sectionSub}>
-            LLM systems and agents first, then the evaluation and safety work that keeps them honest.
-            Real code and real tests; every number comes from the linked repository.
+            Agent memory, LLM systems and evaluation first, then computer vision and reinforcement learning.
+            Each card leads with its result; every number comes from the linked repository.
           </p>
         </ScrollReveal>
 

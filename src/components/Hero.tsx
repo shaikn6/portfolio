@@ -4,7 +4,7 @@ import { useMagnetic } from '../hooks/useMagnetic'
 import SafeBoundary from './SafeBoundary'
 
 const Scene3D = lazy(() => import('./Scene3D'))
-const ROLES = ['RAG pipelines', 'AI agents', 'LLM gateways'] as const
+const ROLES = ['agent memory', 'LLM gateways', 'LLM evaluations'] as const
 
 function RotatingRole() {
   const [index, setIndex] = useState(0)
@@ -71,7 +71,7 @@ export default function Hero() {
 
       <div className={styles.inner} ref={innerRef}>
         <p className={`${styles.eyebrow} ${styles.up}`} style={{ animationDelay: '0.05s' }}>
-          Generative AI · Agentic AI · RAG · AWS · Fintech
+          Generative AI · Agentic AI · ML Platforms
         </p>
 
         <h1 className={styles.name}>
@@ -84,10 +84,10 @@ export default function Hero() {
         </div>
 
         <p className={`${styles.desc} ${styles.up}`} style={{ animationDelay: '0.46s' }}>
-          I build generative AI systems for fintech: RAG over regulatory documents,
-          an LLM gateway with evaluation guardrails, agentic workflows, and the AWS
-          ML platforms underneath them. Five years in data and ML engineering, the
-          last two in production at regulated credit unions.
+          Agent memory that learns which memories to return, a multi-provider LLM
+          gateway, LoRA fine-tuning and OWASP LLM Top 10 red-teaming, each with tests
+          and measured results in its repository. Before that, five years in data
+          engineering and ML platforms.
         </p>
 
         <p className={`${styles.openBadge} ${styles.up}`} style={{ animationDelay: '0.52s' }}>
