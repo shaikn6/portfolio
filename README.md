@@ -4,10 +4,10 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](package.json)
 [![Live site](https://img.shields.io/badge/Live%20site-nagizaaz.vercel.app-FF9E0F)](https://nagizaaz.vercel.app)
 
-**Source of [nagizaaz.vercel.app](https://nagizaaz.vercel.app): a single-page portfolio for generative AI engineering in fintech, built with React, TypeScript and Vite and deployed on Vercel.**
+**Source of [nagizaaz.vercel.app](https://nagizaaz.vercel.app): a single-page portfolio for generative and agentic AI engineering, built with React, TypeScript and Vite and deployed on Vercel.**
 
-It covers RAG pipelines, LLM gateways, agentic workflows and AWS ML platforms,
-with links to the code behind each project.
+It covers agent memory, LLM gateways, fine-tuning, evaluation, computer vision and
+reinforcement learning, with links to the code behind each project.
 
 ## Stack
 
@@ -38,11 +38,16 @@ is no CMS.
 
 | Project | Focus |
 |---------|-------|
-| [`llm-gateway`](https://github.com/shaikn6/llm-gateway) | OpenAI-compatible multi-provider LLM gateway with caching, rate limits, A/B routing and cost tracking |
 | [`lethe`](https://github.com/shaikn6/lethe) | Memory server for AI agents that learns from feedback which memories to return |
-| [`llm-safety-auditor`](https://github.com/shaikn6/llm-safety-auditor) | Red-teaming harness — 50 curated attacks (350 with mutations), OWASP LLM Top 10, PDF reports |
+| [`llm-gateway`](https://github.com/shaikn6/llm-gateway) | OpenAI-compatible multi-provider LLM gateway with caching, rate limits, A/B routing and cost tracking |
 | [`fin-lora`](https://github.com/shaikn6/fin-lora) | LoRA-tuned Qwen2.5 with a confidence cascade and a robustness study |
+| [`llm-safety-auditor`](https://github.com/shaikn6/llm-safety-auditor) | Red-teaming harness: 50 curated attacks (350 with mutations), OWASP LLM Top 10, PDF reports |
+| [`readme-truth`](https://github.com/shaikn6/readme-truth) | Checks README claims against the repository |
 | [`finance-agent-crew`](https://github.com/shaikn6/finance-agent-crew) | Async multi-agent research over SEC EDGAR, market data and news |
+| [`nvidia-nim-rag-techniques`](https://github.com/shaikn6/nvidia-nim-rag-techniques) | Five RAG techniques on NVIDIA NIM, scored against a naive baseline |
+| [`sigdet`](https://github.com/shaikn6/sigdet) | Document signature detection with YOLO11, multi-seed evaluation |
+| [`exec-rl`](https://github.com/shaikn6/exec-rl) | From-scratch PPO for trade execution on a simulated market |
+| [`guard-gap-detector`](https://github.com/shaikn6/guard-gap-detector) | Static detector for a sandbox-guard gap in restricted Python interpreters |
 
 ## License
 

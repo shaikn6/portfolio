@@ -11,6 +11,10 @@ const SKILL_BLOCKS = [
     tags: ['LangGraph', 'CrewAI', 'MCP', 'Tool Calling', 'Multi-Agent Orchestration', 'Agent Memory', 'Guardrails', 'Async Pipelines'],
   },
   {
+    title: 'Deep Learning, Vision & RL',
+    tags: ['PyTorch', 'Transformers', 'BERT', 'YOLO11', 'PPO', 'XGBoost', 'scikit-learn'],
+  },
+  {
     title: 'RAG Pipelines',
     tags: ['LangChain', 'Embeddings', 'Pinecone', 'FAISS', 'OpenSearch', 'BM25 Hybrid Search', 'Reranking', 'HyDE', 'Corrective RAG', 'Semantic Caching'],
   },
@@ -28,7 +32,7 @@ const SKILL_BLOCKS = [
   },
   {
     title: 'Fintech & Languages',
-    tags: ['Credit-Risk Modeling', 'ECOA Fair Lending', 'NCUA Compliance', 'SHAP', 'Python', 'Go', 'SQL'],
+    tags: ['Credit-Risk Modeling', 'ECOA Fair Lending', 'Regulatory Compliance', 'SHAP', 'Python', 'Go', 'SQL'],
   },
 ]
 

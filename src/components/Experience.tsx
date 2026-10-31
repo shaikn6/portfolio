@@ -12,17 +12,18 @@ const bulletItem = {
   show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 }
 
+// Results lead each line. Employers and locations are left out on purpose.
 const EXPERIENCE = [
   {
     period: 'Aug 2026 – Present',
     current: true,
     etype: 'Research',
     role: 'Doctoral Researcher, Applied AI',
-    company: 'Belhaven University · Jackson, MS',
+    company: 'Belhaven University',
     bullets: [
-      'Traced a sandbox bypass in an AI-agent code interpreter into open-source AI-agent projects that copied the code (details under coordinated disclosure); reporter credit on GHSA-m5v3-6ccr-cfgx (working paper “When Vendoring Defeats the Patch”).',
-      'Released guard-gap-detector, a read-only static checker with a synthetic corpus, so the finding is reproducible without exposing unpatched projects.',
-      'Showed that a planted label pushes a LoRA-tuned financial model to the attacker’s label on up to 92% of items across five markets, and that a standard confidence gate misses about half of one attack’s flips (working paper “Fragile in Different Ways”).',
+      'Reported a sandbox bypass in an AI-agent code executor through a GitHub security advisory; a downstream project, femto/minion, adopted the fix and credited the report (working paper “When Vendoring Defeats the Patch”).',
+      'Released guard-gap-detector, a read-only static checker with a synthetic corpus, so the finding can be reproduced without third-party code or an exploit.',
+      'A planted label pushes a LoRA-tuned financial model to the attacker’s label on up to 92% of items across five markets, and a 0.8 confidence gate misses 12–51% of one attack’s flips (working paper “Fragile in Different Ways”).',
     ],
   },
   {
@@ -30,12 +31,12 @@ const EXPERIENCE = [
     current: false,
     etype: 'Contract',
     role: 'ML Platform Engineer',
-    company: 'Wright-Patt Credit Union ($9B assets) · Fairborn, OH',
+    company: 'Regulated credit union',
     bullets: [
-      'Built the credit union’s internal GenAI gateway (Claude, OpenAI, Ollama) with evaluation guardrails, cost controls, and RAGAS grounding checks: one governed path for the 12–15-person IT team to ship GenAI features.',
-      'Founded the AWS ML platform: SageMaker endpoints and Pipelines, MLflow registry with gated promotion and automated rollback, per-environment VPC isolation; deployment failures down 85% in 60 days.',
-      'Owned ML data security (AES-256 at rest and in transit, least-privilege IAM, audit logging); passed two consecutive NCUA audits with zero findings. Codified the infrastructure in Terraform with GitOps on ArgoCD.',
-      'Mentored two engineers into ML and platform ownership through weekly architecture and code reviews.',
+      'Deployment failures down 85% in 60 days: founded the AWS ML platform (SageMaker endpoints and Pipelines, MLflow registry with gated promotion and automated rollback, per-environment VPC isolation).',
+      'One governed path for the IT team to ship GenAI features: built the internal GenAI gateway (Claude, OpenAI, Ollama) with evaluation guardrails, cost controls and RAGAS grounding checks.',
+      'Two regulatory audits passed with zero findings: owned ML data security (AES-256 at rest and in transit, least-privilege IAM, audit logging), with the infrastructure in Terraform and GitOps on ArgoCD.',
+      'Mentored engineers into ML and platform ownership through weekly architecture and code reviews.',
     ],
   },
   {
@@ -43,13 +44,13 @@ const EXPERIENCE = [
     current: false,
     etype: 'Contract',
     role: 'Machine Learning Engineer',
-    company: 'Day Air Credit Union ($830M assets) · Kettering, OH',
+    company: 'Regulated credit union',
     bullets: [
-      'Built a RAG pipeline over 500+ internal policy and NCUA documents (LangChain, vector search, Claude); compliance research went from about two hours to under 20 minutes per question.',
-      'Fine-tuned a 14-class BERT intent classifier to fix member-support misrouting, served on FastAPI at sub-200 ms p99.',
-      'Built the first-pass consumer-loan underwriting model (XGBoost on SageMaker) as the first dedicated ML engineer, keeping approval rates within risk thresholds.',
-      'Replaced a manual multi-hour retraining cycle with a weekly Airflow pipeline: rolling-window retraining, holdout evaluation, and AUC / precision / calibration promotion gates.',
-      'Set up SageMaker Model Monitor drift detection with custom baselines; it caught two data-drift events before they reached credit decisions.',
+      'Policy research cut from about two hours to under 20 minutes per question: built a RAG system over 500+ internal policy and regulatory documents (LangChain, vector search, Claude).',
+      'Sub-200 ms p99: fine-tuned a 14-class BERT intent classifier that fixed support-request misrouting, served on FastAPI.',
+      'Approval rates kept within risk thresholds: built the first-pass consumer-loan underwriting model (XGBoost on SageMaker) as the first dedicated ML engineer.',
+      'Weekly automated retraining replaced a manual multi-hour cycle: an Airflow pipeline with rolling-window retraining, holdout evaluation and AUC / precision / calibration promotion gates.',
+      'Data drift caught before it reached credit decisions: SageMaker Model Monitor with custom baselines.',
     ],
   },
   {
@@ -57,10 +58,10 @@ const EXPERIENCE = [
     current: false,
     etype: 'Full-time',
     role: 'Senior Data Engineer',
-    company: 'Cognizant (Financial Services client) · Hyderabad, India',
+    company: 'IT services firm (financial-services client)',
     bullets: [
-      'Led the Oracle 11g to Amazon Redshift migration for five business units, rebuilding 20+ stored procedures as Airflow DAGs; query runtime down 60%.',
-      'Built 15 production ETL/ELT pipelines with multi-stage validation that surfaced a silent upstream corruption affecting three months of financial reports; promoted from Associate to Senior in two years.',
+      'Query runtime down 60%: led an Oracle 11g to Amazon Redshift migration, rebuilding stored procedures as Airflow DAGs.',
+      'A silent upstream corruption in financial reports caught: built production ETL/ELT pipelines with multi-stage validation; promoted from Associate to Senior.',
     ],
   },
   {
@@ -68,9 +69,9 @@ const EXPERIENCE = [
     current: false,
     etype: 'Internship',
     role: 'Python Intern',
-    company: 'Uber · Hyderabad, India',
+    company: 'Technology company',
     bullets: [
-      'Automated a 4-hour weekly ETL job with Python and pandas, with rolling-baseline anomaly detection; earned a return-internship offer.',
+      'A weekly manual ETL job automated with Python and pandas, with rolling-baseline anomaly detection; earned a return-internship offer.',
     ],
   },
 ]

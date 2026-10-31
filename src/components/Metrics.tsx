@@ -2,7 +2,7 @@ import styles from './Metrics.module.css'
 
 const METRICS = [
   {
-    num: '22', lbl: 'Public Repositories',
+    num: '23', lbl: 'Public Repositories',
     icon: (
       <path d="M9 6 4 12l5 6M15 6l5 6-5 6" strokeLinecap="round" strokeLinejoin="round" />
     ),

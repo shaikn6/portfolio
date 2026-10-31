@@ -52,7 +52,7 @@ const FINDINGS: Finding[] = [
   {
     figure: 'GHSA',
     area: 'AI-agent security',
-    claim: 'reporter credit for a sandbox bypass in an AI-agent code executor. Further reports are under coordinated disclosure.',
+    claim: 'a sandbox bypass in an AI-agent code executor, reported through a GitHub security advisory; a downstream project, femto/minion, adopted the fix and credited the report.',
     source: 'advisory',
     href: 'https://github.com/femto/minion/security/advisories/GHSA-m5v3-6ccr-cfgx',
   },
@@ -61,7 +61,7 @@ const FINDINGS: Finding[] = [
 const PAPERS: Paper[] = [
   {
     title: 'When Vendoring Defeats the Patch',
-    question: 'A sandbox bypass in a widely used agent framework survives in copied code downstream. How far does it spread, and why do fixes not follow it?',
+    question: 'Why does a sandbox fix in an agent framework not reach the projects that copied the vulnerable code, and how can a static check find those copies?',
     status: 'Draft complete · disclosure in progress',
     artifact: { label: 'Published advisory', href: 'https://github.com/femto/minion/security/advisories/GHSA-m5v3-6ccr-cfgx' },
   },

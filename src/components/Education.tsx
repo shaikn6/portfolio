@@ -4,17 +4,17 @@ import styles from './Education.module.css'
 const EDUCATION = [
   {
     degree: 'Doctor of Business Administration (DBA), Applied AI',
-    school: 'Belhaven University · Jackson, MS',
+    school: 'Belhaven University',
     meta: 'Aug 2026 – Present · GPA 4.0 / 4.0 · Research: AI-agent security and LLM robustness',
   },
   {
     degree: 'M.S. Computer Science',
-    school: 'University of Dayton · Dayton, OH',
+    school: 'University of Dayton',
     meta: 'Aug 2023 – May 2025 · GPA 3.93 / 4.0',
   },
   {
     degree: 'B.Tech. Computer Science and Engineering',
-    school: 'CMR Engineering College · Hyderabad, India',
+    school: 'CMR Engineering College',
     meta: 'Aug 2016 – May 2020 · GPA 8.9 / 10',
   },
 ]
