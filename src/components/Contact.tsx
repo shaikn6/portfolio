@@ -70,7 +70,7 @@ export default function Contact() {
           <div className={styles.box}>
             <div className={styles.sectionTag}>Contact</div>
             <h2 className={styles.heading}>Let's build something.</h2>
-            <p className={styles.sub}>GenAI · AI agents · RAG · AWS.</p>
+            <p className={styles.sub}>GenAI · Fintech · LLM &amp; RAG · AWS.</p>
 
             {!unlocked ? (
               <div className={styles.captchaWrap}>

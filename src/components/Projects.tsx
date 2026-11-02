@@ -16,18 +16,8 @@ interface Project {
   stat: string
 }
 
-// Featured order. Each card leads with its result; every figure comes from the linked repository.
+// Featured order — fintech first. Each card leads with its result; every figure comes from the linked repository.
 const PROJECTS: Project[] = [
-  {
-    href: 'https://github.com/shaikn6/lethe',
-    group: 'agents',
-    demo: { label: 'Live demo', href: 'https://huggingface.co/spaces/9mark9/lethe-agent-memory' },
-    domain: 'Agent Memory', domainClass: styles.dAgents,
-    name: 'lethe',
-    desc: 'Puts 0.707 of the evidence in the top 10 on held-out LoCoMo conversations, against 0.641 for the best hand-set rule; on LongMemEval it only ties that rule. A memory server for AI agents: after each recall the agent reports whether the memories helped, and a small reinforcement-learning policy shifts the ranking. The first learner lost (0.611) because new memories were never tried; forced exploration fixed it. One Go binary with a crash-safe journal and Python, LangChain and MCP adapters.',
-    pills: ['Go', 'Reinforcement Learning', 'LangChain', 'MCP', 'Python'],
-    stat: '0.707 vs 0.641 held-out · ~8,700 req/s',
-  },
   {
     href: 'https://github.com/shaikn6/llm-gateway',
     group: 'llm',
@@ -38,6 +28,24 @@ const PROJECTS: Project[] = [
     stat: '428 tests · 99% coverage',
   },
   {
+    href: 'https://github.com/shaikn6/finance-agent-crew',
+    group: 'agents',
+    domain: 'Multi-Agent', domainClass: styles.dAgents,
+    name: 'Finance Agent Crew',
+    desc: 'Turns a stock ticker into a sourced research brief, with 333 tests and an offline mode that needs no API keys. An LLM-free gatherer fans out concurrently over SEC EDGAR, market data and news; fundamental, sentiment and risk agents run in parallel; a writer agent synthesizes a BUY / HOLD / SELL call with bull and bear cases. Typed Pydantic outputs throughout.',
+    pills: ['Python', 'asyncio', 'Claude', 'Pydantic', 'FastAPI'],
+    stat: '333 tests · 99% coverage',
+  },
+  {
+    href: 'https://github.com/shaikn6/credit-arena',
+    group: 'ml',
+    domain: 'Credit Risk', domainClass: styles.dMl,
+    name: 'credit-arena',
+    desc: 'Six model families on 30,000 card accounts (22% default), scored on AUC, calibration, business cost and fair lending. Gradient boosting beat logistic regression by +0.0275 AUC (95% CI 0.0187–0.0369) and cut expected cost 8%; stacking and segment specialists added no significant gain. Approval ratios of 0.89–0.96 against the 0.80 four-fifths rule.',
+    pills: ['Python', 'scikit-learn', 'XGBoost', 'Paired Bootstrap', 'Fair Lending'],
+    stat: '+0.0275 AUC (95% CI)',
+  },
+  {
     href: 'https://github.com/shaikn6/fin-lora',
     group: 'llm',
     demo: { label: 'Hugging Face model', href: 'https://huggingface.co/9mark9/fin-lora-news-qwen2.5-0.5b' },
@@ -46,6 +54,25 @@ const PROJECTS: Project[] = [
     desc: '84.7% on 2,000 LLM-labelled news snippets against 73.6% for zero-shot FinBERT, and 76.8% against 71.2% on 267 human-labelled headlines. LoRA-tuned Qwen2.5-0.5B for financial sentiment, benchmarked against TF-IDF and FinBERT. A confidence cascade sends only uncertain items to the LLM, cutting average latency 63% for 0.4 points of accuracy; a follow-up study measures how easily planted labels flip each model across five markets.',
     pills: ['PyTorch', 'LoRA / PEFT', 'Qwen2.5', 'FinBERT', 'Hugging Face'],
     stat: '84.7% vs 73.6% FinBERT',
+  },
+  {
+    href: 'https://github.com/shaikn6/ledger-service',
+    group: 'ml',
+    domain: 'Fintech Backend', domainClass: styles.dCloud,
+    name: 'ledger-service',
+    desc: 'A double-entry ledger service in Go and Postgres: idempotent transfers, and a concurrency test that checks balances stay conserved under parallel writes. The money-movement core a fintech needs before anything else sits on top.',
+    pills: ['Go', 'PostgreSQL', 'Double-Entry', 'Idempotency'],
+    stat: 'Live repo',
+  },
+  {
+    href: 'https://github.com/shaikn6/lethe',
+    group: 'agents',
+    demo: { label: 'Live demo', href: 'https://huggingface.co/spaces/9mark9/lethe-agent-memory' },
+    domain: 'Agent Memory', domainClass: styles.dAgents,
+    name: 'lethe',
+    desc: 'Puts 0.707 of the evidence in the top 10 on held-out LoCoMo conversations, against 0.641 for the best hand-set rule; on LongMemEval it only ties that rule. A memory server for AI agents: after each recall the agent reports whether the memories helped, and a small reinforcement-learning policy shifts the ranking. The first learner lost (0.611) because new memories were never tried; forced exploration fixed it. One Go binary with a crash-safe journal and Python, LangChain and MCP adapters.',
+    pills: ['Go', 'Reinforcement Learning', 'LangChain', 'MCP', 'Python'],
+    stat: '0.707 vs 0.641 held-out · ~8,700 req/s',
   },
   {
     href: 'https://github.com/shaikn6/llm-safety-auditor',
@@ -65,15 +92,6 @@ const PROJECTS: Project[] = [
     desc: 'Catches READMEs that no longer match the code: a hand audit of 22 repositories found 15 had drifted. It turns a README into verifiable claims (test counts, versions, paths, commands, links, licence) and checks each one against the repository. Deterministic, offline and standard-library only; runs as a CLI or a GitHub Action.',
     pills: ['Python', 'GitHub Actions', 'CLI', 'Static Analysis'],
     stat: '52 tests',
-  },
-  {
-    href: 'https://github.com/shaikn6/finance-agent-crew',
-    group: 'agents',
-    domain: 'Multi-Agent', domainClass: styles.dAgents,
-    name: 'Finance Agent Crew',
-    desc: 'Turns a stock ticker into a sourced research brief, with 333 tests and an offline mode that needs no API keys. An LLM-free gatherer fans out concurrently over SEC EDGAR, market data and news; fundamental, sentiment and risk agents run in parallel; a writer agent synthesizes a BUY / HOLD / SELL call with bull and bear cases. Typed Pydantic outputs throughout.',
-    pills: ['Python', 'asyncio', 'Claude', 'Pydantic', 'FastAPI'],
-    stat: '333 tests · 99% coverage',
   },
   {
     href: 'https://github.com/shaikn6/nvidia-nim-rag-techniques',
@@ -118,7 +136,7 @@ const FILTERS: { id: 'all' | Group; label: string }[] = [
   { id: 'llm', label: 'LLM Systems' },
   { id: 'agents', label: 'Agents' },
   { id: 'safety', label: 'Safety, Evaluation & Tools' },
-  { id: 'ml', label: 'Vision & RL' },
+  { id: 'ml', label: 'ML & Systems' },
 ]
 
 const MAX_TILT = 7
@@ -203,7 +221,7 @@ export default function Projects() {
         <ScrollReveal delay={0.05}><h2 className={styles.sectionH}>Things I've actually built.</h2></ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className={styles.sectionSub}>
-            Agent memory, LLM systems and evaluation first, then computer vision and reinforcement learning.
+            Fintech LLM systems, agents and credit risk first, then evaluation, computer vision and reinforcement learning.
             Each card leads with its result; every number comes from the linked repository.
           </p>
         </ScrollReveal>
