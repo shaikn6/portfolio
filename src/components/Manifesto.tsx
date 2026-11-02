@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion
 import styles from './Manifesto.module.css'
 
 const LINE =
-  'I build LLM systems that hold up when measured: agent memory that learns, governed LLM gateways, fine-tuned models, and evaluations that find the failure first.'
+  'I build LLM and ML systems for regulated fintech that hold up when measured: governed LLM gateways, compliance RAG, credit-risk models, and evaluations that find the failure first.'
 
 const WORDS = LINE.split(' ')
 

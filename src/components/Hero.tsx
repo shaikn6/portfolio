@@ -4,7 +4,7 @@ import { useMagnetic } from '../hooks/useMagnetic'
 import SafeBoundary from './SafeBoundary'
 
 const Scene3D = lazy(() => import('./Scene3D'))
-const ROLES = ['agent memory', 'LLM gateways', 'LLM evaluations'] as const
+const ROLES = ['LLM gateways', 'compliance RAG', 'credit-risk models'] as const
 
 function RotatingRole() {
   const [index, setIndex] = useState(0)
@@ -71,7 +71,7 @@ export default function Hero() {
 
       <div className={styles.inner} ref={innerRef}>
         <p className={`${styles.eyebrow} ${styles.up}`} style={{ animationDelay: '0.05s' }}>
-          Generative AI · Agentic AI · ML Platforms
+          Generative AI · Fintech · LLM &amp; RAG Systems
         </p>
 
         <h1 className={styles.name}>
@@ -84,15 +84,15 @@ export default function Hero() {
         </div>
 
         <p className={`${styles.desc} ${styles.up}`} style={{ animationDelay: '0.46s' }}>
-          Agent memory that learns which memories to return, a multi-provider LLM
-          gateway, LoRA fine-tuning and OWASP LLM Top 10 red-teaming, each with tests
-          and measured results in its repository. Before that, five years in data
-          engineering and ML platforms.
+          Data engineer turned ML and GenAI engineer for regulated fintech: a governed
+          LLM gateway, compliance RAG that cut research from two hours to under 20 minutes,
+          and an ML platform that cut deployment failures 85%, plus AML, real-time payments
+          and model-risk work — each with tests and measured results in its repository.
         </p>
 
         <p className={`${styles.openBadge} ${styles.up}`} style={{ animationDelay: '0.52s' }}>
           <span className={styles.openDot} aria-hidden="true" />
-          Open to GenAI &amp; agentic AI engineering roles, internship or full-time — DBA (Applied AI) in progress
+          Open to Generative AI &amp; ML engineering roles in fintech and beyond — authorized to work in the U.S. (CPT), no sponsorship needed · DBA (Applied AI) in progress
         </p>
 
         <div className={`${styles.ctas} ${styles.up}`} style={{ animationDelay: '0.6s' }}>
