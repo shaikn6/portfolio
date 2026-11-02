@@ -1,13 +1,13 @@
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import ScrollReveal from './ScrollReveal'
 import styles from './Experience.module.css'
 
-const bulletList = {
+const bulletList: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
 }
 
-const bulletItem = {
+const bulletItem: Variants = {
   hidden: { opacity: 0, x: -10 },
   show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 }
