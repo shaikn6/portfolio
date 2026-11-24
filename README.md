@@ -1,4 +1,5 @@
 # portfolio
+[![CI](https://github.com/shaikn6/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/shaikn6/portfolio/actions/workflows/ci.yml)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](package.json)
