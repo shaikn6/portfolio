@@ -1,6 +1,11 @@
 # Changelog
 
 ## [Unreleased]
+### Changed
+- Email and phone are no longer in the résumé PDF or anywhere in the repository. The contact section
+  reveals them after a server-checked "select all the ..." puzzle (`api/contact.ts`), replacing the
+  client-side maths question whose answer was readable in the page script.
+- The résumé header now reads "contact via nagizaaz.vercel.app".
 
 ## [2.2.0] - 2026-10-31
 ### Changed
