@@ -35,6 +35,16 @@ All site copy lives in the component files under `src/components/` — `Hero`,
 search and social preview text is in `index.html`. Edit those directly; there
 is no CMS.
 
+## Contact details
+
+The email address and phone number are not in this repository, the page bundle or the
+résumé PDF. They are Vercel environment variables (`CONTACT_EMAIL`, `CONTACT_PHONE`) that
+`api/contact.ts` returns only after a visitor solves a "select all the ..." puzzle. The
+server signs each puzzle with `PUZZLE_SECRET`, so the answer is never sent to the browser.
+Without the three variables the contact section shows the public profile links only.
+This stops generic scrapers and email harvesters. It does not stop a bot written for this site: the emoji
+categories are in the code, so such a bot could solve it.
+
 ## Featured projects
 
 | Project | Focus |
